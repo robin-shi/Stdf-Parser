@@ -24,11 +24,12 @@ namespace StdfParser
         private void OpenStdfFileDialog(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog() {Filter="stdf|*.stdf;*.std",
-            InitialDirectory=@"D:\"};
+            InitialDirectory=@"..\"};
             fileDialog.ShowDialog();
             try
             {
                 stdfFile = new StdfFile(fileDialog.FileName);
+                toolStripStatusFileName.Text = fileDialog.FileName;
                 UpdateTestItems();
             }
             catch (Exception ex)
@@ -40,10 +41,13 @@ namespace StdfParser
         private void UpdateTestItems()
         {
             var results = stdfFile.GetRecords().OfExactType<Tsr>().Select(p=>p.TestName);
+            toolStripProgressBarFileOpen.Maximum = results.Count();
+            toolStripProgressBarFileOpen.Value = 0;
             foreach (var result in results)
             {
                 //TestNames.Add(result);
                 dataGridViewTestItems.Rows.Add(result);
+                toolStripProgressBarFileOpen.Value++;
             }
         }
 

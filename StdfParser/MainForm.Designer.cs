@@ -52,7 +52,7 @@ namespace StdfParser
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(926, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1081, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -91,7 +91,7 @@ namespace StdfParser
             this.dataGridViewTestItems.Name = "dataGridViewTestItems";
             this.dataGridViewTestItems.ReadOnly = true;
             this.dataGridViewTestItems.RowTemplate.Height = 23;
-            this.dataGridViewTestItems.Size = new System.Drawing.Size(282, 438);
+            this.dataGridViewTestItems.Size = new System.Drawing.Size(282, 594);
             this.dataGridViewTestItems.TabIndex = 1;
             // 
             // TestNum
@@ -111,24 +111,25 @@ namespace StdfParser
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusFileName,
-            this.toolStripProgressBarFileOpen});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 510);
+            this.toolStripProgressBarFileOpen,
+            this.toolStripStatusFileName});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 666);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(926, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1081, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusFileName
             // 
             this.toolStripStatusFileName.Name = "toolStripStatusFileName";
-            this.toolStripStatusFileName.Size = new System.Drawing.Size(116, 17);
-            this.toolStripStatusFileName.Text = "                           ";
+            this.toolStripStatusFileName.Size = new System.Drawing.Size(0, 17);
             // 
             // toolStripProgressBarFileOpen
             // 
             this.toolStripProgressBarFileOpen.Name = "toolStripProgressBarFileOpen";
             this.toolStripProgressBarFileOpen.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBarFileOpen.Step = 100;
+            this.toolStripProgressBarFileOpen.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // textBoxFilte
             // 
@@ -152,7 +153,7 @@ namespace StdfParser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 532);
+            this.ClientSize = new System.Drawing.Size(1081, 688);
             this.Controls.Add(this.labelFilte);
             this.Controls.Add(this.textBoxFilte);
             this.Controls.Add(this.statusStrip1);

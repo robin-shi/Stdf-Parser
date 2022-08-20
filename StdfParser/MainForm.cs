@@ -20,9 +20,10 @@ namespace StdfParser
         }
 
         StdfFile stdfFile { get; set; }
-        List<string> TestNames { get; set; }
+        Dictionary<uint,string> TestItems { get; set; }
         private void OpenStdfFileDialog(object sender, EventArgs e)
         {
+            ClearTestItems();
             OpenFileDialog fileDialog = new OpenFileDialog() {Filter="stdf|*.stdf;*.std",
             InitialDirectory=@"..\"};
             fileDialog.ShowDialog();
@@ -30,6 +31,7 @@ namespace StdfParser
             {
                 stdfFile = new StdfFile(fileDialog.FileName);
                 toolStripStatusFileName.Text = fileDialog.FileName;
+                TestItems = new Dictionary<uint, string> { };
                 UpdateTestItems();
             }
             catch (Exception ex)
@@ -40,16 +42,30 @@ namespace StdfParser
 
         private void UpdateTestItems()
         {
-            var results = stdfFile.GetRecords().OfExactType<Tsr>().Select(p=>p.TestName);
+            var results = stdfFile.GetRecords().OfExactType<Tsr>();
             toolStripProgressBarFileOpen.Maximum = results.Count();
-            toolStripProgressBarFileOpen.Value = 0;
             foreach (var result in results)
             {
-                //TestNames.Add(result);
-                dataGridViewTestItems.Rows.Add(result);
-                toolStripProgressBarFileOpen.Value++;
+                try
+                {
+                    toolStripProgressBarFileOpen.Value++;
+                    TestItems.Add(result.TestNumber, result.TestName);
+                }
+                catch { }
+            }
+            foreach (var item in TestItems)
+            {
+                dataGridViewTestItems.Rows.Add(item.Key,item.Value);
             }
         }
+        private void ClearTestItems()
+        {
+            dataGridViewTestItems.Rows.Clear();
+            toolStripProgressBarFileOpen.Value = 0;
+            toolStripStatusFileName.Text = "";
+
+        }
+        
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {

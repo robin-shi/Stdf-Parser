@@ -57,6 +57,7 @@ namespace StdfParser
             {
                 dataGridViewTestItems.Rows.Add(item.Key,item.Value);
             }
+            toolStripProgressBarFileOpen.Value = 0;
         }
         private void ClearTestItems()
         {

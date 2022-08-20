@@ -58,6 +58,7 @@ namespace StdfParser
                 dataGridViewTestItems.Rows.Add(item.Key,item.Value);
             }
             toolStripProgressBarFileOpen.Value = 0;
+            CreatPlot();
         }
         private void ClearTestItems()
         {
@@ -65,6 +66,20 @@ namespace StdfParser
             toolStripProgressBarFileOpen.Value = 0;
             toolStripStatusFileName.Text = "";
 
+        }
+
+        private void CreatPlot()
+        {
+            double[] dataX= new double[1000];
+            double[] dataY = new double[1000];
+            Random random = new Random();
+            for (int i = 0; i < 1000; i++)
+            {
+                dataX[i] = random.NextDouble();
+                dataY[i] = random.NextDouble();
+            }
+            formsPlot1.Plot.AddScatter(dataX,dataY);
+            formsPlot1.Refresh();
         }
         
 

@@ -83,7 +83,8 @@ namespace StdfParser
 
         private void dataGridViewTestItems_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            uint testNumberSelected=(uint)dataGridViewTestItems.SelectedCells[0].Value;
+
+            uint testNumberSelected =(uint)dataGridViewTestItems.SelectedCells[0].Value;
             var values = stdfFile.GetRecords().OfExactType<Ptr>().Where(p => p.TestNumber == testNumberSelected && p.SiteNumber==0).Select(p => p.Result);
             double[] dataY = new double[values.Count()];
             double[] dataX = new double[values.Count()];

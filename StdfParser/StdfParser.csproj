@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LinqToStdf">
-      <HintPath>..\LinqToStdf\Main\LinqToStdf\obj\Debug\LinqToStdf.dll</HintPath>
+      <HintPath>..\LinqToStdf\LinqToStdf.dll</HintPath>
     </Reference>
     <Reference Include="ScottPlot, Version=4.1.57.0, Culture=neutral, PublicKeyToken=86698dc10387c39e, processorArchitecture=MSIL">
       <HintPath>..\packages\ScottPlot.4.1.57\lib\net462\ScottPlot.dll</HintPath>

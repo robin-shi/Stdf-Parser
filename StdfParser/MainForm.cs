@@ -68,11 +68,30 @@ namespace StdfParser
 
         }
 
-        private void CreatPlot(double[] dataX,double[] dataY)
+        private void UpdateScatter(double[] dataX,double[] dataY)
         {
-            formsPlot1.Plot.Clear();
-            formsPlot1.Plot.AddScatterPoints(dataX,dataY);
-            formsPlot1.Refresh();
+            formsPlotScatter.Plot.Clear();
+            formsPlotScatter.Plot.AddScatterPoints(dataX,dataY);
+            formsPlotScatter.Refresh();
+        }
+
+        private void UpdateHistogram(double[] dataY)
+        {
+            formsPlotHsitogram.Plot.Clear();
+            double minValue = dataY.Min();
+            double maxValue = dataY.Max();
+            double binWidth = (maxValue - minValue) / 5;
+            //Random rand = new Random(0);
+            //double[] values = ScottPlot.DataGen.RandomNormal(rand, pointCount: 1234, mean: 178.4, stdDev: 7.6);
+            (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(dataY, min: minValue, max: maxValue, binSize: binWidth);
+            double[] leftEdges = binEdges.Take(binEdges.Length - 1).ToArray();
+            var bar = formsPlotHsitogram.Plot.AddBar(values: counts, positions: leftEdges);
+            bar.FillColor = ColorTranslator.FromHtml("#9bc3eb");
+            bar.BorderLineWidth = 0;
+            formsPlotHsitogram.Plot.YAxis.Label("Count (#)");
+            formsPlotHsitogram.Plot.XAxis.Label("Height (cm)");
+            formsPlotHsitogram.Plot.SetAxisLimits(yMin: 0);
+            formsPlotHsitogram.Refresh();
         }
         
 
@@ -95,7 +114,8 @@ namespace StdfParser
                 dataX[i] = i;
                 i++;
             }
-            CreatPlot(dataX,dataY);
+            UpdateScatter(dataX,dataY);
+            UpdateHistogram(dataY);
 
         }
     }

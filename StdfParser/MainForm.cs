@@ -21,6 +21,7 @@ namespace StdfParser
 
         StdfFile stdfFile { get; set; }
         Dictionary<uint,string> TestItems { get; set; }
+
         private void OpenStdfFileDialog(object sender, EventArgs e)
         {
             ClearTestItems();
@@ -58,7 +59,6 @@ namespace StdfParser
                 dataGridViewTestItems.Rows.Add(item.Key,item.Value);
             }
             toolStripProgressBarFileOpen.Value = 0;
-            CreatPlot();
         }
         private void ClearTestItems()
         {
@@ -68,17 +68,10 @@ namespace StdfParser
 
         }
 
-        private void CreatPlot()
+        private void CreatPlot(double[] dataX,double[] dataY)
         {
-            double[] dataX= new double[1000];
-            double[] dataY = new double[1000];
-            Random random = new Random();
-            for (int i = 0; i < 1000; i++)
-            {
-                dataX[i] = random.NextDouble();
-                dataY[i] = random.NextDouble();
-            }
-            formsPlot1.Plot.AddScatter(dataX,dataY);
+            formsPlot1.Plot.Clear();
+            formsPlot1.Plot.AddScatterPoints(dataX,dataY);
             formsPlot1.Refresh();
         }
         
@@ -86,6 +79,23 @@ namespace StdfParser
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void dataGridViewTestItems_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            uint testNumberSelected=(uint)dataGridViewTestItems.SelectedCells[0].Value;
+            var values = stdfFile.GetRecords().OfExactType<Ptr>().Where(p => p.TestNumber == testNumberSelected && p.SiteNumber==0).Select(p => p.Result);
+            double[] dataY = new double[values.Count()];
+            double[] dataX = new double[values.Count()];
+            int i = 0;
+            foreach (var value in values)
+            {
+                dataY[i] = (double)value;
+                dataX[i] = i;
+                i++;
+            }
+            CreatPlot(dataX,dataY);
+
         }
     }
 }

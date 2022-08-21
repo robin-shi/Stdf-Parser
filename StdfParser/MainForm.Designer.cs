@@ -93,7 +93,7 @@ namespace StdfParser
             this.dataGridViewTestItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TestNum,
             this.TestItem});
-            this.dataGridViewTestItems.Location = new System.Drawing.Point(0, 77);
+            this.dataGridViewTestItems.Location = new System.Drawing.Point(0, 106);
             this.dataGridViewTestItems.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridViewTestItems.MultiSelect = false;
             this.dataGridViewTestItems.Name = "dataGridViewTestItems";
@@ -103,8 +103,9 @@ namespace StdfParser
             this.dataGridViewTestItems.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewTestItems.RowTemplate.Height = 23;
             this.dataGridViewTestItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewTestItems.Size = new System.Drawing.Size(263, 609);
+            this.dataGridViewTestItems.Size = new System.Drawing.Size(263, 580);
             this.dataGridViewTestItems.TabIndex = 1;
+            this.dataGridViewTestItems.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewTestItems_CellMouseClick);
             // 
             // TestNum
             // 

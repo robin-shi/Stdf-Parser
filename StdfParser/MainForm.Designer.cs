@@ -44,11 +44,16 @@ namespace StdfParser
             this.formsPlotScatter = new ScottPlot.FormsPlot();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tabControlChart = new System.Windows.Forms.TabControl();
             this.tabPageScatter = new System.Windows.Forms.TabPage();
             this.tabPageHsitogram = new System.Windows.Forms.TabPage();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.formsPlotHsitogram = new ScottPlot.FormsPlot();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestItems)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -60,18 +65,20 @@ namespace StdfParser
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.tabControlChart.SuspendLayout();
-            this.tabPageScatter.SuspendLayout();
-            this.tabPageHsitogram.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.tabControlChart.SuspendLayout();
+            this.tabPageScatter.SuspendLayout();
+            this.tabPageHsitogram.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.viewToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 4, 0, 4);
@@ -83,6 +90,7 @@ namespace StdfParser
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
+            this.toolStripMenuItem3,
             this.exitToolStripMenuItem});
             this.toolStripMenuItem1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -92,14 +100,14 @@ namespace StdfParser
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenStdfFileDialog);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -108,11 +116,14 @@ namespace StdfParser
             this.dataGridViewTestItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewTestItems.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridViewTestItems.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridViewTestItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewTestItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridViewTestItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTestItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TestNum,
             this.TestItem});
             this.dataGridViewTestItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewTestItems.GridColor = System.Drawing.Color.White;
             this.dataGridViewTestItems.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewTestItems.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridViewTestItems.MultiSelect = false;
@@ -124,7 +135,7 @@ namespace StdfParser
             this.dataGridViewTestItems.RowTemplate.Height = 23;
             this.dataGridViewTestItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewTestItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTestItems.Size = new System.Drawing.Size(367, 551);
+            this.dataGridViewTestItems.Size = new System.Drawing.Size(365, 550);
             this.dataGridViewTestItems.TabIndex = 1;
             this.dataGridViewTestItems.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewTestItems_CellMouseClick);
             // 
@@ -195,11 +206,12 @@ namespace StdfParser
             this.formsPlotScatter.Location = new System.Drawing.Point(3, 3);
             this.formsPlotScatter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.formsPlotScatter.Name = "formsPlotScatter";
-            this.formsPlotScatter.Size = new System.Drawing.Size(716, 432);
+            this.formsPlotScatter.Size = new System.Drawing.Size(714, 430);
             this.formsPlotScatter.TabIndex = 5;
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 33);
             this.splitContainer1.Name = "splitContainer1";
@@ -231,42 +243,9 @@ namespace StdfParser
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.dataGridViewTestItems);
-            this.splitContainer2.Size = new System.Drawing.Size(367, 658);
-            this.splitContainer2.SplitterDistance = 103;
+            this.splitContainer2.Size = new System.Drawing.Size(365, 656);
+            this.splitContainer2.SplitterDistance = 102;
             this.splitContainer2.TabIndex = 5;
-            // 
-            // tabControlChart
-            // 
-            this.tabControlChart.Controls.Add(this.tabPageScatter);
-            this.tabControlChart.Controls.Add(this.tabPageHsitogram);
-            this.tabControlChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlChart.Location = new System.Drawing.Point(0, 0);
-            this.tabControlChart.Name = "tabControlChart";
-            this.tabControlChart.SelectedIndex = 0;
-            this.tabControlChart.Size = new System.Drawing.Size(730, 472);
-            this.tabControlChart.TabIndex = 6;
-            // 
-            // tabPageScatter
-            // 
-            this.tabPageScatter.Controls.Add(this.formsPlotScatter);
-            this.tabPageScatter.Location = new System.Drawing.Point(4, 30);
-            this.tabPageScatter.Name = "tabPageScatter";
-            this.tabPageScatter.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageScatter.Size = new System.Drawing.Size(722, 438);
-            this.tabPageScatter.TabIndex = 0;
-            this.tabPageScatter.Text = "Scatter";
-            this.tabPageScatter.UseVisualStyleBackColor = true;
-            // 
-            // tabPageHsitogram
-            // 
-            this.tabPageHsitogram.Controls.Add(this.formsPlotHsitogram);
-            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 30);
-            this.tabPageHsitogram.Name = "tabPageHsitogram";
-            this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHsitogram.Size = new System.Drawing.Size(722, 438);
-            this.tabPageHsitogram.TabIndex = 1;
-            this.tabPageHsitogram.Text = "Histogram";
-            this.tabPageHsitogram.UseVisualStyleBackColor = true;
             // 
             // splitContainer3
             // 
@@ -278,9 +257,42 @@ namespace StdfParser
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.Controls.Add(this.tabControlChart);
-            this.splitContainer3.Size = new System.Drawing.Size(730, 658);
-            this.splitContainer3.SplitterDistance = 472;
+            this.splitContainer3.Size = new System.Drawing.Size(728, 656);
+            this.splitContainer3.SplitterDistance = 470;
             this.splitContainer3.TabIndex = 7;
+            // 
+            // tabControlChart
+            // 
+            this.tabControlChart.Controls.Add(this.tabPageScatter);
+            this.tabControlChart.Controls.Add(this.tabPageHsitogram);
+            this.tabControlChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlChart.Location = new System.Drawing.Point(0, 0);
+            this.tabControlChart.Name = "tabControlChart";
+            this.tabControlChart.SelectedIndex = 0;
+            this.tabControlChart.Size = new System.Drawing.Size(728, 470);
+            this.tabControlChart.TabIndex = 6;
+            // 
+            // tabPageScatter
+            // 
+            this.tabPageScatter.Controls.Add(this.formsPlotScatter);
+            this.tabPageScatter.Location = new System.Drawing.Point(4, 30);
+            this.tabPageScatter.Name = "tabPageScatter";
+            this.tabPageScatter.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageScatter.Size = new System.Drawing.Size(720, 436);
+            this.tabPageScatter.TabIndex = 0;
+            this.tabPageScatter.Text = "Scatter";
+            this.tabPageScatter.UseVisualStyleBackColor = true;
+            // 
+            // tabPageHsitogram
+            // 
+            this.tabPageHsitogram.Controls.Add(this.formsPlotHsitogram);
+            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 22);
+            this.tabPageHsitogram.Name = "tabPageHsitogram";
+            this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageHsitogram.Size = new System.Drawing.Size(722, 446);
+            this.tabPageHsitogram.TabIndex = 1;
+            this.tabPageHsitogram.Text = "Histogram";
+            this.tabPageHsitogram.UseVisualStyleBackColor = true;
             // 
             // formsPlotHsitogram
             // 
@@ -288,8 +300,43 @@ namespace StdfParser
             this.formsPlotHsitogram.Location = new System.Drawing.Point(3, 3);
             this.formsPlotHsitogram.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.formsPlotHsitogram.Name = "formsPlotHsitogram";
-            this.formsPlotHsitogram.Size = new System.Drawing.Size(716, 432);
+            this.formsPlotHsitogram.Size = new System.Drawing.Size(716, 440);
             this.formsPlotHsitogram.TabIndex = 0;
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(59, 25);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(57, 25);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.aboutToolStripMenuItem.Text = "About StdfParser";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 26);
+            this.toolStripMenuItem2.Text = "View Help";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem3.Text = "Export to Csv";
             // 
             // MainForm
             // 
@@ -318,12 +365,12 @@ namespace StdfParser
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.tabControlChart.ResumeLayout(false);
-            this.tabPageScatter.ResumeLayout(false);
-            this.tabPageHsitogram.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            this.tabControlChart.ResumeLayout(false);
+            this.tabPageScatter.ResumeLayout(false);
+            this.tabPageHsitogram.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,6 +398,11 @@ namespace StdfParser
         private System.Windows.Forms.TabPage tabPageScatter;
         private System.Windows.Forms.TabPage tabPageHsitogram;
         private ScottPlot.FormsPlot formsPlotHsitogram;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }
 

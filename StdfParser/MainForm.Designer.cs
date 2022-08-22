@@ -32,7 +32,12 @@ namespace StdfParser
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTestItems = new System.Windows.Forms.DataGridView();
             this.TestNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,11 +54,10 @@ namespace StdfParser
             this.tabPageScatter = new System.Windows.Forms.TabPage();
             this.tabPageHsitogram = new System.Windows.Forms.TabPage();
             this.formsPlotHsitogram = new ScottPlot.FormsPlot();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.radioButtonSite0 = new System.Windows.Forms.RadioButton();
+            this.radioButtonSite1 = new System.Windows.Forms.RadioButton();
+            this.radioButtonSite2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonSite3 = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestItems)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -100,16 +104,51 @@ namespace StdfParser
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenStdfFileDialog);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem3.Text = "Export to Csv";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(59, 25);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(57, 25);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 26);
+            this.toolStripMenuItem2.Text = "View Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.aboutToolStripMenuItem.Text = "About StdfParser";
             // 
             // dataGridViewTestItems
             // 
@@ -237,6 +276,10 @@ namespace StdfParser
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.BackColor = System.Drawing.Color.White;
+            this.splitContainer2.Panel1.Controls.Add(this.radioButtonSite3);
+            this.splitContainer2.Panel1.Controls.Add(this.radioButtonSite2);
+            this.splitContainer2.Panel1.Controls.Add(this.radioButtonSite1);
+            this.splitContainer2.Panel1.Controls.Add(this.radioButtonSite0);
             this.splitContainer2.Panel1.Controls.Add(this.textBoxFilte);
             this.splitContainer2.Panel1.Controls.Add(this.labelFilte);
             // 
@@ -289,7 +332,7 @@ namespace StdfParser
             this.tabPageHsitogram.Location = new System.Drawing.Point(4, 22);
             this.tabPageHsitogram.Name = "tabPageHsitogram";
             this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHsitogram.Size = new System.Drawing.Size(722, 446);
+            this.tabPageHsitogram.Size = new System.Drawing.Size(720, 444);
             this.tabPageHsitogram.TabIndex = 1;
             this.tabPageHsitogram.Text = "Histogram";
             this.tabPageHsitogram.UseVisualStyleBackColor = true;
@@ -300,43 +343,56 @@ namespace StdfParser
             this.formsPlotHsitogram.Location = new System.Drawing.Point(3, 3);
             this.formsPlotHsitogram.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.formsPlotHsitogram.Name = "formsPlotHsitogram";
-            this.formsPlotHsitogram.Size = new System.Drawing.Size(716, 440);
+            this.formsPlotHsitogram.Size = new System.Drawing.Size(714, 438);
             this.formsPlotHsitogram.TabIndex = 0;
             // 
-            // viewToolStripMenuItem
+            // radioButtonSite0
             // 
-            this.viewToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(59, 25);
-            this.viewToolStripMenuItem.Text = "View";
+            this.radioButtonSite0.AutoSize = true;
+            this.radioButtonSite0.Location = new System.Drawing.Point(43, 21);
+            this.radioButtonSite0.Name = "radioButtonSite0";
+            this.radioButtonSite0.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite0.TabIndex = 0;
+            this.radioButtonSite0.TabStop = true;
+            this.radioButtonSite0.Text = "Site0";
+            this.radioButtonSite0.UseVisualStyleBackColor = true;
+            this.radioButtonSite0.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
             // 
-            // helpToolStripMenuItem
+            // radioButtonSite1
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(57, 25);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.radioButtonSite1.AutoSize = true;
+            this.radioButtonSite1.Location = new System.Drawing.Point(114, 21);
+            this.radioButtonSite1.Name = "radioButtonSite1";
+            this.radioButtonSite1.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite1.TabIndex = 0;
+            this.radioButtonSite1.TabStop = true;
+            this.radioButtonSite1.Text = "Site1";
+            this.radioButtonSite1.UseVisualStyleBackColor = true;
+            this.radioButtonSite1.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
             // 
-            // aboutToolStripMenuItem
+            // radioButtonSite2
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
-            this.aboutToolStripMenuItem.Text = "About StdfParser";
+            this.radioButtonSite2.AutoSize = true;
+            this.radioButtonSite2.Location = new System.Drawing.Point(185, 21);
+            this.radioButtonSite2.Name = "radioButtonSite2";
+            this.radioButtonSite2.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite2.TabIndex = 0;
+            this.radioButtonSite2.TabStop = true;
+            this.radioButtonSite2.Text = "Site2";
+            this.radioButtonSite2.UseVisualStyleBackColor = true;
+            this.radioButtonSite2.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
             // 
-            // toolStripMenuItem2
+            // radioButtonSite3
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 26);
-            this.toolStripMenuItem2.Text = "View Help";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 26);
-            this.toolStripMenuItem3.Text = "Export to Csv";
+            this.radioButtonSite3.AutoSize = true;
+            this.radioButtonSite3.Location = new System.Drawing.Point(256, 21);
+            this.radioButtonSite3.Name = "radioButtonSite3";
+            this.radioButtonSite3.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite3.TabIndex = 0;
+            this.radioButtonSite3.TabStop = true;
+            this.radioButtonSite3.Text = "Site3";
+            this.radioButtonSite3.UseVisualStyleBackColor = true;
+            this.radioButtonSite3.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
             // 
             // MainForm
             // 
@@ -403,6 +459,10 @@ namespace StdfParser
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.RadioButton radioButtonSite3;
+        private System.Windows.Forms.RadioButton radioButtonSite2;
+        private System.Windows.Forms.RadioButton radioButtonSite1;
+        private System.Windows.Forms.RadioButton radioButtonSite0;
     }
 }
 

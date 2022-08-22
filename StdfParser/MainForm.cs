@@ -19,23 +19,36 @@ namespace StdfParser
         {
             InitializeComponent();
             dataGridViewTestItems.ColumnHeadersVisible = false;
+            DisVisiableRadioButton();
         }
 
         StdfFile stdfFile { get; set; }
-        Dictionary<uint,string> TestItems { get; set; }
+        Dictionary<uint,string> testItems { get; set; }
 
+        byte[] siteNums { get; set; }
+        byte selectedSite { get; set; }
+        uint selectedtestNumber { get; set; }
+        bool radioButtonUpdateChartEnabled { get; set; }
         private void OpenStdfFileDialog(object sender, EventArgs e)
         {
-            ClearTestItems();
             OpenFileDialog fileDialog = new OpenFileDialog() {Filter="stdf|*.stdf;*.std",
             InitialDirectory=@"..\"};
             fileDialog.ShowDialog();
             try
             {
-                stdfFile = new StdfFile(fileDialog.FileName);
-                toolStripStatusFileName.Text = fileDialog.FileName;
-                TestItems = new Dictionary<uint, string> { };
-                UpdateTestItems();
+                if (fileDialog.FileName!="")
+                {
+                    ClearTestItems();
+                    DisVisiableRadioButton();
+                    formsPlotScatter.Plot.Clear();
+                    formsPlotHsitogram.Plot.Clear();
+                    stdfFile = new StdfFile(fileDialog.FileName);
+                    toolStripStatusFileName.Text = fileDialog.FileName;
+                    testItems = new Dictionary<uint, string> { };
+                    UpdateTestItems();
+                    radioButtonUpdateChartEnabled = false;
+                    UpdateRadioButton();
+                }
             }
             catch (Exception ex)
             {
@@ -46,22 +59,68 @@ namespace StdfParser
         private void UpdateTestItems()
         {
             var results = stdfFile.GetRecords().OfExactType<Tsr>();
+            
             toolStripProgressBarFileOpen.Maximum = results.Count();
             foreach (var result in results)
             {
                 try
                 {
                     toolStripProgressBarFileOpen.Value++;
-                    TestItems.Add(result.TestNumber, result.TestName);
+                    testItems.Add(result.TestNumber, result.TestName);
                 }
                 catch { }
             }
-            foreach (var item in TestItems)
+            foreach (var item in testItems)
             {
                 dataGridViewTestItems.Rows.Add(item.Key,item.Value);
             }
             dataGridViewTestItems.ColumnHeadersVisible = true;
             toolStripProgressBarFileOpen.Value = 0;
+        }
+
+        private void UpdateRadioButton()
+        {
+            var results = stdfFile.GetRecords().OfExactType<Sdr>();
+            foreach (var result in results)
+            {
+                siteNums = result.SiteNumbers;
+            }
+            foreach (var siteNum in siteNums)
+            {
+                if (siteNum == 0)
+                {
+                    radioButtonSite0.Visible = true;
+                    radioButtonSite0.Checked = true;
+                    selectedSite = 0;
+                }
+                else if (siteNum == 1)
+                {
+                    radioButtonSite1.Visible = true;
+                    radioButtonSite1.Checked = true;
+                    selectedSite = 1;
+                }
+                else if (siteNum == 2)
+                {
+                    radioButtonSite2.Visible = true;
+                    radioButtonSite2.Checked = true;
+                    selectedSite = 2;
+                }
+                    
+                else if (siteNum == 3)
+                {
+                    radioButtonSite3.Visible = true;
+                    radioButtonSite3.Checked = true;
+                    selectedSite = 3;
+                }
+                    
+            } 
+        }
+        private void DisVisiableRadioButton()
+        {
+            radioButtonSite0.Visible = false;
+            radioButtonSite1.Visible = false;
+            radioButtonSite2.Visible = false;
+            radioButtonSite3.Visible = false;
         }
         private void ClearTestItems()
         {
@@ -140,8 +199,15 @@ namespace StdfParser
         private void dataGridViewTestItems_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
-            uint testNumberSelected =(uint)dataGridViewTestItems.SelectedCells[0].Value;
-            var values = stdfFile.GetRecords().OfExactType<Ptr>().Where(p => p.TestNumber == testNumberSelected && p.SiteNumber==0).Select(p => p.Result);
+            selectedtestNumber = (uint)dataGridViewTestItems.SelectedCells[0].Value;
+            UpdateChart();
+            radioButtonUpdateChartEnabled = true;
+
+        }
+
+        private void UpdateChart()
+        {
+            var values = stdfFile.GetRecords().OfExactType<Ptr>().Where(p => p.TestNumber == selectedtestNumber && p.SiteNumber == selectedSite).Select(p => p.Result);
             double[] dataY = new double[values.Count()];
             double[] dataX = new double[values.Count()];
             int i = 0;
@@ -151,9 +217,33 @@ namespace StdfParser
                 dataX[i] = i;
                 i++;
             }
-            UpdateScatter(dataX,dataY);
+            UpdateScatter(dataX, dataY);
             UpdateHistogram(dataY);
+        }
 
+        private void radioButtonSiteN_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            if (sender == radioButtonSite0)
+            {
+                selectedSite = 0;
+            }
+            else if (sender == radioButtonSite1)
+            {
+                selectedSite = 1;
+            }
+            else if (sender == radioButtonSite2)
+            {
+                selectedSite = 2;
+            }
+            else if (sender == radioButtonSite3)
+            {
+                selectedSite = 3;
+            }
+            if (radioButtonUpdateChartEnabled == true)
+            {
+                UpdateChart();
+            }
         }
     }
 }

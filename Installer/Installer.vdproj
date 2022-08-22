@@ -28,13 +28,13 @@
         "Entry"
         {
         "MsmKey" = "8:_1A66E2AD0CECBBDCA41AE629B98BCDE7"
-        "OwnerKey" = "8:_CB1CCF3DE2DB4846BAF815BCE0243A2D"
+        "OwnerKey" = "8:_F56AFBB980FC89453B03876E0B2C06C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_1A66E2AD0CECBBDCA41AE629B98BCDE7"
-        "OwnerKey" = "8:_F56AFBB980FC89453B03876E0B2C06C9"
+        "OwnerKey" = "8:_CB1CCF3DE2DB4846BAF815BCE0243A2D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -57,6 +57,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_619E75C21EAB414A9E09B91A5E41CC91"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6649DBE7EEB5298DC259C97B4BADDBF1"
         "OwnerKey" = "8:_CB1CCF3DE2DB4846BAF815BCE0243A2D"
         "MsmSig" = "8:_UNDEFINED"
@@ -64,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_6649DBE7EEB5298DC259C97B4BADDBF1"
-        "OwnerKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_26740D2A26474E0FA5B6E2A300207782"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -148,6 +154,24 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_619E75C21EAB414A9E09B91A5E41CC91"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0687742F829A488999FF815A4CBD07CC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CB1CCF3DE2DB4846BAF815BCE0243A2D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_26740D2A26474E0FA5B6E2A300207782"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -178,25 +202,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0687742F829A488999FF815A4CBD07CC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F56AFBB980FC89453B03876E0B2C06C9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CB1CCF3DE2DB4846BAF815BCE0243A2D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6649DBE7EEB5298DC259C97B4BADDBF1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -253,6 +259,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -269,6 +283,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -484,20 +506,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6649DBE7EEB5298DC259C97B4BADDBF1"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_619E75C21EAB414A9E09B91A5E41CC91"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6649DBE7EEB5298DC259C97B4BADDBF1"
+                    "_619E75C21EAB414A9E09B91A5E41CC91"
                     {
                     "Name" = "8:System.ValueTuple.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.ValueTuple.dll"
+            "SourcePath" = "8:..\\packages\\System.ValueTuple.4.5.0\\lib\\net461\\System.ValueTuple.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921793E400E34AFA85FC397C770193E8"
@@ -512,7 +534,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6708E44C5E8D082D095423E95AE31946"

@@ -257,7 +257,7 @@ namespace StdfParser
         {
             try 
             {
-                var results = testItems.Where(p => p.Key.ToString().Contains(textBoxFilter.Text) || p.Value.Contains(textBoxFilter.Text));
+                var results = testItems.Where(p => p.Key.ToString().Contains(textBoxFilter.Text) || p.Value.ToUpper().Contains(textBoxFilter.Text.ToUpper()));
                 dataGridViewTestItems.Rows.Clear();
                 foreach (var result in results)
                 {

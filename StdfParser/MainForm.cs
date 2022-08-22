@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LinqToStdf;
 using LinqToStdf.Records.V4;
+using ScottPlot;
 
 namespace StdfParser
 {
@@ -77,21 +78,50 @@ namespace StdfParser
 
         private void UpdateHistogram(double[] dataY)
         {
-            formsPlotHsitogram.Plot.Clear();
-            double minValue = dataY.Min();
-            double maxValue = dataY.Max();
-            double binWidth = (maxValue - minValue) / 5;
-            //Random rand = new Random(0);
-            //double[] values = ScottPlot.DataGen.RandomNormal(rand, pointCount: 1234, mean: 178.4, stdDev: 7.6);
-            (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(dataY, min: minValue, max: maxValue, binSize: binWidth);
-            double[] leftEdges = binEdges.Take(binEdges.Length - 1).ToArray();
-            var bar = formsPlotHsitogram.Plot.AddBar(values: counts, positions: leftEdges);
-            bar.FillColor = ColorTranslator.FromHtml("#9bc3eb");
-            bar.BorderLineWidth = 0;
-            formsPlotHsitogram.Plot.YAxis.Label("Count (#)");
-            formsPlotHsitogram.Plot.XAxis.Label("Height (cm)");
-            formsPlotHsitogram.Plot.SetAxisLimits(yMin: 0);
-            formsPlotHsitogram.Refresh();
+            try
+            {
+                formsPlotHsitogram.Plot.Clear();
+                var stats = new ScottPlot.Statistics.BasicStats(dataY);
+                double maxValue = dataY.Max(); //stats.StDev+(dataY.Max()-dataY.Min());
+                double minValue = dataY.Min();//stats.StDev - (dataY.Max()-dataY.Min());
+                double binWidth = (maxValue - minValue) / 50;
+                (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(dataY, min: minValue, max: maxValue, binSize: binWidth);
+                double[] leftEdges = binEdges.Take(binEdges.Length - 1).ToArray();
+                var bar = formsPlotHsitogram.Plot.AddBar(values: counts, positions: leftEdges);
+                bar.FillColor = ColorTranslator.FromHtml("#9bc3eb");
+                bar.BorderLineWidth = 1f;
+                bar.BarWidth = binWidth;
+                double[] smoothEdges = ScottPlot.DataGen.Range(start: binEdges.First(), stop: binEdges.Last(), step: binWidth, includeStop: true);
+                double[] smoothDensities = ScottPlot.Statistics.Common.ProbabilityDensity(dataY, smoothEdges, percent: true);
+                var probPlot = formsPlotHsitogram.Plot.AddScatterLines(
+                    xs: smoothEdges,
+                    ys: smoothDensities,
+                    lineWidth: 2,
+                    label: "probability");
+                probPlot.YAxisIndex = 1;
+                formsPlotHsitogram.Plot.YAxis2.Ticks(true);
+
+                formsPlotHsitogram.Plot.AddVerticalLine(stats.Mean, Color.Black, 2, LineStyle.Solid, "mean");
+
+                formsPlotHsitogram.Plot.AddVerticalLine(stats.Mean - stats.StDev, Color.Black, 2, LineStyle.Dash, "1 SD");
+                formsPlotHsitogram.Plot.AddVerticalLine(stats.Mean + stats.StDev, Color.Black, 2, LineStyle.Dash);
+
+                formsPlotHsitogram.Plot.AddVerticalLine(stats.Mean - stats.StDev * 2, Color.Black, 2, LineStyle.Dot, "2 SD");
+                formsPlotHsitogram.Plot.AddVerticalLine(stats.Mean + stats.StDev * 2, Color.Black, 2, LineStyle.Dot);
+
+                formsPlotHsitogram.Plot.AddVerticalLine(stats.Min, Color.Gray, 1, LineStyle.Dash, "min/max");
+                formsPlotHsitogram.Plot.AddVerticalLine(stats.Max, Color.Gray, 1, LineStyle.Dash);
+
+                formsPlotHsitogram.Plot.Legend(location: Alignment.UpperRight);
+                formsPlotHsitogram.Plot.YAxis.Label("Count (#)");
+                formsPlotHsitogram.Plot.XAxis.Label("Value");
+                formsPlotHsitogram.Plot.SetAxisLimits(yMin: 0);
+                formsPlotHsitogram.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         
 

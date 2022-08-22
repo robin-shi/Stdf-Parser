@@ -44,20 +44,20 @@ namespace StdfParser
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBarFileOpen = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusFileName = new System.Windows.Forms.ToolStripStatusLabel();
-            this.textBoxFilte = new System.Windows.Forms.TextBox();
+            this.textBoxFilter = new System.Windows.Forms.TextBox();
             this.labelFilte = new System.Windows.Forms.Label();
             this.formsPlotScatter = new ScottPlot.FormsPlot();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.radioButtonSite3 = new System.Windows.Forms.RadioButton();
+            this.radioButtonSite2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonSite1 = new System.Windows.Forms.RadioButton();
+            this.radioButtonSite0 = new System.Windows.Forms.RadioButton();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tabControlChart = new System.Windows.Forms.TabControl();
             this.tabPageScatter = new System.Windows.Forms.TabPage();
             this.tabPageHsitogram = new System.Windows.Forms.TabPage();
             this.formsPlotHsitogram = new ScottPlot.FormsPlot();
-            this.radioButtonSite0 = new System.Windows.Forms.RadioButton();
-            this.radioButtonSite1 = new System.Windows.Forms.RadioButton();
-            this.radioButtonSite2 = new System.Windows.Forms.RadioButton();
-            this.radioButtonSite3 = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestItems)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -218,15 +218,16 @@ namespace StdfParser
             this.toolStripStatusFileName.Name = "toolStripStatusFileName";
             this.toolStripStatusFileName.Size = new System.Drawing.Size(0, 29);
             // 
-            // textBoxFilte
+            // textBoxFilter
             // 
-            this.textBoxFilte.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBoxFilte.Location = new System.Drawing.Point(77, 54);
-            this.textBoxFilte.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxFilte.Name = "textBoxFilte";
-            this.textBoxFilte.Size = new System.Drawing.Size(194, 29);
-            this.textBoxFilte.TabIndex = 3;
-            this.textBoxFilte.Tag = "";
+            this.textBoxFilter.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBoxFilter.Location = new System.Drawing.Point(77, 54);
+            this.textBoxFilter.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxFilter.Name = "textBoxFilter";
+            this.textBoxFilter.Size = new System.Drawing.Size(194, 29);
+            this.textBoxFilter.TabIndex = 3;
+            this.textBoxFilter.Tag = "";
+            this.textBoxFilter.TextChanged += new System.EventHandler(this.textBoxFilte_TextChanged);
             // 
             // labelFilte
             // 
@@ -280,7 +281,7 @@ namespace StdfParser
             this.splitContainer2.Panel1.Controls.Add(this.radioButtonSite2);
             this.splitContainer2.Panel1.Controls.Add(this.radioButtonSite1);
             this.splitContainer2.Panel1.Controls.Add(this.radioButtonSite0);
-            this.splitContainer2.Panel1.Controls.Add(this.textBoxFilte);
+            this.splitContainer2.Panel1.Controls.Add(this.textBoxFilter);
             this.splitContainer2.Panel1.Controls.Add(this.labelFilte);
             // 
             // splitContainer2.Panel2
@@ -289,6 +290,54 @@ namespace StdfParser
             this.splitContainer2.Size = new System.Drawing.Size(365, 656);
             this.splitContainer2.SplitterDistance = 102;
             this.splitContainer2.TabIndex = 5;
+            // 
+            // radioButtonSite3
+            // 
+            this.radioButtonSite3.AutoSize = true;
+            this.radioButtonSite3.Location = new System.Drawing.Point(256, 21);
+            this.radioButtonSite3.Name = "radioButtonSite3";
+            this.radioButtonSite3.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite3.TabIndex = 0;
+            this.radioButtonSite3.TabStop = true;
+            this.radioButtonSite3.Text = "Site3";
+            this.radioButtonSite3.UseVisualStyleBackColor = true;
+            this.radioButtonSite3.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
+            // 
+            // radioButtonSite2
+            // 
+            this.radioButtonSite2.AutoSize = true;
+            this.radioButtonSite2.Location = new System.Drawing.Point(185, 21);
+            this.radioButtonSite2.Name = "radioButtonSite2";
+            this.radioButtonSite2.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite2.TabIndex = 0;
+            this.radioButtonSite2.TabStop = true;
+            this.radioButtonSite2.Text = "Site2";
+            this.radioButtonSite2.UseVisualStyleBackColor = true;
+            this.radioButtonSite2.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
+            // 
+            // radioButtonSite1
+            // 
+            this.radioButtonSite1.AutoSize = true;
+            this.radioButtonSite1.Location = new System.Drawing.Point(114, 21);
+            this.radioButtonSite1.Name = "radioButtonSite1";
+            this.radioButtonSite1.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite1.TabIndex = 0;
+            this.radioButtonSite1.TabStop = true;
+            this.radioButtonSite1.Text = "Site1";
+            this.radioButtonSite1.UseVisualStyleBackColor = true;
+            this.radioButtonSite1.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
+            // 
+            // radioButtonSite0
+            // 
+            this.radioButtonSite0.AutoSize = true;
+            this.radioButtonSite0.Location = new System.Drawing.Point(43, 21);
+            this.radioButtonSite0.Name = "radioButtonSite0";
+            this.radioButtonSite0.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite0.TabIndex = 0;
+            this.radioButtonSite0.TabStop = true;
+            this.radioButtonSite0.Text = "Site0";
+            this.radioButtonSite0.UseVisualStyleBackColor = true;
+            this.radioButtonSite0.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
             // 
             // splitContainer3
             // 
@@ -329,10 +378,10 @@ namespace StdfParser
             // tabPageHsitogram
             // 
             this.tabPageHsitogram.Controls.Add(this.formsPlotHsitogram);
-            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 22);
+            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 30);
             this.tabPageHsitogram.Name = "tabPageHsitogram";
             this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHsitogram.Size = new System.Drawing.Size(720, 444);
+            this.tabPageHsitogram.Size = new System.Drawing.Size(720, 436);
             this.tabPageHsitogram.TabIndex = 1;
             this.tabPageHsitogram.Text = "Histogram";
             this.tabPageHsitogram.UseVisualStyleBackColor = true;
@@ -343,56 +392,8 @@ namespace StdfParser
             this.formsPlotHsitogram.Location = new System.Drawing.Point(3, 3);
             this.formsPlotHsitogram.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.formsPlotHsitogram.Name = "formsPlotHsitogram";
-            this.formsPlotHsitogram.Size = new System.Drawing.Size(714, 438);
+            this.formsPlotHsitogram.Size = new System.Drawing.Size(714, 430);
             this.formsPlotHsitogram.TabIndex = 0;
-            // 
-            // radioButtonSite0
-            // 
-            this.radioButtonSite0.AutoSize = true;
-            this.radioButtonSite0.Location = new System.Drawing.Point(43, 21);
-            this.radioButtonSite0.Name = "radioButtonSite0";
-            this.radioButtonSite0.Size = new System.Drawing.Size(65, 25);
-            this.radioButtonSite0.TabIndex = 0;
-            this.radioButtonSite0.TabStop = true;
-            this.radioButtonSite0.Text = "Site0";
-            this.radioButtonSite0.UseVisualStyleBackColor = true;
-            this.radioButtonSite0.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
-            // 
-            // radioButtonSite1
-            // 
-            this.radioButtonSite1.AutoSize = true;
-            this.radioButtonSite1.Location = new System.Drawing.Point(114, 21);
-            this.radioButtonSite1.Name = "radioButtonSite1";
-            this.radioButtonSite1.Size = new System.Drawing.Size(65, 25);
-            this.radioButtonSite1.TabIndex = 0;
-            this.radioButtonSite1.TabStop = true;
-            this.radioButtonSite1.Text = "Site1";
-            this.radioButtonSite1.UseVisualStyleBackColor = true;
-            this.radioButtonSite1.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
-            // 
-            // radioButtonSite2
-            // 
-            this.radioButtonSite2.AutoSize = true;
-            this.radioButtonSite2.Location = new System.Drawing.Point(185, 21);
-            this.radioButtonSite2.Name = "radioButtonSite2";
-            this.radioButtonSite2.Size = new System.Drawing.Size(65, 25);
-            this.radioButtonSite2.TabIndex = 0;
-            this.radioButtonSite2.TabStop = true;
-            this.radioButtonSite2.Text = "Site2";
-            this.radioButtonSite2.UseVisualStyleBackColor = true;
-            this.radioButtonSite2.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
-            // 
-            // radioButtonSite3
-            // 
-            this.radioButtonSite3.AutoSize = true;
-            this.radioButtonSite3.Location = new System.Drawing.Point(256, 21);
-            this.radioButtonSite3.Name = "radioButtonSite3";
-            this.radioButtonSite3.Size = new System.Drawing.Size(65, 25);
-            this.radioButtonSite3.TabIndex = 0;
-            this.radioButtonSite3.TabStop = true;
-            this.radioButtonSite3.Text = "Site3";
-            this.radioButtonSite3.UseVisualStyleBackColor = true;
-            this.radioButtonSite3.CheckedChanged += new System.EventHandler(this.radioButtonSiteN_CheckedChanged);
             // 
             // MainForm
             // 
@@ -442,7 +443,7 @@ namespace StdfParser
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusFileName;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBarFileOpen;
-        private System.Windows.Forms.TextBox textBoxFilte;
+        private System.Windows.Forms.TextBox textBoxFilter;
         private System.Windows.Forms.Label labelFilte;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestItem;

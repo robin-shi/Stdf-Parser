@@ -142,6 +142,7 @@ namespace StdfParser
             try
             {
                 formsPlotHsitogram.Plot.Clear();
+                formsPlotHsitogram.Refresh();
                 var stats = new ScottPlot.Statistics.BasicStats(dataY);
                 double maxValue =stats.Mean+(dataY.Max()-dataY.Min());
                 double minValue =stats.Mean - (dataY.Max()-dataY.Min());
@@ -186,7 +187,7 @@ namespace StdfParser
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
         }
         
@@ -198,10 +199,16 @@ namespace StdfParser
 
         private void dataGridViewTestItems_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            try
+            {
+                selectedtestNumber = (uint)dataGridViewTestItems.SelectedCells[0].Value;
+                UpdateChart();
+                radioButtonUpdateChartEnabled = true;
+            }
+            catch
+            {
 
-            selectedtestNumber = (uint)dataGridViewTestItems.SelectedCells[0].Value;
-            UpdateChart();
-            radioButtonUpdateChartEnabled = true;
+            }
 
         }
 
@@ -244,6 +251,20 @@ namespace StdfParser
             {
                 UpdateChart();
             }
+        }
+
+        private void textBoxFilte_TextChanged(object sender, EventArgs e)
+        {
+            try 
+            {
+                var results = testItems.Where(p => p.Key.ToString().Contains(textBoxFilter.Text) || p.Value.Contains(textBoxFilter.Text));
+                dataGridViewTestItems.Rows.Clear();
+                foreach (var result in results)
+                {
+                    dataGridViewTestItems.Rows.Add(result.Key, result.Value);
+                }
+            }
+            catch { }
         }
     }
 }

@@ -144,9 +144,9 @@ namespace StdfParser
                 formsPlotHsitogram.Plot.Clear();
                 formsPlotHsitogram.Refresh();
                 var stats = new ScottPlot.Statistics.BasicStats(dataY);
-                double maxValue =stats.Mean+(dataY.Max()-dataY.Min());
-                double minValue =stats.Mean - (dataY.Max()-dataY.Min());
-                double binWidth = (maxValue - minValue) / 50;
+                double maxValue = stats.Mean + stats.StDev * 6;
+                double minValue = stats.Mean - stats.StDev * 6;
+                double binWidth = (maxValue - minValue) / 100;
                 (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(dataY, min: minValue, max: maxValue, binSize: binWidth);
                 double[] leftEdges = binEdges.Take(binEdges.Length - 1).ToArray();
                 var bar = formsPlotHsitogram.Plot.AddBar(values: counts, positions: leftEdges);

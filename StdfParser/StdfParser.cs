@@ -52,23 +52,24 @@ namespace StdfParser
             double scaling = 0;
             foreach (var value in values)
             {
-                Scaling = value.ResultScalingExponent;
-                scaling = Math.Pow(10,(double)Scaling);
+                if (i == 0)
+                {
+                    Scaling = value.ResultScalingExponent;
+                    scaling = Math.Pow(10, (double)Scaling);
+                    Unit = value.Units;
+                    LowLimt = (double)value.LowLimit * scaling;
+                    HighLimt = (double)value.HighLimit * scaling;
+                }
                 DataY[i] = (double)value.Result* scaling;
                 DataX[i] = i;
-                LowLimt = (double)value.LowLimit * scaling;
-                HighLimt = (double)value.HighLimit * scaling;
-                Unit = value.Units;
                 i++;
             }
-            string preFix="";
-            PreFixSearch.TryGetValue(Scaling,out preFix);
+            PreFixSearch.TryGetValue(Scaling, out string preFix);
             Unit = preFix+Unit;
             var stats = new ScottPlot.Statistics.BasicStats(DataY);
-            string testName;
             TestNum = testNum;
             Site = site;
-            TestItems.TryGetValue(testNum,out testName);
+            TestItems.TryGetValue(testNum, out string testName);
             TestName = testName;
             Mean = stats.Mean;
             Min = stats.Min;

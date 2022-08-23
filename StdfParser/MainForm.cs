@@ -130,10 +130,10 @@ namespace StdfParser
             try
             {
                 formsPlotHsitogram.Plot.Clear();
-                formsPlotHsitogram.Refresh();
                 formsPlotHsitogram.Plot.YAxis.Label("DUT Count(#)");
                 formsPlotHsitogram.Plot.XAxis.Label($"Test Value({ResultStats.Unit})");
                 formsPlotHsitogram.Plot.Title($"Site{ResultStats.Site}-{ResultStats.TestNum}-{ResultStats.TestName}");
+                formsPlotHsitogram.Refresh();
                 double maxValue = ResultStats.Mean + ResultStats.StDev * 6;
                 double minValue = ResultStats.Mean - ResultStats.StDev * 6;
                 double binWidth = (maxValue - minValue) / 100;

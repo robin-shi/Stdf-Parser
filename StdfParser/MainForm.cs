@@ -38,7 +38,7 @@ namespace StdfParser
         }
         private void OpenStdfFileStream(string stdfFilePath)
         {
-            if (stdfFilePath != "")
+            if (stdfFilePath != ""&&stdfFilePath.Contains("std"))
             {
                 stdfFile = new StdfFile(stdfFilePath);
                 ClearTestItems();
@@ -265,7 +265,10 @@ namespace StdfParser
 
         private void MainForm_DragEnter(object sender, DragEventArgs e)
         {
-
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.All;//重要代码：表明是所有类型的数据，比如文件路径
+            else
+                e.Effect = DragDropEffects.None;
         }
     }
 }

@@ -165,6 +165,7 @@ namespace StdfParser
             // 
             // dataGridViewTestItems
             // 
+            this.dataGridViewTestItems.AllowUserToAddRows = false;
             this.dataGridViewTestItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewTestItems.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridViewTestItems.BackgroundColor = System.Drawing.Color.White;
@@ -428,6 +429,7 @@ namespace StdfParser
             // 
             // dataGridViewStats
             // 
+            this.dataGridViewStats.AllowUserToAddRows = false;
             this.dataGridViewStats.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewStats.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewStats.BorderStyle = System.Windows.Forms.BorderStyle.None;

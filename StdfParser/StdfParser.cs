@@ -27,7 +27,7 @@ namespace StdfParser
         public static double StDev { get; set; }
         public static double Cpk { get; set; }
         public static Dictionary<sbyte?, String> PreFixSearch=new Dictionary<sbyte?, string>{{ 15,"f"},{ 12,"p"},
-            { 9,"n"},{ 6,"u"},{ 3,"m"},{ 2,"%"},{ 0,""},{ -3,"K"},{ -6,"M"},{ -9,"G"},{ -12,"T"},};
+            { 9,"n"},{ 6,"u"},{ 3,"m"},{ 2,"%"},{ 0," "},{ -3,"K"},{ -6,"M"},{ -9,"G"},{ -12,"T"},};
         public static void UpdateTestItems(StdfFile stdfFile)
         {
             var results = stdfFile.GetRecords().OfExactType<Tsr>();
@@ -53,7 +53,7 @@ namespace StdfParser
             foreach (var value in values)
             {
                 Scaling = value.ResultScalingExponent;
-                scaling = Math.Pow(10,(uint)Scaling);
+                scaling = Math.Pow(10,(double)Scaling);
                 DataY[i] = (double)value.Result* scaling;
                 DataX[i] = i;
                 LowLimt = (double)value.LowLimit * scaling;

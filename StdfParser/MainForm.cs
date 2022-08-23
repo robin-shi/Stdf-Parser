@@ -136,9 +136,13 @@ namespace StdfParser
                 formsPlotHsitogram.Refresh();
                 double maxValue = ResultStats.Mean + ResultStats.StDev * 6;
                 double minValue = ResultStats.Mean - ResultStats.StDev * 6;
-                double binWidth = (maxValue - minValue) / 100;
+                double binWidth = (maxValue - minValue) /100;
                 (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(ResultStats.DataY, min: minValue, max: maxValue, binSize: binWidth);
                 double[] leftEdges = binEdges.Take(binEdges.Length - 1).ToArray();
+                for(int i=0;i<leftEdges.Length;i++)
+                {
+                    leftEdges[i] += binWidth / 2;
+                }
                 var bar = formsPlotHsitogram.Plot.AddBar(values: counts, positions: leftEdges);
                 bar.FillColor = ColorTranslator.FromHtml("#9bc3eb");
                 bar.BorderLineWidth = 1f;
@@ -234,7 +238,7 @@ namespace StdfParser
             {
                 selectedSite = 3;
             }
-            if (radioButtonUpdateChartEnabled == true)
+            if (radioButtonUpdateChartEnabled == true && ((RadioButton)sender).Checked == true)
             {
                 UpdateChart();
             }

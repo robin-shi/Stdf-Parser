@@ -263,6 +263,9 @@ namespace StdfParser
                 {
                     dataGridViewTestItems.Rows.Add(result.Key, result.Value);
                 }
+                selectedtestNumber = (uint)dataGridViewTestItems.SelectedCells[0].Value;
+                UpdateChart();
+
             }
             catch { }
         }

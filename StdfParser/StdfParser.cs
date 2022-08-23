@@ -11,6 +11,8 @@ namespace StdfParser
     static class ResultStats
     {
         public static Dictionary<uint, string> TestItems { get; set; }
+
+        public static sbyte? Scaling { get; set; }
         public static byte Site { get; set; }
         public static uint TestNum { get; set; }
         public static string TestName { get; set; }
@@ -24,6 +26,8 @@ namespace StdfParser
         public static double Max { get; set; }
         public static double StDev { get; set; }
         public static double Cpk { get; set; }
+        public static Dictionary<sbyte?, String> PreFixSearch=new Dictionary<sbyte?, string>{{ 15,"f"},{ 12,"p"},
+            { 9,"n"},{ 6,"u"},{ 3,"m"},{ 2,"%"},{ 0,""},{ -3,"K"},{ -6,"M"},{ -9,"G"},{ -12,"T"},};
         public static void UpdateTestItems(StdfFile stdfFile)
         {
             var results = stdfFile.GetRecords().OfExactType<Tsr>();
@@ -45,15 +49,21 @@ namespace StdfParser
             DataY = new double[values.Count()];
             DataX = new double[values.Count()];
             int i = 0;
+            double scaling = 0;
             foreach (var value in values)
             {
-                DataY[i] = (double)value.Result;
+                Scaling = value.ResultScalingExponent;
+                scaling = Math.Pow(10,(uint)Scaling);
+                DataY[i] = (double)value.Result* scaling;
                 DataX[i] = i;
-                LowLimt = (double)value.LowLimit;
-                HighLimt = (double)value.HighLimit;
+                LowLimt = (double)value.LowLimit * scaling;
+                HighLimt = (double)value.HighLimit * scaling;
                 Unit = value.Units;
                 i++;
             }
+            string preFix="";
+            PreFixSearch.TryGetValue(Scaling,out preFix);
+            Unit = preFix+Unit;
             var stats = new ScottPlot.Statistics.BasicStats(DataY);
             string testName;
             TestNum = testNum;

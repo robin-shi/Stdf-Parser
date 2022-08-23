@@ -182,9 +182,9 @@ namespace StdfParser
         private void UpdateStatistics()
         {
             dataGridViewStats.Rows.Clear();
-            dataGridViewStats.Rows.Add($"Site{ResultStats.Site}",ResultStats.TestNum,ResultStats.TestName, ResultStats.Unit, ResultStats.HighLimt.ToString("f6"),
-                ResultStats.LowLimt.ToString("f6"), ResultStats.Mean.ToString("f6"), ResultStats.StDev.ToString("f6"), 
-                ResultStats.Min.ToString("f6"), ResultStats.Max.ToString("f6"));
+            dataGridViewStats.Rows.Add($"Site{ResultStats.Site}",ResultStats.TestNum,ResultStats.TestName, ResultStats.Unit, ResultStats.HighLimt.ToString("f3"),
+                ResultStats.LowLimt.ToString("f3"), ResultStats.Mean.ToString("f3"), ResultStats.StDev.ToString("f3"), 
+                ResultStats.Min.ToString("f3"), ResultStats.Max.ToString("f3"));
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

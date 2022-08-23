@@ -60,6 +60,7 @@ namespace StdfParser
             this.formsPlotHsitogram = new ScottPlot.FormsPlot();
             this.labelStats = new System.Windows.Forms.Label();
             this.dataGridViewStats = new System.Windows.Forms.DataGridView();
+            this.SiteNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -433,8 +434,10 @@ namespace StdfParser
             this.dataGridViewStats.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewStats.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewStats.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewStats.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridViewStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewStats.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SiteNum,
             this.TestNum,
             this.TestName,
             this.Unit,
@@ -447,10 +450,17 @@ namespace StdfParser
             this.dataGridViewStats.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewStats.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewStats.Name = "dataGridViewStats";
+            this.dataGridViewStats.RowHeadersVisible = false;
             this.dataGridViewStats.RowTemplate.Height = 23;
             this.dataGridViewStats.Size = new System.Drawing.Size(908, 122);
             this.dataGridViewStats.TabIndex = 1;
             this.dataGridViewStats.Tag = "";
+            // 
+            // SiteNum
+            // 
+            this.SiteNum.HeaderText = "SiteNum";
+            this.SiteNum.Name = "SiteNum";
+            this.SiteNum.Width = 101;
             // 
             // TestNum
             // 
@@ -583,6 +593,7 @@ namespace StdfParser
         private System.Windows.Forms.Label labelStats;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestNums;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestNames;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SiteNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Unit;

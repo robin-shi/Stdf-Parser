@@ -131,6 +131,9 @@ namespace StdfParser
             {
                 formsPlotHsitogram.Plot.Clear();
                 formsPlotHsitogram.Refresh();
+                formsPlotHsitogram.Plot.YAxis.Label("DUT Count(#)");
+                formsPlotHsitogram.Plot.XAxis.Label($"Test Value({ResultStats.Unit})");
+                formsPlotHsitogram.Plot.Title($"Site{ResultStats.Site}-{ResultStats.TestNum}-{ResultStats.TestName}");
                 double maxValue = ResultStats.Mean + ResultStats.StDev * 6;
                 double minValue = ResultStats.Mean - ResultStats.StDev * 6;
                 double binWidth = (maxValue - minValue) / 100;
@@ -167,9 +170,6 @@ namespace StdfParser
                 //formsPlotHsitogram.Plot.AddVerticalLine(stats.Max, Color.Gray, 1, LineStyle.Dash);
 
                 formsPlotHsitogram.Plot.Legend(location: Alignment.UpperRight);
-                formsPlotHsitogram.Plot.YAxis.Label("DUT Count(#)");
-                formsPlotHsitogram.Plot.XAxis.Label($"Test Value({ResultStats.Unit})");
-                formsPlotHsitogram.Plot.Title($"Site{ResultStats.Site}-{ResultStats.TestNum}-{ResultStats.TestName}");
                 formsPlotHsitogram.Plot.SetAxisLimits(yMin: 0);
                 formsPlotHsitogram.Refresh();
             }
@@ -182,7 +182,7 @@ namespace StdfParser
         private void UpdateStatistics()
         {
             dataGridViewStats.Rows.Clear();
-            dataGridViewStats.Rows.Add(ResultStats.TestNum,ResultStats.TestName, ResultStats.Unit, ResultStats.HighLimt.ToString("f6"),
+            dataGridViewStats.Rows.Add($"Site{ResultStats.Site}",ResultStats.TestNum,ResultStats.TestName, ResultStats.Unit, ResultStats.HighLimt.ToString("f6"),
                 ResultStats.LowLimt.ToString("f6"), ResultStats.Mean.ToString("f6"), ResultStats.StDev.ToString("f6"), 
                 ResultStats.Min.ToString("f6"), ResultStats.Max.ToString("f6"));
         }

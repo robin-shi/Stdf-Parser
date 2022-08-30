@@ -1,0 +1,55 @@
+name: build
+
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+    #paths:
+    #- '**.cs'
+    #- '**.csproj'
+
+env:
+  DOTNET_VERSION: '5.0.301' # The .NET SDK version to use
+
+jobs:
+  build:
+
+    name: build-${{matrix.os}}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+    env:
+      Solution_Name: StdfParser.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
+      #Test_Project_Path: your-test-project-path  
+
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Install dependencies
+      run: dotnet restore
+      
+    - name: Setup Nuget
+      run: nuget restore
+      
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
+      
+    # Restore the application to populate the obj folder with RuntimeIdentifiers
+    - name: Restore the application
+      run: msbuild $env:Solution_Name /t:Restore  #/p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+        #Appx_Bundle: Always
+        #Appx_Bundle_Platforms: x64
+      
+    #- name: Build
+     # run: dotnet build --configuration Release --no-restore
+

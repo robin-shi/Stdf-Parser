@@ -52,8 +52,9 @@
     <ApplicationIcon>Parser.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LinqToStdf">
-      <HintPath>..\LinqToStdf\LinqToStdf.dll</HintPath>
+    <Reference Include="LinqToStdf, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\LinqToStdf.dll</HintPath>
     </Reference>
     <Reference Include="ScottPlot, Version=4.1.57.0, Culture=neutral, PublicKeyToken=86698dc10387c39e, processorArchitecture=MSIL">
       <HintPath>..\packages\ScottPlot.4.1.57\lib\net462\ScottPlot.dll</HintPath>

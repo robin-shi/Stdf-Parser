@@ -49,6 +49,8 @@ jobs:
         Configuration: ${{ matrix.configuration }}
         #Appx_Bundle: Always
         #Appx_Bundle_Platforms: x64
+    - name: Create compress file
+      run: Compress-Archive StdfParser StdrParser.zip
       
     #- name: Build
      # run: dotnet build --configuration Release --no-restore

@@ -54,7 +54,7 @@ jobs:
         #Appx_Bundle_Platforms: x64
         
     - name: Create compress file
-      run: Compress-Archive ./StdfParser/bin/Debug/* StdrParser.zip
+      run: Compress-Archive ./StdfParser/bin/Debug/* StdfParser.zip
       
     - name: Create Release
       id: create_release
@@ -78,9 +78,15 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./StdrParser.zip
-        asset_name: StdrParser.zip
+        asset_path: ./StdfParser.zip
+        asset_name: StdfParser.zip
         asset_content_type: application/zip
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: StdfParser
+        path: ./StdfParser.zip
+        retention-days: 30
     #- name: Build
      # run: dotnet build --configuration Release --no-restore
 

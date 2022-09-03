@@ -55,6 +55,13 @@ jobs:
         
     - name: Create compress file
       run: Compress-Archive ./StdfParser/bin/Debug/* StdfParser.zip
+     
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: StdfParser
+        path: ./StdfParser.zip
+        retention-days: 5
       
     - name: Create Release
       id: create_release
@@ -81,12 +88,7 @@ jobs:
         asset_path: ./StdfParser.zip
         asset_name: StdfParser.zip
         asset_content_type: application/zip
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: StdfParser
-        path: ./StdfParser.zip
-        retention-days: 30
+
     #- name: Build
      # run: dotnet build --configuration Release --no-restore
 

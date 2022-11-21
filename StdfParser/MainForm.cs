@@ -278,7 +278,7 @@ namespace StdfParser
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new AboutBox()).Show();
+            (new AboutBox()).ShowDialog();
         }
     }
 }

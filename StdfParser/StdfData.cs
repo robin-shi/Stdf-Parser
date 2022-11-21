@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using LinqToStdf;
 using LinqToStdf.Records.V4;
 
-namespace StdfParser
+namespace StdfData
 {
-    static class ResultStats
+    static class Results
     {
         public static Dictionary<uint, string> TestItems { get; set; }
 
@@ -26,7 +26,7 @@ namespace StdfParser
         public static double Max { get; set; }
         public static double StDev { get; set; }
         public static double Cpk { get; set; }
-        public static Dictionary<sbyte?, String> PreFixSearch=new Dictionary<sbyte?, string>{{ 15,"f"},{ 12,"p"},
+        public readonly static Dictionary<sbyte?, String> PreFixSearch=new Dictionary<sbyte?, string>{{ 15,"f"},{ 12,"p"},
             { 9,"n"},{ 6,"u"},{ 3,"m"},{ 2,"%"},{ 0," "},{ -3,"K"},{ -6,"M"},{ -9,"G"},{ -12,"T"},};
         public static void UpdateTestItems(StdfFile stdfFile)
         {

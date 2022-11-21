@@ -402,10 +402,10 @@ namespace StdfParser
             // tabPageHsitogram
             // 
             this.tabPageHsitogram.Controls.Add(this.formsPlotHsitogram);
-            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 22);
+            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 30);
             this.tabPageHsitogram.Name = "tabPageHsitogram";
             this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHsitogram.Size = new System.Drawing.Size(900, 508);
+            this.tabPageHsitogram.Size = new System.Drawing.Size(900, 500);
             this.tabPageHsitogram.TabIndex = 1;
             this.tabPageHsitogram.Text = "Histogram";
             this.tabPageHsitogram.UseVisualStyleBackColor = true;
@@ -416,7 +416,7 @@ namespace StdfParser
             this.formsPlotHsitogram.Location = new System.Drawing.Point(3, 3);
             this.formsPlotHsitogram.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.formsPlotHsitogram.Name = "formsPlotHsitogram";
-            this.formsPlotHsitogram.Size = new System.Drawing.Size(894, 502);
+            this.formsPlotHsitogram.Size = new System.Drawing.Size(894, 494);
             this.formsPlotHsitogram.TabIndex = 0;
             // 
             // labelStats

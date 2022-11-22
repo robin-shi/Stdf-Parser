@@ -100,8 +100,8 @@ namespace StdfParser
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(1264, 33);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1236, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -111,36 +111,36 @@ namespace StdfParser
             this.openToolStripMenuItem,
             this.toolStripMenuItem3,
             this.exitToolStripMenuItem});
-            this.toolStripMenuItem1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.toolStripMenuItem1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(48, 25);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(39, 21);
             this.toolStripMenuItem1.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenFile);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem3.Text = "Export to Csv";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
-            this.viewToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.viewToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(59, 25);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // helpToolStripMenuItem
@@ -148,21 +148,21 @@ namespace StdfParser
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.helpToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(57, 25);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 26);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem2.Text = "View Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About StdfParser";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -181,7 +181,7 @@ namespace StdfParser
             this.dataGridViewTestItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewTestItems.GridColor = System.Drawing.Color.White;
             this.dataGridViewTestItems.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewTestItems.Margin = new System.Windows.Forms.Padding(5);
+            this.dataGridViewTestItems.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridViewTestItems.MultiSelect = false;
             this.dataGridViewTestItems.Name = "dataGridViewTestItems";
             this.dataGridViewTestItems.ReadOnly = true;
@@ -191,7 +191,7 @@ namespace StdfParser
             this.dataGridViewTestItems.RowTemplate.Height = 23;
             this.dataGridViewTestItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewTestItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTestItems.Size = new System.Drawing.Size(348, 554);
+            this.dataGridViewTestItems.Size = new System.Drawing.Size(329, 514);
             this.dataGridViewTestItems.TabIndex = 1;
             this.dataGridViewTestItems.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewTestItems_CellMouseClick);
             // 
@@ -201,7 +201,7 @@ namespace StdfParser
             this.TestNums.HeaderText = "TestNums";
             this.TestNums.Name = "TestNums";
             this.TestNums.ReadOnly = true;
-            this.TestNums.Width = 111;
+            this.TestNums.Width = 91;
             // 
             // TestNames
             // 
@@ -209,39 +209,39 @@ namespace StdfParser
             this.TestNames.HeaderText = "TestNames";
             this.TestNames.Name = "TestNames";
             this.TestNames.ReadOnly = true;
-            this.TestNames.Width = 119;
+            this.TestNames.Width = 98;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBarFileOpen,
             this.toolStripStatusFileName});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 695);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 629);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 23, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1264, 34);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1236, 29);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripProgressBarFileOpen
             // 
             this.toolStripProgressBarFileOpen.Name = "toolStripProgressBarFileOpen";
-            this.toolStripProgressBarFileOpen.Size = new System.Drawing.Size(167, 28);
+            this.toolStripProgressBarFileOpen.Size = new System.Drawing.Size(117, 23);
             this.toolStripProgressBarFileOpen.Step = 100;
             this.toolStripProgressBarFileOpen.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // toolStripStatusFileName
             // 
             this.toolStripStatusFileName.Name = "toolStripStatusFileName";
-            this.toolStripStatusFileName.Size = new System.Drawing.Size(0, 29);
+            this.toolStripStatusFileName.Size = new System.Drawing.Size(0, 24);
             // 
             // textBoxFilter
             // 
-            this.textBoxFilter.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBoxFilter.Location = new System.Drawing.Point(77, 54);
-            this.textBoxFilter.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxFilter.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBoxFilter.Location = new System.Drawing.Point(68, 52);
+            this.textBoxFilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxFilter.Name = "textBoxFilter";
-            this.textBoxFilter.Size = new System.Drawing.Size(194, 29);
+            this.textBoxFilter.Size = new System.Drawing.Size(167, 23);
             this.textBoxFilter.TabIndex = 3;
             this.textBoxFilter.Tag = "";
             this.textBoxFilter.TextChanged += new System.EventHandler(this.textBoxFilte_TextChanged);
@@ -249,21 +249,20 @@ namespace StdfParser
             // labelFilte
             // 
             this.labelFilte.AutoSize = true;
-            this.labelFilte.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelFilte.Location = new System.Drawing.Point(21, 57);
-            this.labelFilte.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.labelFilte.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelFilte.Location = new System.Drawing.Point(25, 55);
             this.labelFilte.Name = "labelFilte";
-            this.labelFilte.Size = new System.Drawing.Size(52, 21);
+            this.labelFilte.Size = new System.Drawing.Size(39, 17);
             this.labelFilte.TabIndex = 4;
             this.labelFilte.Text = "Filter:";
             // 
             // formsPlotScatter
             // 
             this.formsPlotScatter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.formsPlotScatter.Location = new System.Drawing.Point(3, 3);
-            this.formsPlotScatter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.formsPlotScatter.Location = new System.Drawing.Point(2, 2);
+            this.formsPlotScatter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.formsPlotScatter.Name = "formsPlotScatter";
-            this.formsPlotScatter.Size = new System.Drawing.Size(894, 494);
+            this.formsPlotScatter.Size = new System.Drawing.Size(888, 441);
             this.formsPlotScatter.TabIndex = 5;
             // 
             // splitContainer1
@@ -271,7 +270,8 @@ namespace StdfParser
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 33);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -281,8 +281,9 @@ namespace StdfParser
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer1.Size = new System.Drawing.Size(1264, 662);
-            this.splitContainer1.SplitterDistance = 350;
+            this.splitContainer1.Size = new System.Drawing.Size(1236, 602);
+            this.splitContainer1.SplitterDistance = 331;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 6;
             // 
             // splitContainer2
@@ -290,6 +291,7 @@ namespace StdfParser
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -306,16 +308,18 @@ namespace StdfParser
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.dataGridViewTestItems);
-            this.splitContainer2.Size = new System.Drawing.Size(348, 660);
-            this.splitContainer2.SplitterDistance = 102;
+            this.splitContainer2.Size = new System.Drawing.Size(329, 600);
+            this.splitContainer2.SplitterDistance = 83;
+            this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
             // 
             // radioButtonSite3
             // 
             this.radioButtonSite3.AutoSize = true;
-            this.radioButtonSite3.Location = new System.Drawing.Point(256, 21);
+            this.radioButtonSite3.Location = new System.Drawing.Point(181, 15);
+            this.radioButtonSite3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonSite3.Name = "radioButtonSite3";
-            this.radioButtonSite3.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite3.Size = new System.Drawing.Size(54, 21);
             this.radioButtonSite3.TabIndex = 0;
             this.radioButtonSite3.TabStop = true;
             this.radioButtonSite3.Text = "Site3";
@@ -325,9 +329,10 @@ namespace StdfParser
             // radioButtonSite2
             // 
             this.radioButtonSite2.AutoSize = true;
-            this.radioButtonSite2.Location = new System.Drawing.Point(185, 21);
+            this.radioButtonSite2.Location = new System.Drawing.Point(131, 15);
+            this.radioButtonSite2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonSite2.Name = "radioButtonSite2";
-            this.radioButtonSite2.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite2.Size = new System.Drawing.Size(54, 21);
             this.radioButtonSite2.TabIndex = 0;
             this.radioButtonSite2.TabStop = true;
             this.radioButtonSite2.Text = "Site2";
@@ -337,9 +342,10 @@ namespace StdfParser
             // radioButtonSite1
             // 
             this.radioButtonSite1.AutoSize = true;
-            this.radioButtonSite1.Location = new System.Drawing.Point(114, 21);
+            this.radioButtonSite1.Location = new System.Drawing.Point(82, 15);
+            this.radioButtonSite1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonSite1.Name = "radioButtonSite1";
-            this.radioButtonSite1.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite1.Size = new System.Drawing.Size(54, 21);
             this.radioButtonSite1.TabIndex = 0;
             this.radioButtonSite1.TabStop = true;
             this.radioButtonSite1.Text = "Site1";
@@ -349,9 +355,10 @@ namespace StdfParser
             // radioButtonSite0
             // 
             this.radioButtonSite0.AutoSize = true;
-            this.radioButtonSite0.Location = new System.Drawing.Point(43, 21);
+            this.radioButtonSite0.Location = new System.Drawing.Point(32, 15);
+            this.radioButtonSite0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonSite0.Name = "radioButtonSite0";
-            this.radioButtonSite0.Size = new System.Drawing.Size(65, 25);
+            this.radioButtonSite0.Size = new System.Drawing.Size(54, 21);
             this.radioButtonSite0.TabIndex = 0;
             this.radioButtonSite0.TabStop = true;
             this.radioButtonSite0.Text = "Site0";
@@ -363,6 +370,7 @@ namespace StdfParser
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -374,8 +382,9 @@ namespace StdfParser
             // 
             this.splitContainer3.Panel2.Controls.Add(this.labelStats);
             this.splitContainer3.Panel2.Controls.Add(this.dataGridViewStats);
-            this.splitContainer3.Size = new System.Drawing.Size(908, 660);
-            this.splitContainer3.SplitterDistance = 534;
+            this.splitContainer3.Size = new System.Drawing.Size(900, 600);
+            this.splitContainer3.SplitterDistance = 475;
+            this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 7;
             // 
             // tabControlChart
@@ -384,18 +393,20 @@ namespace StdfParser
             this.tabControlChart.Controls.Add(this.tabPageHsitogram);
             this.tabControlChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlChart.Location = new System.Drawing.Point(0, 0);
+            this.tabControlChart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControlChart.Name = "tabControlChart";
             this.tabControlChart.SelectedIndex = 0;
-            this.tabControlChart.Size = new System.Drawing.Size(908, 534);
+            this.tabControlChart.Size = new System.Drawing.Size(900, 475);
             this.tabControlChart.TabIndex = 6;
             // 
             // tabPageScatter
             // 
             this.tabPageScatter.Controls.Add(this.formsPlotScatter);
-            this.tabPageScatter.Location = new System.Drawing.Point(4, 30);
+            this.tabPageScatter.Location = new System.Drawing.Point(4, 26);
+            this.tabPageScatter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageScatter.Name = "tabPageScatter";
-            this.tabPageScatter.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageScatter.Size = new System.Drawing.Size(900, 500);
+            this.tabPageScatter.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageScatter.Size = new System.Drawing.Size(892, 445);
             this.tabPageScatter.TabIndex = 0;
             this.tabPageScatter.Text = "Scatter";
             this.tabPageScatter.UseVisualStyleBackColor = true;
@@ -403,10 +414,11 @@ namespace StdfParser
             // tabPageHsitogram
             // 
             this.tabPageHsitogram.Controls.Add(this.formsPlotHsitogram);
-            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 30);
+            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 26);
+            this.tabPageHsitogram.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageHsitogram.Name = "tabPageHsitogram";
-            this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHsitogram.Size = new System.Drawing.Size(900, 500);
+            this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageHsitogram.Size = new System.Drawing.Size(892, 445);
             this.tabPageHsitogram.TabIndex = 1;
             this.tabPageHsitogram.Text = "Histogram";
             this.tabPageHsitogram.UseVisualStyleBackColor = true;
@@ -414,19 +426,20 @@ namespace StdfParser
             // formsPlotHsitogram
             // 
             this.formsPlotHsitogram.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.formsPlotHsitogram.Location = new System.Drawing.Point(3, 3);
-            this.formsPlotHsitogram.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.formsPlotHsitogram.Location = new System.Drawing.Point(2, 2);
+            this.formsPlotHsitogram.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.formsPlotHsitogram.Name = "formsPlotHsitogram";
-            this.formsPlotHsitogram.Size = new System.Drawing.Size(894, 494);
+            this.formsPlotHsitogram.Size = new System.Drawing.Size(888, 441);
             this.formsPlotHsitogram.TabIndex = 0;
             // 
             // labelStats
             // 
             this.labelStats.AutoSize = true;
             this.labelStats.BackColor = System.Drawing.Color.White;
-            this.labelStats.Location = new System.Drawing.Point(414, 75);
+            this.labelStats.Location = new System.Drawing.Point(290, 61);
+            this.labelStats.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStats.Name = "labelStats";
-            this.labelStats.Size = new System.Drawing.Size(76, 21);
+            this.labelStats.Size = new System.Drawing.Size(58, 17);
             this.labelStats.TabIndex = 2;
             this.labelStats.Text = "Statistics";
             // 
@@ -451,10 +464,11 @@ namespace StdfParser
             this.Max});
             this.dataGridViewStats.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewStats.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewStats.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewStats.Name = "dataGridViewStats";
             this.dataGridViewStats.RowHeadersVisible = false;
             this.dataGridViewStats.RowTemplate.Height = 23;
-            this.dataGridViewStats.Size = new System.Drawing.Size(908, 122);
+            this.dataGridViewStats.Size = new System.Drawing.Size(900, 122);
             this.dataGridViewStats.TabIndex = 1;
             this.dataGridViewStats.Tag = "";
             // 
@@ -462,75 +476,75 @@ namespace StdfParser
             // 
             this.SiteNum.HeaderText = "SiteNum";
             this.SiteNum.Name = "SiteNum";
-            this.SiteNum.Width = 101;
+            this.SiteNum.Width = 82;
             // 
             // TestNum
             // 
             this.TestNum.HeaderText = "TestNum";
             this.TestNum.Name = "TestNum";
-            this.TestNum.Width = 104;
+            this.TestNum.Width = 85;
             // 
             // TestName
             // 
             this.TestName.HeaderText = "TestName";
             this.TestName.Name = "TestName";
-            this.TestName.Width = 112;
+            this.TestName.Width = 92;
             // 
             // Unit
             // 
             this.Unit.HeaderText = "Unit";
             this.Unit.Name = "Unit";
-            this.Unit.Width = 67;
+            this.Unit.Width = 56;
             // 
             // LowLimit
             // 
             this.LowLimit.HeaderText = "LowLimit";
             this.LowLimit.Name = "LowLimit";
-            this.LowLimit.Width = 103;
+            this.LowLimit.Width = 83;
             // 
             // HighLimit
             // 
             this.HighLimit.HeaderText = "HighLimit";
             this.HighLimit.Name = "HighLimit";
-            this.HighLimit.Width = 108;
+            this.HighLimit.Width = 87;
             // 
             // Mean
             // 
             this.Mean.HeaderText = "Mean";
             this.Mean.Name = "Mean";
-            this.Mean.Width = 79;
+            this.Mean.Width = 66;
             // 
             // StdDev
             // 
             this.StdDev.HeaderText = "StdDev";
             this.StdDev.Name = "StdDev";
-            this.StdDev.Width = 89;
+            this.StdDev.Width = 74;
             // 
             // Min
             // 
             this.Min.HeaderText = "Min";
             this.Min.Name = "Min";
-            this.Min.Width = 65;
+            this.Min.Width = 55;
             // 
             // Max
             // 
             this.Max.HeaderText = "Max";
             this.Max.Name = "Max";
-            this.Max.Width = 68;
+            this.Max.Width = 58;
             // 
             // MainForm
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 729);
+            this.ClientSize = new System.Drawing.Size(1236, 658);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.Text = "StdfParser";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);

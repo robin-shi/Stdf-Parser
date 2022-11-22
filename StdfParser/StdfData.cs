@@ -11,7 +11,7 @@ namespace StdfData
     static class Results
     {
         public static Dictionary<uint, string> TestItems { get; set; }
-
+        public static Dictionary<string, string> MainInfo { get; set; }
         public static sbyte? Scaling { get; set; }
         public static byte Site { get; set; }
         public static uint TestNum { get; set; }
@@ -28,6 +28,59 @@ namespace StdfData
         public static double Cpk { get; set; }
         public readonly static Dictionary<sbyte?, String> PreFixSearch=new Dictionary<sbyte?, string>{{ 15,"f"},{ 12,"p"},
             { 9,"n"},{ 6,"u"},{ 3,"m"},{ 2,"%"},{ 0," "},{ -3,"K"},{ -6,"M"},{ -9,"G"},{ -12,"T"},};
+        public static void UpdateMainInfo(StdfFile stdfFile)
+        {
+            MainInfo = new Dictionary<string, string> { };
+            var results = stdfFile.GetRecords().OfExactType<Mir>();
+            foreach (var result in results)
+            {
+                try
+                {
+                    MainInfo.Add("Setup time:", result.SetupTime.ToString());
+                    MainInfo.Add("Start time:", result.StartTime.ToString());
+                    MainInfo.Add("Tester station number:", result.StationNumber.ToString());
+                    MainInfo.Add("Test mode code:", result.ModeCode.ToString());
+                    MainInfo.Add("Lot retest code:", result.RetestCode.ToString());
+                    //MainInfo.Add("Data protection code:", result.ProtectionCode.ToString());
+                    //MainInfo.Add("Burn-in time:", result.BurnInTime.ToString());
+                    //MainInfo.Add("Command mode code:", result.CommandModeCode.ToString());
+                    //MainInfo.Add("Lot ID:", result.LotId.ToString());
+                    //MainInfo.Add("Part type:", result.PartType.ToString());
+                    //MainInfo.Add("Node name:", result.NodeName.ToString());
+                    //MainInfo.Add("Tester type:", result.TesterType.ToString());
+                    //MainInfo.Add("Program name:", result.JobName.ToString());
+                    //MainInfo.Add("Program revision:", result.JobRevision.ToString());
+                    //MainInfo.Add("Sublot ID:", result.SublotId.ToString());
+                    //MainInfo.Add("Operator name:", result.OperatorName.ToString());
+                    //MainInfo.Add("Tester software type:", result.ExecType.ToString());
+                    //MainInfo.Add("Tester software version:", result.ExecVersion.ToString());
+                    //MainInfo.Add("Test code:", result.TestCode.ToString());
+                    //MainInfo.Add("Test temperature:", result.TestTemperature.ToString());
+                    //MainInfo.Add("User text:", result.UserText.ToString());
+                    //MainInfo.Add("Auxiliary file:", result.AuxiliaryFile.ToString());
+                    //MainInfo.Add("Package type:", result.PackageType.ToString());
+                    //MainInfo.Add("Product family ID:", result.FamilyId.ToString());
+                    //MainInfo.Add("Date code:", result.DateCode.ToString());
+                    //MainInfo.Add("Test facility ID:", result.FacilityId.ToString());
+                    //MainInfo.Add("Test floor ID:", result.FloorId.ToString());
+                    //MainInfo.Add("Fabrication process ID:", result.ProcessId.ToString());
+                    //MainInfo.Add("Operation frequency:", result.OperationFrequency.ToString());
+                    //MainInfo.Add("Test specification name:", result.SpecificationName.ToString());
+                    //MainInfo.Add("Test specification version:", result.SpecificationVersion.ToString());
+                    //MainInfo.Add("Test flow ID:", result.FlowId.ToString());
+                    //MainInfo.Add("Test setup ID:", result.SetupId.ToString());
+                    //MainInfo.Add("Device design revision:", result.DesignRevision.ToString());
+                    //MainInfo.Add("Engineering lot ID:", result.EngineeringId.ToString());
+                    //MainInfo.Add("ROM code ID:", result.RomCode.ToString());
+                    //MainInfo.Add("Tester serial number:", result.SerialNumber.ToString());
+                    //MainInfo.Add("Supervisor name:", result.SupervisorName.ToString());
+                }
+                catch (Exception ex)
+                { 
+                }
+               
+            }
+        }
         public static void UpdateTestItems(StdfFile stdfFile)
         {
             var results = stdfFile.GetRecords().OfExactType<Tsr>();

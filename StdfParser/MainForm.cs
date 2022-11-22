@@ -48,6 +48,8 @@ namespace StdfParser
                 formsPlotHsitogram.Plot.Clear();
                 toolStripStatusFileName.Text = stdfFilePath;
                 UpdateTestItems();
+                Results.UpdateMainInfo(stdfFile);
+                UpdateMainInfo();
                 radioButtonUpdateChartEnabled = false;
                 UpdateRadioButton();
             }
@@ -182,6 +184,15 @@ namespace StdfParser
             {
                 //MessageBox.Show(ex.Message);
             }
+        }
+
+        private void UpdateMainInfo()
+        {
+            dataGridViewInfo.Rows.Clear();
+            foreach (var key in Results.MainInfo.Keys)
+            {
+                dataGridViewInfo.Rows.Add(key, Results.MainInfo[key]);
+            }   
         }
 
         private void UpdateStatistics()

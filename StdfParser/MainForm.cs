@@ -73,7 +73,7 @@ namespace StdfParser
             {
                 siteNums = result.SiteNumbers;
             }
-            foreach (var siteNum in siteNums)
+            foreach (var siteNum in siteNums.Reverse())
             {
                 if (siteNum == 0)
                 {

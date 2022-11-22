@@ -36,44 +36,82 @@ namespace StdfData
             {
                 try
                 {
-                    MainInfo.Add("Setup time:", result.SetupTime.ToString());
-                    MainInfo.Add("Start time:", result.StartTime.ToString());
-                    MainInfo.Add("Tester station number:", result.StationNumber.ToString());
-                    MainInfo.Add("Test mode code:", result.ModeCode.ToString());
-                    MainInfo.Add("Lot retest code:", result.RetestCode.ToString());
-                    //MainInfo.Add("Data protection code:", result.ProtectionCode.ToString());
-                    //MainInfo.Add("Burn-in time:", result.BurnInTime.ToString());
-                    //MainInfo.Add("Command mode code:", result.CommandModeCode.ToString());
-                    //MainInfo.Add("Lot ID:", result.LotId.ToString());
-                    //MainInfo.Add("Part type:", result.PartType.ToString());
-                    //MainInfo.Add("Node name:", result.NodeName.ToString());
-                    //MainInfo.Add("Tester type:", result.TesterType.ToString());
-                    //MainInfo.Add("Program name:", result.JobName.ToString());
-                    //MainInfo.Add("Program revision:", result.JobRevision.ToString());
-                    //MainInfo.Add("Sublot ID:", result.SublotId.ToString());
-                    //MainInfo.Add("Operator name:", result.OperatorName.ToString());
-                    //MainInfo.Add("Tester software type:", result.ExecType.ToString());
-                    //MainInfo.Add("Tester software version:", result.ExecVersion.ToString());
-                    //MainInfo.Add("Test code:", result.TestCode.ToString());
-                    //MainInfo.Add("Test temperature:", result.TestTemperature.ToString());
-                    //MainInfo.Add("User text:", result.UserText.ToString());
-                    //MainInfo.Add("Auxiliary file:", result.AuxiliaryFile.ToString());
-                    //MainInfo.Add("Package type:", result.PackageType.ToString());
-                    //MainInfo.Add("Product family ID:", result.FamilyId.ToString());
-                    //MainInfo.Add("Date code:", result.DateCode.ToString());
-                    //MainInfo.Add("Test facility ID:", result.FacilityId.ToString());
-                    //MainInfo.Add("Test floor ID:", result.FloorId.ToString());
-                    //MainInfo.Add("Fabrication process ID:", result.ProcessId.ToString());
-                    //MainInfo.Add("Operation frequency:", result.OperationFrequency.ToString());
-                    //MainInfo.Add("Test specification name:", result.SpecificationName.ToString());
-                    //MainInfo.Add("Test specification version:", result.SpecificationVersion.ToString());
-                    //MainInfo.Add("Test flow ID:", result.FlowId.ToString());
-                    //MainInfo.Add("Test setup ID:", result.SetupId.ToString());
-                    //MainInfo.Add("Device design revision:", result.DesignRevision.ToString());
-                    //MainInfo.Add("Engineering lot ID:", result.EngineeringId.ToString());
-                    //MainInfo.Add("ROM code ID:", result.RomCode.ToString());
-                    //MainInfo.Add("Tester serial number:", result.SerialNumber.ToString());
-                    //MainInfo.Add("Supervisor name:", result.SupervisorName.ToString());
+                    if (result.SetupTime!=null)
+                        MainInfo.Add("Setup time:", result.SetupTime.ToString());
+                    if (result.StartTime != null)
+                        MainInfo.Add("Start time:", result.StartTime.ToString());
+           
+                        MainInfo.Add("Tester station number:", result.StationNumber.ToString());//int always not null
+                    if (result.ModeCode != null)
+                        MainInfo.Add("Test mode code:", result.ModeCode.ToString());
+                    if (result.RetestCode != null)
+                        MainInfo.Add("Lot retest code:", result.RetestCode.ToString());
+                    if (result.ProtectionCode != null)
+                        MainInfo.Add("Data protection code:", result.ProtectionCode.ToString());
+                    if (result.BurnInTime != null)
+                        MainInfo.Add("Burn-in time:", result.BurnInTime.ToString());
+                    if (result.CommandModeCode != null)
+                        MainInfo.Add("Command mode code:", result.CommandModeCode.ToString());
+                    if (result.LotId != null)
+                        MainInfo.Add("Lot ID:", result.LotId.ToString());
+                    if (result.PartType != null)
+                        MainInfo.Add("Part type:", result.PartType.ToString());
+                    if (result.NodeName != null)
+                        MainInfo.Add("Node name:", result.NodeName.ToString());
+                    if (result.TesterType != null)
+                        MainInfo.Add("Tester type:", result.TesterType.ToString());
+                    if (result.JobName != null)
+                        MainInfo.Add("Program name:", result.JobName.ToString());
+                    if (result.JobRevision != null)
+                        MainInfo.Add("Program revision:", result.JobRevision.ToString());
+                    if (result.SublotId != null)
+                        MainInfo.Add("Sublot ID:", result.SublotId.ToString());
+                    if (result.OperatorName != null)
+                        MainInfo.Add("Operator name:", result.OperatorName.ToString());
+                    if (result.ExecType != null)
+                        MainInfo.Add("Tester software type:", result.ExecType.ToString());
+                    if (result.ExecVersion != null)
+                        MainInfo.Add("Tester software version:", result.ExecVersion.ToString());
+                    if (result.TestCode != null)
+                        MainInfo.Add("Test code:", result.TestCode.ToString());
+                    if (result.TestTemperature != null)
+                        MainInfo.Add("Test temperature:", result.TestTemperature.ToString());
+                    if (result.UserText != null)
+                        MainInfo.Add("User text:", result.UserText.ToString());
+                    if (result.AuxiliaryFile != null)
+                        MainInfo.Add("Auxiliary file:", result.AuxiliaryFile.ToString());
+                    if (result.PackageType != null)
+                        MainInfo.Add("Package type:", result.PackageType.ToString());
+                    if (result.FamilyId != null)
+                        MainInfo.Add("Product family ID:", result.FamilyId.ToString());
+                    if (result.DateCode != null)
+                        MainInfo.Add("Date code:", result.DateCode.ToString());
+                    if (result.FacilityId != null)
+                        MainInfo.Add("Test facility ID:", result.FacilityId.ToString());
+                    if (result.FloorId != null)
+                        MainInfo.Add("Test floor ID:", result.FloorId.ToString());
+                    if (result.ProcessId != null)
+                        MainInfo.Add("Fabrication process ID:", result.ProcessId.ToString());
+                    if (result.OperationFrequency != null)
+                        MainInfo.Add("Operation frequency:", result.OperationFrequency.ToString());
+                    if (result.SpecificationName != null)
+                        MainInfo.Add("Test specification name:", result.SpecificationName.ToString());
+                    if (result.SpecificationVersion != null)
+                        MainInfo.Add("Test specification version:", result.SpecificationVersion.ToString());
+                    if (result.FlowId != null)
+                        MainInfo.Add("Test flow ID:", result.FlowId.ToString());
+                    if (result.SetupId != null)
+                        MainInfo.Add("Test setup ID:", result.SetupId.ToString());
+                    if (result.DesignRevision != null)
+                        MainInfo.Add("Device design revision:", result.DesignRevision.ToString());
+                    if (result.EngineeringId != null)
+                        MainInfo.Add("Engineering lot ID:", result.EngineeringId.ToString());
+                    if (result.RomCode != null)
+                        MainInfo.Add("ROM code ID:", result.RomCode.ToString());
+                    if (result.SerialNumber != null)
+                        MainInfo.Add("Tester serial number:", result.SerialNumber.ToString());
+                    if (result.SupervisorName != null)
+                        MainInfo.Add("Supervisor name:", result.SupervisorName.ToString());
                 }
                 catch (Exception ex)
                 { 

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("StdfParser")]
-[assembly: AssemblyDescription("Please refer to https://github.com/robin-shi/StdfParser")]
+[assembly: AssemblyDescription("For more information please refer to https://github.com/robin-shi/StdfParser")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("StdfParser")]
-[assembly: AssemblyCopyright("Copyright ©  Robin Shi")]
+[assembly: AssemblyCopyright("Copyright ©  Robin Shi. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

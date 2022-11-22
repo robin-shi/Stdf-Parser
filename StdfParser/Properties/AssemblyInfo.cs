@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("StdfParser")]
+[assembly: AssemblyTitle("Stdf Parser")]
 [assembly: AssemblyDescription("For more information please refer to https://github.com/robin-shi/StdfParser")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("StdfParser")]
+[assembly: AssemblyProduct("Stdf Parser")]
 [assembly: AssemblyCopyright("Copyright ©  Robin Shi. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

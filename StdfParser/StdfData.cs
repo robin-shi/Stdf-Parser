@@ -64,17 +64,17 @@ namespace StdfData
                 DataX[i] = i;
                 i++;
             }
-            PreFixSearch.TryGetValue(Scaling, out string preFix);
-            Unit = preFix+Unit;
+            Unit = PreFixSearch[Scaling]+Unit;
             var stats = new ScottPlot.Statistics.BasicStats(DataY);
             TestNum = testNum;
             Site = site;
-            TestItems.TryGetValue(testNum, out string testName);
-            TestName = testName;
+            TestName = TestItems[testNum];
             Mean = stats.Mean;
             Min = stats.Min;
             Max = stats.Max;
             StDev = stats.StDev;
+            Cpk = Math.Min(HighLimt-Mean,Mean-LowLimt)/(3*StDev);
+
 
         }
 

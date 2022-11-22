@@ -187,8 +187,8 @@ namespace StdfParser
         private void UpdateStatistics()
         {
             dataGridViewStats.Rows.Clear();
-            dataGridViewStats.Rows.Add($"Site{Results.Site}",Results.TestNum,Results.TestName, Results.Unit, Results.HighLimt.ToString("f3"),
-                Results.LowLimt.ToString("f3"), Results.Mean.ToString("f3"), Results.StDev.ToString("f3"), 
+            dataGridViewStats.Rows.Add($"Site{Results.Site}",Results.TestNum,Results.TestName, Results.Unit, Results.LowLimt.ToString("f3"),
+                Results.HighLimt.ToString("f3"),Results.Cpk.ToString("f3"), Results.Mean.ToString("f3"), Results.StDev.ToString("f3"), 
                 Results.Min.ToString("f3"), Results.Max.ToString("f3"));
         }
 

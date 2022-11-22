@@ -67,6 +67,7 @@ namespace StdfParser
             this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LowLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HighLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cpk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mean = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StdDev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Min = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -458,6 +459,7 @@ namespace StdfParser
             this.Unit,
             this.LowLimit,
             this.HighLimit,
+            this.Cpk,
             this.Mean,
             this.StdDev,
             this.Min,
@@ -508,6 +510,12 @@ namespace StdfParser
             this.HighLimit.Name = "HighLimit";
             this.HighLimit.Width = 87;
             // 
+            // Cpk
+            // 
+            this.Cpk.HeaderText = "Cpk";
+            this.Cpk.Name = "Cpk";
+            this.Cpk.Width = 56;
+            // 
             // Mean
             // 
             this.Mean.HeaderText = "Mean";
@@ -546,7 +554,7 @@ namespace StdfParser
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
-            this.Text = "StdfParser";
+            this.Text = "Stdf Parser";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             this.menuStrip1.ResumeLayout(false);
@@ -616,6 +624,7 @@ namespace StdfParser
         private System.Windows.Forms.DataGridViewTextBoxColumn Unit;
         private System.Windows.Forms.DataGridViewTextBoxColumn LowLimit;
         private System.Windows.Forms.DataGridViewTextBoxColumn HighLimit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cpk;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mean;
         private System.Windows.Forms.DataGridViewTextBoxColumn StdDev;
         private System.Windows.Forms.DataGridViewTextBoxColumn Min;

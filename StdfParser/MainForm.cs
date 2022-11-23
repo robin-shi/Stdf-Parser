@@ -139,7 +139,7 @@ namespace StdfParser
                 formsPlotHsitogram.Refresh();
                 double maxValue = Results.Mean + Results.StDev * 6;
                 double minValue = Results.Mean - Results.StDev * 6;
-                double binWidth = (maxValue - minValue) /100;
+                double binWidth = (maxValue - minValue) /50;
                 (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(Results.DataY, min: minValue, max: maxValue, binSize: binWidth);
                 double[] leftEdges = binEdges.Take(binEdges.Length - 1).ToArray();
                 for(int i=0;i<leftEdges.Length;i++)
@@ -163,13 +163,6 @@ namespace StdfParser
                 formsPlotHsitogram.Plot.YAxis2.Ticks(true);
 
                 formsPlotHsitogram.Plot.AddVerticalLine(Results.Mean, Color.Blue, 2, LineStyle.DashDot, "mean");
-
-                //formsPlotHsitogram.Plot.AddVerticalLine(stats.Mean - stats.StDev, Color.Gray, 2, LineStyle.Dot, "1σ");
-                //formsPlotHsitogram.Plot.AddVerticalLine(stats.Mean + stats.StDev, Color.Gray, 2, LineStyle.Dot);
-
-                //formsPlotHsitogram.Plot.AddVerticalLine(stats.Mean - stats.StDev * 2, Color.Gray, 2, LineStyle.Dot, "2σ");
-                //formsPlotHsitogram.Plot.AddVerticalLine(stats.Mean + stats.StDev * 2, Color.Gray, 2, LineStyle.Dot);
-
                 formsPlotHsitogram.Plot.AddVerticalLine(Results.Mean - Results.StDev * 3, Color.Gray, 2, LineStyle.Dot, "3σ");
                 formsPlotHsitogram.Plot.AddVerticalLine(Results.Mean + Results.StDev * 3, Color.Gray, 2, LineStyle.Dot);
 

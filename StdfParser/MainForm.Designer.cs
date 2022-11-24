@@ -35,13 +35,10 @@ namespace StdfParser
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTestItems = new System.Windows.Forms.DataGridView();
-            this.TestNums = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBarFileOpen = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusFileName = new System.Windows.Forms.ToolStripStatusLabel();
@@ -62,6 +59,8 @@ namespace StdfParser
             this.tabPageHsitogram = new System.Windows.Forms.TabPage();
             this.formsPlotHsitogram = new ScottPlot.FormsPlot();
             this.dataGridViewStats = new System.Windows.Forms.DataGridView();
+            this.TestNums = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SiteNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,8 +72,8 @@ namespace StdfParser
             this.StdDev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Min = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Max = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Items = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Values = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FieldNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Contents = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestItems)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -102,7 +101,6 @@ namespace StdfParser
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.viewToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -125,29 +123,22 @@ namespace StdfParser
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenFile);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(154, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem3.Text = "Export to Csv";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
-            this.viewToolStripMenuItem.Text = "View";
             // 
             // helpToolStripMenuItem
             // 
@@ -162,13 +153,13 @@ namespace StdfParser
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(175, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem2.Text = "View Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About StdfParser";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -179,13 +170,14 @@ namespace StdfParser
             this.dataGridViewTestItems.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridViewTestItems.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewTestItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewTestItems.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dataGridViewTestItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridViewTestItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTestItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TestNums,
             this.TestNames});
             this.dataGridViewTestItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewTestItems.GridColor = System.Drawing.Color.White;
+            this.dataGridViewTestItems.GridColor = System.Drawing.Color.LightGray;
             this.dataGridViewTestItems.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewTestItems.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridViewTestItems.MultiSelect = false;
@@ -200,22 +192,6 @@ namespace StdfParser
             this.dataGridViewTestItems.Size = new System.Drawing.Size(329, 514);
             this.dataGridViewTestItems.TabIndex = 1;
             this.dataGridViewTestItems.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewTestItems_CellMouseClick);
-            // 
-            // TestNums
-            // 
-            this.TestNums.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.TestNums.HeaderText = "TestNums";
-            this.TestNums.Name = "TestNums";
-            this.TestNums.ReadOnly = true;
-            this.TestNums.Width = 91;
-            // 
-            // TestNames
-            // 
-            this.TestNames.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.TestNames.HeaderText = "TestNames";
-            this.TestNames.Name = "TestNames";
-            this.TestNames.ReadOnly = true;
-            this.TestNames.Width = 98;
             // 
             // statusStrip1
             // 
@@ -268,7 +244,7 @@ namespace StdfParser
             this.formsPlotScatter.Location = new System.Drawing.Point(2, 2);
             this.formsPlotScatter.Margin = new System.Windows.Forms.Padding(2);
             this.formsPlotScatter.Name = "formsPlotScatter";
-            this.formsPlotScatter.Size = new System.Drawing.Size(888, 445);
+            this.formsPlotScatter.Size = new System.Drawing.Size(888, 446);
             this.formsPlotScatter.TabIndex = 5;
             // 
             // splitContainer1
@@ -388,7 +364,7 @@ namespace StdfParser
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridViewStats);
             this.splitContainer3.Size = new System.Drawing.Size(900, 600);
-            this.splitContainer3.SplitterDistance = 479;
+            this.splitContainer3.SplitterDistance = 480;
             this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 7;
             // 
@@ -402,7 +378,7 @@ namespace StdfParser
             this.tabControlChart.Margin = new System.Windows.Forms.Padding(2);
             this.tabControlChart.Name = "tabControlChart";
             this.tabControlChart.SelectedIndex = 0;
-            this.tabControlChart.Size = new System.Drawing.Size(900, 479);
+            this.tabControlChart.Size = new System.Drawing.Size(900, 480);
             this.tabControlChart.TabIndex = 6;
             // 
             // tabPageMIR
@@ -410,9 +386,9 @@ namespace StdfParser
             this.tabPageMIR.Controls.Add(this.dataGridViewInfo);
             this.tabPageMIR.Location = new System.Drawing.Point(4, 26);
             this.tabPageMIR.Name = "tabPageMIR";
-            this.tabPageMIR.Size = new System.Drawing.Size(892, 449);
+            this.tabPageMIR.Size = new System.Drawing.Size(892, 450);
             this.tabPageMIR.TabIndex = 2;
-            this.tabPageMIR.Text = "MIR";
+            this.tabPageMIR.Text = "MIR Info";
             this.tabPageMIR.UseVisualStyleBackColor = true;
             // 
             // dataGridViewInfo
@@ -424,17 +400,19 @@ namespace StdfParser
             this.dataGridViewInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewInfo.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridViewInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridViewInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewInfo.ColumnHeadersVisible = false;
             this.dataGridViewInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Items,
-            this.Values});
+            this.FieldNames,
+            this.Contents});
             this.dataGridViewInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewInfo.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewInfo.Name = "dataGridViewInfo";
+            this.dataGridViewInfo.ReadOnly = true;
             this.dataGridViewInfo.RowHeadersVisible = false;
             this.dataGridViewInfo.RowTemplate.Height = 23;
-            this.dataGridViewInfo.Size = new System.Drawing.Size(892, 449);
+            this.dataGridViewInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewInfo.Size = new System.Drawing.Size(892, 450);
             this.dataGridViewInfo.TabIndex = 0;
             // 
             // tabPageScatter
@@ -444,7 +422,7 @@ namespace StdfParser
             this.tabPageScatter.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageScatter.Name = "tabPageScatter";
             this.tabPageScatter.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageScatter.Size = new System.Drawing.Size(892, 449);
+            this.tabPageScatter.Size = new System.Drawing.Size(892, 450);
             this.tabPageScatter.TabIndex = 0;
             this.tabPageScatter.Text = "Scatter";
             this.tabPageScatter.UseVisualStyleBackColor = true;
@@ -456,7 +434,7 @@ namespace StdfParser
             this.tabPageHsitogram.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageHsitogram.Name = "tabPageHsitogram";
             this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageHsitogram.Size = new System.Drawing.Size(892, 449);
+            this.tabPageHsitogram.Size = new System.Drawing.Size(892, 450);
             this.tabPageHsitogram.TabIndex = 1;
             this.tabPageHsitogram.Text = "Histogram";
             this.tabPageHsitogram.UseVisualStyleBackColor = true;
@@ -467,7 +445,7 @@ namespace StdfParser
             this.formsPlotHsitogram.Location = new System.Drawing.Point(2, 2);
             this.formsPlotHsitogram.Margin = new System.Windows.Forms.Padding(2);
             this.formsPlotHsitogram.Name = "formsPlotHsitogram";
-            this.formsPlotHsitogram.Size = new System.Drawing.Size(888, 445);
+            this.formsPlotHsitogram.Size = new System.Drawing.Size(888, 446);
             this.formsPlotHsitogram.TabIndex = 0;
             // 
             // dataGridViewStats
@@ -496,27 +474,42 @@ namespace StdfParser
             this.dataGridViewStats.Name = "dataGridViewStats";
             this.dataGridViewStats.RowHeadersVisible = false;
             this.dataGridViewStats.RowTemplate.Height = 23;
-            this.dataGridViewStats.Size = new System.Drawing.Size(900, 118);
+            this.dataGridViewStats.Size = new System.Drawing.Size(900, 117);
             this.dataGridViewStats.TabIndex = 1;
             this.dataGridViewStats.Tag = "";
             // 
+            // TestNums
+            // 
+            this.TestNums.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TestNums.HeaderText = "Test Nums";
+            this.TestNums.Name = "TestNums";
+            this.TestNums.ReadOnly = true;
+            this.TestNums.Width = 95;
+            // 
+            // TestNames
+            // 
+            this.TestNames.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TestNames.HeaderText = "Test Names";
+            this.TestNames.Name = "TestNames";
+            this.TestNames.ReadOnly = true;
+            // 
             // SiteNum
             // 
-            this.SiteNum.HeaderText = "SiteNum";
+            this.SiteNum.HeaderText = "Site Num";
             this.SiteNum.Name = "SiteNum";
-            this.SiteNum.Width = 82;
+            this.SiteNum.Width = 86;
             // 
             // TestNum
             // 
-            this.TestNum.HeaderText = "TestNum";
+            this.TestNum.HeaderText = "Test Num";
             this.TestNum.Name = "TestNum";
-            this.TestNum.Width = 85;
+            this.TestNum.Width = 89;
             // 
             // TestName
             // 
-            this.TestName.HeaderText = "TestName";
+            this.TestName.HeaderText = "Test Name";
             this.TestName.Name = "TestName";
-            this.TestName.Width = 92;
+            this.TestName.Width = 96;
             // 
             // Unit
             // 
@@ -526,15 +519,15 @@ namespace StdfParser
             // 
             // LowLimit
             // 
-            this.LowLimit.HeaderText = "LowLimit";
+            this.LowLimit.HeaderText = "Low Limit";
             this.LowLimit.Name = "LowLimit";
-            this.LowLimit.Width = 83;
+            this.LowLimit.Width = 87;
             // 
             // HighLimit
             // 
-            this.HighLimit.HeaderText = "HighLimit";
+            this.HighLimit.HeaderText = "High Limit";
             this.HighLimit.Name = "HighLimit";
-            this.HighLimit.Width = 87;
+            this.HighLimit.Width = 91;
             // 
             // Cpk
             // 
@@ -566,17 +559,19 @@ namespace StdfParser
             this.Max.Name = "Max";
             this.Max.Width = 58;
             // 
-            // Items
+            // FieldNames
             // 
-            this.Items.HeaderText = "Items";
-            this.Items.Name = "Items";
-            this.Items.Width = 5;
+            this.FieldNames.HeaderText = "Field Names";
+            this.FieldNames.Name = "FieldNames";
+            this.FieldNames.ReadOnly = true;
+            this.FieldNames.Width = 105;
             // 
-            // Values
+            // Contents
             // 
-            this.Values.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Values.HeaderText = "Values";
-            this.Values.Name = "Values";
+            this.Contents.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Contents.HeaderText = "Contents";
+            this.Contents.Name = "Contents";
+            this.Contents.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -644,7 +639,6 @@ namespace StdfParser
         private System.Windows.Forms.TabPage tabPageScatter;
         private System.Windows.Forms.TabPage tabPageHsitogram;
         private ScottPlot.FormsPlot formsPlotHsitogram;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
@@ -654,8 +648,12 @@ namespace StdfParser
         private System.Windows.Forms.RadioButton radioButtonSite1;
         private System.Windows.Forms.RadioButton radioButtonSite0;
         private System.Windows.Forms.DataGridView dataGridViewStats;
+        private System.Windows.Forms.TabPage tabPageMIR;
+        private System.Windows.Forms.DataGridView dataGridViewInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestNums;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestNames;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FieldNames;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Contents;
         private System.Windows.Forms.DataGridViewTextBoxColumn SiteNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestName;
@@ -667,10 +665,6 @@ namespace StdfParser
         private System.Windows.Forms.DataGridViewTextBoxColumn StdDev;
         private System.Windows.Forms.DataGridViewTextBoxColumn Min;
         private System.Windows.Forms.DataGridViewTextBoxColumn Max;
-        private System.Windows.Forms.TabPage tabPageMIR;
-        private System.Windows.Forms.DataGridView dataGridViewInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Items;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Values;
     }
 }
 

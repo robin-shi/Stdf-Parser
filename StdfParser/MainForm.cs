@@ -19,7 +19,6 @@ namespace StdfParser
         public MainForm()
         {
             InitializeComponent();
-            dataGridViewTestItems.ColumnHeadersVisible = false;
             DisVisiableRadioButton();
         }
 
@@ -62,7 +61,6 @@ namespace StdfParser
             {
                 dataGridViewTestItems.Rows.Add(item.Key,item.Value);
             }
-            dataGridViewTestItems.ColumnHeadersVisible = true;
             toolStripProgressBarFileOpen.Value = 0;
         }
 

@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using LinqToStdf;
 using LinqToStdf.Records.V4;
 using ScottPlot;
-using StdfData;
 
 namespace StdfParser
 {
@@ -22,10 +21,7 @@ namespace StdfParser
             DisVisiableRadioButton();
         }
 
-        StdfFile stdfFile { get; set; }
-
-
-        byte[] siteNums { get; set; }
+        StdfData stdfData { get; set; }
         byte selectedSite { get; set; }
         uint selectedtestNumber { get; set; }
         bool radioButtonUpdateChartEnabled { get; set; }
@@ -40,24 +36,27 @@ namespace StdfParser
         {
             if (stdfFilePath != ""&&stdfFilePath.Contains("std"))
             {
-                stdfFile = new StdfFile(stdfFilePath);
-                ClearTestItems();
+                //Clear display
+                stdfData = new StdfData(stdfFilePath);
+                dataGridViewTestItems.Rows.Clear();
                 DisVisiableRadioButton();
                 formsPlotScatter.Plot.Clear();
                 formsPlotHsitogram.Plot.Clear();
+                dataGridViewStats.Rows.Clear();
+                //Update display
                 toolStripStatusFileName.Text = stdfFilePath;
-                UpdateTestItems();
-                Results.UpdateMainInfo(stdfFile);
-                UpdateMainInfo();
+                UpdatedataGridViewTestItems();
+                UpdateMirTab();
                 radioButtonUpdateChartEnabled = false;
                 UpdateRadioButton();
+                textBoxFilter.Text = " ";//creat a value changed event
+                textBoxFilter.Text = "";
             }
         }
 
-        private void UpdateTestItems()
+        private void UpdatedataGridViewTestItems()
         {
-            Results.UpdateTestItems(stdfFile);
-            foreach (var item in Results.TestItems)
+            foreach (var item in stdfData.TestItems)
             {
                 dataGridViewTestItems.Rows.Add(item.Key,item.Value);
             }
@@ -66,12 +65,7 @@ namespace StdfParser
 
         private void UpdateRadioButton()
         {
-            var results = stdfFile.GetRecords().OfExactType<Sdr>();
-            foreach (var result in results)
-            {
-                siteNums = result.SiteNumbers;
-            }
-            foreach (var siteNum in siteNums.Reverse())
+            foreach (var siteNum in stdfData.SiteNums.Reverse())
             {
                 if (siteNum == 0)
                 {
@@ -108,21 +102,15 @@ namespace StdfParser
             radioButtonSite2.Visible = false;
             radioButtonSite3.Visible = false;
         }
-        private void ClearTestItems()
-        {
-            dataGridViewTestItems.Rows.Clear();
-            toolStripProgressBarFileOpen.Value = 0;
-            toolStripStatusFileName.Text = "";
 
-        }
 
         private void UpdateScatter()
         {
             formsPlotScatter.Plot.Clear();
-            formsPlotScatter.Plot.AddScatterPoints(Results.DataX, Results.DataY);
+            formsPlotScatter.Plot.AddScatterPoints(stdfData.DataX, stdfData.DataY);
             formsPlotScatter.Plot.XAxis.Label("DUT Index(#)");
-            formsPlotScatter.Plot.YAxis.Label($"Test Value({Results.Unit})");
-            formsPlotScatter.Plot.Title($"Site{Results.Site}-{Results.TestNum}-{Results.TestName}");
+            formsPlotScatter.Plot.YAxis.Label($"Test Value({stdfData.Unit})");
+            formsPlotScatter.Plot.Title($"Site{stdfData.Site}-{stdfData.TestNum}-{stdfData.TestName}");
             formsPlotScatter.Refresh();
         }
 
@@ -132,13 +120,13 @@ namespace StdfParser
             {
                 formsPlotHsitogram.Plot.Clear();
                 formsPlotHsitogram.Plot.YAxis.Label("DUT Count(#)");
-                formsPlotHsitogram.Plot.XAxis.Label($"Test Value({Results.Unit})");
-                formsPlotHsitogram.Plot.Title($"Site{Results.Site}-{Results.TestNum}-{Results.TestName}");
+                formsPlotHsitogram.Plot.XAxis.Label($"Test Value({stdfData.Unit})");
+                formsPlotHsitogram.Plot.Title($"Site{stdfData.Site}-{stdfData.TestNum}-{stdfData.TestName}");
                 formsPlotHsitogram.Refresh();
-                double maxValue = Results.Mean + Results.StDev * 6;
-                double minValue = Results.Mean - Results.StDev * 6;
+                double maxValue = stdfData.Mean + stdfData.StDev * 6;
+                double minValue = stdfData.Mean - stdfData.StDev * 6;
                 double binWidth = (maxValue - minValue) /50;
-                (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(Results.DataY, min: minValue, max: maxValue, binSize: binWidth);
+                (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(stdfData.DataY, min: minValue, max: maxValue, binSize: binWidth);
                 double[] leftEdges = binEdges.Take(binEdges.Length - 1).ToArray();
                 for(int i=0;i<leftEdges.Length;i++)
                 {
@@ -149,7 +137,7 @@ namespace StdfParser
                 bar.BorderLineWidth = 1f;
                 bar.BarWidth = binWidth;
                 double[] smoothEdges = DataGen.Range(start: binEdges.First(), stop: binEdges.Last(), step: binWidth/2, includeStop: true);
-                double[] smoothDensities = ScottPlot.Statistics.Common.ProbabilityDensity(Results.DataY, smoothEdges, percent: true);
+                double[] smoothDensities = ScottPlot.Statistics.Common.ProbabilityDensity(stdfData.DataY, smoothEdges, percent: true);
                 var probPlot = formsPlotHsitogram.Plot.AddScatterLines(
                     xs: smoothEdges,
                     ys: smoothDensities,
@@ -160,9 +148,9 @@ namespace StdfParser
                 probPlot.YAxisIndex = 1;
                 formsPlotHsitogram.Plot.YAxis2.Ticks(true);
 
-                formsPlotHsitogram.Plot.AddVerticalLine(Results.Mean, Color.Blue, 2, LineStyle.DashDot, "mean");
-                formsPlotHsitogram.Plot.AddVerticalLine(Results.Mean - Results.StDev * 3, Color.Gray, 2, LineStyle.Dot, "3σ");
-                formsPlotHsitogram.Plot.AddVerticalLine(Results.Mean + Results.StDev * 3, Color.Gray, 2, LineStyle.Dot);
+                formsPlotHsitogram.Plot.AddVerticalLine(stdfData.Mean, Color.Blue, 2, LineStyle.DashDot, "mean");
+                formsPlotHsitogram.Plot.AddVerticalLine(stdfData.Mean - stdfData.StDev * 3, Color.Gray, 2, LineStyle.Dot, "3σ");
+                formsPlotHsitogram.Plot.AddVerticalLine(stdfData.Mean + stdfData.StDev * 3, Color.Gray, 2, LineStyle.Dot);
 
                 //formsPlotHsitogram.Plot.AddVerticalLine(stats.Min, Color.Gray, 1, LineStyle.Dash, "min/max");
                 //formsPlotHsitogram.Plot.AddVerticalLine(stats.Max, Color.Gray, 1, LineStyle.Dash);
@@ -177,21 +165,21 @@ namespace StdfParser
             }
         }
 
-        private void UpdateMainInfo()
+        private void UpdateMirTab()
         {
             dataGridViewInfo.Rows.Clear();
-            foreach (var key in Results.MainInfo.Keys)
+            foreach (var key in stdfData.MirData.Keys)
             {
-                dataGridViewInfo.Rows.Add(key, Results.MainInfo[key]);
+                dataGridViewInfo.Rows.Add(key, stdfData.MirData[key]);
             }   
         }
 
         private void UpdateStatistics()
         {
             dataGridViewStats.Rows.Clear();
-            dataGridViewStats.Rows.Add($"Site{Results.Site}",Results.TestNum,Results.TestName, Results.Unit, Results.LowLimt.ToString("f3"),
-                Results.HighLimt.ToString("f3"),Results.Cpk.ToString("f3"), Results.Mean.ToString("f3"), Results.StDev.ToString("f3"), 
-                Results.Min.ToString("f3"), Results.Max.ToString("f3"));
+            dataGridViewStats.Rows.Add($"Site{stdfData.Site}",stdfData.TestNum,stdfData.TestName, stdfData.Unit, stdfData.LowLimt.ToString("f3"),
+            stdfData.HighLimt.ToString("f3"),stdfData.Cpk.ToString("f3"), stdfData.Mean.ToString("f3"), stdfData.StDev.ToString("f3"), 
+            stdfData.Min.ToString("f3"), stdfData.Max.ToString("f3"));
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -216,7 +204,7 @@ namespace StdfParser
 
         private void UpdateChart()
         {
-            Results.UpdateResults(stdfFile,selectedSite,selectedtestNumber);
+            stdfData.UpdateResults(selectedSite,selectedtestNumber);
             UpdateStatistics();
             UpdateScatter();
             UpdateHistogram();
@@ -251,7 +239,7 @@ namespace StdfParser
         {
             try 
             {
-                var results = Results.TestItems.Where(p => p.Key.ToString().Contains(textBoxFilter.Text) || p.Value.ToUpper().Contains(textBoxFilter.Text.ToUpper()));
+                var results = stdfData.TestItems.Where(p => p.Key.ToString().Contains(textBoxFilter.Text) || p.Value.ToUpper().Contains(textBoxFilter.Text.ToUpper()));
                 dataGridViewTestItems.Rows.Clear();
                 foreach (var result in results)
                 {

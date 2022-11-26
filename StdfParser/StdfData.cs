@@ -14,6 +14,7 @@ namespace StdfParser
         public byte[] SiteNums {get;set;}
         public Dictionary<uint, string> TestItems { get; set; }
         public Dictionary<string, string> MirData { get; set; }
+        public Dictionary<byte?,uint> PartCountPerSite { get; set; }
 
         public sbyte? Scaling { get; set; }
         public byte Site { get; set; }
@@ -36,9 +37,10 @@ namespace StdfParser
         public StdfData(string stdfFilePath)
         {
             StdfFile = new StdfFile(stdfFilePath);
-            UpdateSiteNumbers();
+            UpdateSiteNums();
             UpdateMirData();
             UpdateTestItems();
+            UpdatePartCount();
         }
 
         void UpdateMirData()
@@ -132,7 +134,7 @@ namespace StdfParser
                
             }
         }
-        void UpdateSiteNumbers()
+        void UpdateSiteNums()
         {
             var results =StdfFile.GetRecords().OfExactType<Sdr>();
             foreach (var result in results)
@@ -156,11 +158,28 @@ namespace StdfParser
                 catch { }
             }
         }
+
+        void UpdatePartCount()
+        {
+            PartCountPerSite = new Dictionary<byte?, uint>();
+            var results = StdfFile.GetRecords().OfExactType<Pcr>();
+            foreach (var result in results)
+            {
+                try
+                {
+                    if (result.HeadNumber != 255)
+                    {
+                        PartCountPerSite.Add(result.SiteNumber, result.PartCount);
+                    }
+                }
+                catch { }
+            }
+        }
         public void UpdateResults(byte site,uint testNum)
         {
-            var values = StdfFile.GetRecords().OfExactType<Ptr>().Where(p => p.TestNumber == testNum && p.SiteNumber == site);//.Select(p => p.Result);
-            DataY = new double[values.Count()];
-            DataX = new double[values.Count()];
+            var values = StdfFile.GetRecords().OfExactType<Ptr>().Where(p => p.TestNumber == testNum && p.SiteNumber == site);
+            DataY = new double[PartCountPerSite[site]];
+            DataX = new double[PartCountPerSite[site]];
             int i = 0;
             double scaling = 0;
             foreach (var value in values)
@@ -173,7 +192,7 @@ namespace StdfParser
                     LowLimt = (double)value.LowLimit * scaling;
                     HighLimt = (double)value.HighLimit * scaling;
                 }
-                DataY[i] = (double)value.Result* scaling;
+                DataY[i] = (double)value.Result * scaling;
                 DataX[i] = i;
                 i++;
             }

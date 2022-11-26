@@ -22,6 +22,7 @@ namespace StdfParser
         }
 
         StdfData stdfData { get; set; }
+        byte selectedHead { get; set; }
         byte selectedSite { get; set; }
         uint selectedtestNumber { get; set; }
         bool radioButtonUpdateChartEnabled { get; set; }
@@ -46,7 +47,7 @@ namespace StdfParser
                 //Update display
                 toolStripStatusFileName.Text = stdfFilePath;
                 UpdatedataGridViewTestItems();
-                UpdateMirTab();
+                UpdateSummary();
                 radioButtonUpdateChartEnabled = false;
                 UpdateRadioButton();
                 textBoxFilter.Text = " ";//creat a value changed event
@@ -65,6 +66,34 @@ namespace StdfParser
 
         private void UpdateRadioButton()
         {
+            foreach (var HeadNum in stdfData.HeadNums.Reverse())
+            {
+                if (HeadNum == 0)
+                {
+                    radioButtonHead0.Visible = true;
+                    radioButtonHead0.Checked = true;
+                    selectedSite = 0;
+                }
+                else if (HeadNum == 1)
+                {
+                    radioButtonHead1.Visible = true;
+                    radioButtonHead1.Checked = true;
+                    selectedSite = 1;
+                }
+                else if (HeadNum == 2)
+                {
+                    radioButtonHead1.Visible = true;
+                    radioButtonHead1.Checked = true;
+                    selectedSite = 2;
+                }
+                else if (HeadNum == 3)
+                {
+                    radioButtonHead1.Visible = true;
+                    radioButtonHead1.Checked = true;
+                    selectedSite = 3;
+                }
+            }
+            //
             foreach (var siteNum in stdfData.SiteNums.Reverse())
             {
                 if (siteNum == 0)
@@ -92,11 +121,15 @@ namespace StdfParser
                     radioButtonSite3.Checked = true;
                     selectedSite = 3;
                 }
-                    
             } 
         }
         private void DisVisiableRadioButton()
         {
+            radioButtonHead0.Visible = false;
+            radioButtonHead1.Visible = false;
+            radioButtonHead2.Visible = false;
+            radioButtonHead3.Visible = false;
+            //
             radioButtonSite0.Visible = false;
             radioButtonSite1.Visible = false;
             radioButtonSite2.Visible = false;
@@ -110,7 +143,7 @@ namespace StdfParser
             formsPlotScatter.Plot.AddScatterPoints(stdfData.DataX, stdfData.DataY);
             formsPlotScatter.Plot.XAxis.Label("DUT Index(#)");
             formsPlotScatter.Plot.YAxis.Label($"Test Value({stdfData.Unit})");
-            formsPlotScatter.Plot.Title($"Site{stdfData.Site}-{stdfData.TestNum}-{stdfData.TestName}");
+            formsPlotScatter.Plot.Title($"Head{stdfData.Head} Site{stdfData.Site} {stdfData.TestNum} {stdfData.TestName}");
             formsPlotScatter.Refresh();
         }
 
@@ -121,7 +154,7 @@ namespace StdfParser
                 formsPlotHsitogram.Plot.Clear();
                 formsPlotHsitogram.Plot.YAxis.Label("DUT Count(#)");
                 formsPlotHsitogram.Plot.XAxis.Label($"Test Value({stdfData.Unit})");
-                formsPlotHsitogram.Plot.Title($"Site{stdfData.Site}-{stdfData.TestNum}-{stdfData.TestName}");
+                formsPlotHsitogram.Plot.Title($"Head{stdfData.Head} Site{stdfData.Site} {stdfData.TestNum} {stdfData.TestName}");
                 formsPlotHsitogram.Refresh();
                 double maxValue = stdfData.Mean + stdfData.StDev * 6;
                 double minValue = stdfData.Mean - stdfData.StDev * 6;
@@ -165,19 +198,19 @@ namespace StdfParser
             }
         }
 
-        private void UpdateMirTab()
+        private void UpdateSummary()
         {
             dataGridViewInfo.Rows.Clear();
-            foreach (var key in stdfData.MirData.Keys)
+            foreach (var key in stdfData.Summary.Keys)
             {
-                dataGridViewInfo.Rows.Add(key, stdfData.MirData[key]);
+                dataGridViewInfo.Rows.Add(key, stdfData.Summary[key]);
             }   
         }
 
         private void UpdateStatistics()
         {
             dataGridViewStats.Rows.Clear();
-            dataGridViewStats.Rows.Add($"Site{stdfData.Site}",stdfData.TestNum,stdfData.TestName, stdfData.Unit, stdfData.LowLimt.ToString("f3"),
+            dataGridViewStats.Rows.Add($"Head{stdfData.Head}", $"Site{stdfData.Site}",stdfData.TestNum,stdfData.TestName, stdfData.Unit, stdfData.LowLimt.ToString("f3"),
             stdfData.HighLimt.ToString("f3"),stdfData.Cpk.ToString("f3"), stdfData.Mean.ToString("f3"), stdfData.StDev.ToString("f3"), 
             stdfData.Min.ToString("f3"), stdfData.Max.ToString("f3"));
         }
@@ -204,15 +237,30 @@ namespace StdfParser
 
         private void UpdateChart()
         {
-            stdfData.UpdateResults(selectedSite,selectedtestNumber);
+            stdfData.UpdateResults(selectedHead,selectedSite,selectedtestNumber);
             UpdateStatistics();
             UpdateScatter();
             UpdateHistogram();
         }
-
-        private void radioButtonSiteN_CheckedChanged(object sender, EventArgs e)
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
-            
+            if (sender == radioButtonHead0)
+            {
+                selectedHead = 0;
+            }
+            else if (sender == radioButtonHead1)
+            {
+                selectedHead = 1;
+            }
+            else if (sender == radioButtonHead2)
+            {
+                selectedHead = 2;
+            }
+            else if (sender == radioButtonHead3)
+            {
+                selectedHead = 3;
+            }
+            //
             if (sender == radioButtonSite0)
             {
                 selectedSite = 0;

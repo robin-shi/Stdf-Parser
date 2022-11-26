@@ -1,6 +1,8 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using LinqToStdf;
@@ -11,12 +13,17 @@ namespace StdfParser
     public class StdfData
     {
         public StdfFile StdfFile { get; set; }
-        public byte[] SiteNums {get;set;}
+        public byte?[] HeadNums { get; set; }
+        public byte[] SiteNums { get;set;}
         public Dictionary<uint, string> TestItems { get; set; }
-        public Dictionary<string, string> MirData { get; set; }
-        public Dictionary<byte?,uint> PartCountPerSite { get; set; }
+        public Dictionary<string, string> Summary { get; set; }
+        public uint TotalCount { get; set; } = 0;
+        public uint PassedCount { get; set; } = 0;
+        public double TotalYield { get; set; } = 0;
+        public Dictionary<byte?,Dictionary<byte?, uint>> PartCountPerSitePerHead { get; set; }
 
         public sbyte? Scaling { get; set; }
+        public byte Head { get; set; }
         public byte Site { get; set; }
         public uint TestNum { get; set; }
         public string TestName { get; set; }
@@ -37,110 +44,119 @@ namespace StdfParser
         public StdfData(string stdfFilePath)
         {
             StdfFile = new StdfFile(stdfFilePath);
-            UpdateSiteNums();
-            UpdateMirData();
+            UpdateHeadAndSiteNums();
             UpdateTestItems();
             UpdatePartCount();
+            UpdateSummary();
         }
 
-        void UpdateMirData()
+        void UpdateSummary()
         {
-            MirData = new Dictionary<string, string> { };
+            Summary = new Dictionary<string, string> { };
+            Summary.Add("Total count：",$"{TotalCount}");
+            Summary.Add("Passed count：", $"{PassedCount}");
+            Summary.Add("Yield：", $"{TotalYield*100:f2}%");
             var results = StdfFile.GetRecords().OfExactType<Mir>();
             foreach (var result in results)
             {
                 try
                 {
                     if (result.SetupTime!=null)
-                        MirData.Add("Setup time:", result.SetupTime.ToString());
+                        Summary.Add("Setup time:", result.SetupTime.ToString());
                     if (result.StartTime != null)
-                        MirData.Add("Start time:", result.StartTime.ToString());
+                        Summary.Add("Start time:", result.StartTime.ToString());
            
-                        MirData.Add("Tester station number:", result.StationNumber.ToString());//int always not null
+                        Summary.Add("Tester station number:", result.StationNumber.ToString());//int always not null
                     if (result.ModeCode != null)
-                        MirData.Add("Test mode code:", result.ModeCode.ToString());
+                        Summary.Add("Test mode code:", result.ModeCode.ToString());
                     if (result.RetestCode != null)
-                        MirData.Add("Lot retest code:", result.RetestCode.ToString());
+                        Summary.Add("Lot retest code:", result.RetestCode.ToString());
                     if (result.ProtectionCode != null)
-                        MirData.Add("Data protection code:", result.ProtectionCode.ToString());
+                        Summary.Add("Data protection code:", result.ProtectionCode.ToString());
                     if (result.BurnInTime != null)
-                        MirData.Add("Burn-in time:", result.BurnInTime.ToString());
+                        Summary.Add("Burn-in time:", result.BurnInTime.ToString());
                     if (result.CommandModeCode != null)
-                        MirData.Add("Command mode code:", result.CommandModeCode.ToString());
+                        Summary.Add("Command mode code:", result.CommandModeCode.ToString());
                     if (result.LotId != null)
-                        MirData.Add("Lot ID:", result.LotId.ToString());
+                        Summary.Add("Lot ID:", result.LotId.ToString());
                     if (result.PartType != null)
-                        MirData.Add("Part type:", result.PartType.ToString());
+                        Summary.Add("Part type:", result.PartType.ToString());
                     if (result.NodeName != null)
-                        MirData.Add("Node name:", result.NodeName.ToString());
+                        Summary.Add("Node name:", result.NodeName.ToString());
                     if (result.TesterType != null)
-                        MirData.Add("Tester type:", result.TesterType.ToString());
+                        Summary.Add("Tester type:", result.TesterType.ToString());
                     if (result.JobName != null)
-                        MirData.Add("Program name:", result.JobName.ToString());
+                        Summary.Add("Program name:", result.JobName.ToString());
                     if (result.JobRevision != null)
-                        MirData.Add("Program revision:", result.JobRevision.ToString());
+                        Summary.Add("Program revision:", result.JobRevision.ToString());
                     if (result.SublotId != null)
-                        MirData.Add("Sublot ID:", result.SublotId.ToString());
+                        Summary.Add("Sublot ID:", result.SublotId.ToString());
                     if (result.OperatorName != null)
-                        MirData.Add("Operator name:", result.OperatorName.ToString());
+                        Summary.Add("Operator name:", result.OperatorName.ToString());
                     if (result.ExecType != null)
-                        MirData.Add("Tester software type:", result.ExecType.ToString());
+                        Summary.Add("Tester software type:", result.ExecType.ToString());
                     if (result.ExecVersion != null)
-                        MirData.Add("Tester software version:", result.ExecVersion.ToString());
+                        Summary.Add("Tester software version:", result.ExecVersion.ToString());
                     if (result.TestCode != null)
-                        MirData.Add("Test code:", result.TestCode.ToString());
+                        Summary.Add("Test code:", result.TestCode.ToString());
                     if (result.TestTemperature != null)
-                        MirData.Add("Test temperature:", result.TestTemperature.ToString());
+                        Summary.Add("Test temperature:", result.TestTemperature.ToString());
                     if (result.UserText != null)
-                        MirData.Add("User text:", result.UserText.ToString());
+                        Summary.Add("User text:", result.UserText.ToString());
                     if (result.AuxiliaryFile != null)
-                        MirData.Add("Auxiliary file:", result.AuxiliaryFile.ToString());
+                        Summary.Add("Auxiliary file:", result.AuxiliaryFile.ToString());
                     if (result.PackageType != null)
-                        MirData.Add("Package type:", result.PackageType.ToString());
+                        Summary.Add("Package type:", result.PackageType.ToString());
                     if (result.FamilyId != null)
-                        MirData.Add("Product family ID:", result.FamilyId.ToString());
+                        Summary.Add("Product family ID:", result.FamilyId.ToString());
                     if (result.DateCode != null)
-                        MirData.Add("Date code:", result.DateCode.ToString());
+                        Summary.Add("Date code:", result.DateCode.ToString());
                     if (result.FacilityId != null)
-                        MirData.Add("Test facility ID:", result.FacilityId.ToString());
+                        Summary.Add("Test facility ID:", result.FacilityId.ToString());
                     if (result.FloorId != null)
-                        MirData.Add("Test floor ID:", result.FloorId.ToString());
+                        Summary.Add("Test floor ID:", result.FloorId.ToString());
                     if (result.ProcessId != null)
-                        MirData.Add("Fabrication process ID:", result.ProcessId.ToString());
+                        Summary.Add("Fabrication process ID:", result.ProcessId.ToString());
                     if (result.OperationFrequency != null)
-                        MirData.Add("Operation frequency:", result.OperationFrequency.ToString());
+                        Summary.Add("Operation frequency:", result.OperationFrequency.ToString());
                     if (result.SpecificationName != null)
-                        MirData.Add("Test specification name:", result.SpecificationName.ToString());
+                        Summary.Add("Test specification name:", result.SpecificationName.ToString());
                     if (result.SpecificationVersion != null)
-                        MirData.Add("Test specification version:", result.SpecificationVersion.ToString());
+                        Summary.Add("Test specification version:", result.SpecificationVersion.ToString());
                     if (result.FlowId != null)
-                        MirData.Add("Test flow ID:", result.FlowId.ToString());
+                        Summary.Add("Test flow ID:", result.FlowId.ToString());
                     if (result.SetupId != null)
-                        MirData.Add("Test setup ID:", result.SetupId.ToString());
+                        Summary.Add("Test setup ID:", result.SetupId.ToString());
                     if (result.DesignRevision != null)
-                        MirData.Add("Device design revision:", result.DesignRevision.ToString());
+                        Summary.Add("Device design revision:", result.DesignRevision.ToString());
                     if (result.EngineeringId != null)
-                        MirData.Add("Engineering lot ID:", result.EngineeringId.ToString());
+                        Summary.Add("Engineering lot ID:", result.EngineeringId.ToString());
                     if (result.RomCode != null)
-                        MirData.Add("ROM code ID:", result.RomCode.ToString());
+                        Summary.Add("ROM code ID:", result.RomCode.ToString());
                     if (result.SerialNumber != null)
-                        MirData.Add("Tester serial number:", result.SerialNumber.ToString());
+                        Summary.Add("Tester serial number:", result.SerialNumber.ToString());
                     if (result.SupervisorName != null)
-                        MirData.Add("Supervisor name:", result.SupervisorName.ToString());
+                        Summary.Add("Supervisor name:", result.SupervisorName.ToString());
                 }
                 catch (Exception ex)
                 { 
                 }
-               
+                break;
             }
         }
-        void UpdateSiteNums()
+        void UpdateHeadAndSiteNums()
         {
+            List<byte?> headNums = new List<byte?>();
             var results =StdfFile.GetRecords().OfExactType<Sdr>();
             foreach (var result in results)
             {
+                if (!headNums.Contains(result.HeadNumber))
+                {
+                    headNums.Add(result.HeadNumber);
+                }
                 SiteNums = result.SiteNumbers;
             }
+            HeadNums = headNums.ToArray();
         }
 
         void UpdateTestItems()
@@ -161,25 +177,37 @@ namespace StdfParser
 
         void UpdatePartCount()
         {
-            PartCountPerSite = new Dictionary<byte?, uint>();
-            var results = StdfFile.GetRecords().OfExactType<Pcr>();
-            foreach (var result in results)
+            PartCountPerSitePerHead = new Dictionary<byte?, Dictionary<byte?, uint>>();
+            foreach (var head in HeadNums)
             {
-                try
+                Dictionary<byte?, uint> partCountPerSite = new Dictionary<byte?, uint>();
+                foreach (var site in SiteNums)
                 {
-                    if (result.HeadNumber != 255)
+                    uint partCount=0;
+                    var results = StdfFile.GetRecords().OfExactType<Pcr>().Where(p=>p.HeadNumber==head&&p.SiteNumber==site);
+                    foreach (var result in results)
                     {
-                        PartCountPerSite.Add(result.SiteNumber, result.PartCount);
+                        try
+                        {
+                            partCount = result.PartCount;
+                            TotalCount += result.PartCount;
+                            PassedCount+= (uint)result.GoodCount;
+                        }
+                        catch { }
+                        break;
                     }
+                    partCountPerSite.Add(site, partCount);
                 }
-                catch { }
+                PartCountPerSitePerHead.Add(head, partCountPerSite);
+                TotalYield = (double)PassedCount / TotalCount;
             }
+            
         }
-        public void UpdateResults(byte site,uint testNum)
+        public void UpdateResults(byte head,byte site,uint testNum)
         {
-            var values = StdfFile.GetRecords().OfExactType<Ptr>().Where(p => p.TestNumber == testNum && p.SiteNumber == site);
-            DataY = new double[PartCountPerSite[site]];
-            DataX = new double[PartCountPerSite[site]];
+            var values = StdfFile.GetRecords().OfExactType<Ptr>().Where(p => p.TestNumber == testNum && p.HeadNumber == head && p.SiteNumber == site);
+            DataY = new double[PartCountPerSitePerHead[head][site]];
+            DataX = new double[PartCountPerSitePerHead[head][site]];
             int i = 0;
             double scaling = 0;
             foreach (var value in values)
@@ -199,6 +227,7 @@ namespace StdfParser
             Unit = PreFixSearch[Scaling]+Unit;
             var stats = new ScottPlot.Statistics.BasicStats(DataY);
             TestNum = testNum;
+            Head = head;
             Site = site;
             TestName = TestItems[testNum];
             Mean = stats.Mean;

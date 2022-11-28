@@ -30,8 +30,8 @@ namespace StdfParser
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox));
             this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.labelEmail = new System.Windows.Forms.Label();
             this.labelAuthor = new System.Windows.Forms.Label();
-            this.labelCopyright = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelProductName = new System.Windows.Forms.Label();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
@@ -43,6 +43,7 @@ namespace StdfParser
             // textBoxDescription
             // 
             this.textBoxDescription.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.textBoxDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tableLayoutPanel.SetColumnSpan(this.textBoxDescription, 2);
             this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxDescription.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -56,31 +57,31 @@ namespace StdfParser
             this.textBoxDescription.TabStop = false;
             this.textBoxDescription.Text = "Description";
             // 
+            // labelEmail
+            // 
+            this.labelEmail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelEmail.Location = new System.Drawing.Point(143, 112);
+            this.labelEmail.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
+            this.labelEmail.MaximumSize = new System.Drawing.Size(0, 16);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(271, 16);
+            this.labelEmail.TabIndex = 22;
+            this.labelEmail.Text = "Email";
+            this.labelEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // labelAuthor
             // 
             this.labelAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelAuthor.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelAuthor.Location = new System.Drawing.Point(143, 112);
+            this.labelAuthor.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAuthor.Location = new System.Drawing.Point(143, 84);
             this.labelAuthor.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelAuthor.MaximumSize = new System.Drawing.Size(0, 16);
             this.labelAuthor.Name = "labelAuthor";
             this.labelAuthor.Size = new System.Drawing.Size(271, 16);
-            this.labelAuthor.TabIndex = 22;
+            this.labelAuthor.TabIndex = 21;
             this.labelAuthor.Text = "Author";
             this.labelAuthor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelCopyright
-            // 
-            this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCopyright.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCopyright.Location = new System.Drawing.Point(143, 84);
-            this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 16);
-            this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(271, 16);
-            this.labelCopyright.TabIndex = 21;
-            this.labelCopyright.Text = "Copyright";
-            this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelVersion
             // 
@@ -127,8 +128,8 @@ namespace StdfParser
             this.tableLayoutPanel.Controls.Add(this.logoPictureBox, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.labelProductName, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 2);
-            this.tableLayoutPanel.Controls.Add(this.labelAuthor, 1, 3);
+            this.tableLayoutPanel.Controls.Add(this.labelAuthor, 1, 2);
+            this.tableLayoutPanel.Controls.Add(this.labelEmail, 1, 3);
             this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 0, 4);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(9, 8);
@@ -171,7 +172,7 @@ namespace StdfParser
         private System.Windows.Forms.PictureBox logoPictureBox;
         private System.Windows.Forms.Label labelProductName;
         private System.Windows.Forms.Label labelVersion;
-        private System.Windows.Forms.Label labelCopyright;
         private System.Windows.Forms.Label labelAuthor;
+        private System.Windows.Forms.Label labelEmail;
     }
 }

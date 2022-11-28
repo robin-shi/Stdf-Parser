@@ -204,11 +204,7 @@ namespace StdfParser
 
         private void UpdateSummary()
         {
-            dataGridViewInfo.Rows.Clear();
-            foreach (var key in stdfData.Summary.Keys)
-            {
-                dataGridViewInfo.Rows.Add(key, stdfData.Summary[key]);
-            }   
+            textBoxSummary.Text = stdfData.Summary.ToString();
         }
 
         private void UpdateStatistics()

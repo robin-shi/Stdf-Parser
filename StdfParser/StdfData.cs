@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Permissions;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using LinqToStdf;
@@ -16,11 +17,14 @@ namespace StdfParser
         public byte[] HeadNums { get; set; }
         public byte[] SiteNums { get;set;}
         public Dictionary<uint, string> TestItems { get; set; }
-        public Dictionary<string, string> Summary { get; set; }
+        //public Dictionary<string, string> Summary { get; set; }
         public uint TotalCount { get; set; } = 0;
         public uint PassedCount { get; set; } = 0;
         public double TotalYield { get; set; } = 0;
-        public Dictionary<byte?,Dictionary<byte?, uint>> PartCountPerSitePerHead { get; set; }
+        public Dictionary<byte,Dictionary<byte, uint>> PartCountPerSitePerHead { get; set; }
+        public Dictionary<ushort, string> SoftBins { get; set; }
+        public Dictionary<ushort, string> HardBins { get; set; }
+        public StringBuilder Summary = new StringBuilder();
 
         public sbyte? Scaling { get; set; }
         public byte Head { get; set; }
@@ -47,98 +51,178 @@ namespace StdfParser
             UpdateHeadAndSiteNums();
             UpdateTestItems();
             UpdatePartCount();
-            UpdateSummary();
+            UpdateMirInfo();
+            UpdateHBinInfo();
+            UpdateSBinInfo();
         }
 
-        void UpdateSummary()
+        void UpdateMirInfo()
         {
-            Summary = new Dictionary<string, string> { };
-            Summary.Add("Total count：",$"{TotalCount}");
-            Summary.Add("Passed count：", $"{PassedCount}");
-            Summary.Add("Yield：", $"{TotalYield*100:f2}%");
             var result = StdfFile.GetMir();
+            //      $"{"XXXXXXX:",30}"
             try
             {
+                Summary.AppendLine("------------------------------------------------------------------------------------------------------------------------------");
+                Summary.AppendLine("MIR information:");
                 if (result.SetupTime!=null)
-                    Summary.Add("Setup time:", result.SetupTime.ToString());
+                    Summary.AppendLine($"{"Setup time:",-30}"+result.SetupTime.ToString());
                 if (result.StartTime != null)
-                    Summary.Add("Start time:", result.StartTime.ToString());
+                    Summary.AppendLine($"{"Start time:",-30}" + result.StartTime.ToString());
            
-                    Summary.Add("Tester station number:", result.StationNumber.ToString());//int always not null
+                    Summary.AppendLine($"{"Tester station number:",-30}" + result.StationNumber.ToString());//int always not null
                 if (result.ModeCode != null)
-                    Summary.Add("Test mode code:", result.ModeCode.ToString());
+                    Summary.AppendLine($"{"Test mode code:",-30}" + result.ModeCode.ToString());
                 if (result.RetestCode != null)
-                    Summary.Add("Lot retest code:", result.RetestCode.ToString());
+                    Summary.AppendLine($"{"Lot retest code:",-30}" + result.RetestCode.ToString());
                 if (result.ProtectionCode != null)
-                    Summary.Add("Data protection code:", result.ProtectionCode.ToString());
+                    Summary.AppendLine($"{"Data protection code:",-30}" + result.ProtectionCode.ToString());
                 if (result.BurnInTime != null)
-                    Summary.Add("Burn-in time:", result.BurnInTime.ToString());
+                    Summary.AppendLine($"{"Burn-in time:",-30}" + result.BurnInTime.ToString());
                 if (result.CommandModeCode != null)
-                    Summary.Add("Command mode code:", result.CommandModeCode.ToString());
+                    Summary.AppendLine($"{"Command mode code:",-30}" + result.CommandModeCode.ToString());
                 if (result.LotId != null)
-                    Summary.Add("Lot ID:", result.LotId.ToString());
+                    Summary.AppendLine($"{"Lot ID:",-30}" + result.LotId.ToString());
                 if (result.PartType != null)
-                    Summary.Add("Part type:", result.PartType.ToString());
+                    Summary.AppendLine($"{"Part type:",-30}" + result.PartType.ToString());
                 if (result.NodeName != null)
-                    Summary.Add("Node name:", result.NodeName.ToString());
+                    Summary.AppendLine($"{"Node name:",-30}" + result.NodeName.ToString());
                 if (result.TesterType != null)
-                    Summary.Add("Tester type:", result.TesterType.ToString());
+                    Summary.AppendLine($"{"Tester type:",-30}" + result.TesterType.ToString());
                 if (result.JobName != null)
-                    Summary.Add("Program name:", result.JobName.ToString());
+                    Summary.AppendLine($"{"Program name:",-30}" + result.JobName.ToString());
                 if (result.JobRevision != null)
-                    Summary.Add("Program revision:", result.JobRevision.ToString());
+                    Summary.AppendLine($"{"Program revision:",-30}" + result.JobRevision.ToString());
                 if (result.SublotId != null)
-                    Summary.Add("Sublot ID:", result.SublotId.ToString());
+                    Summary.AppendLine($"{"Sublot ID:",-30}" + result.SublotId.ToString());
                 if (result.OperatorName != null)
-                    Summary.Add("Operator name:", result.OperatorName.ToString());
+                    Summary.AppendLine($"{"Operator name:",-30}" + result.OperatorName.ToString());
                 if (result.ExecType != null)
-                    Summary.Add("Tester software type:", result.ExecType.ToString());
+                    Summary.AppendLine($"{"Tester software type:",-30}" + result.ExecType.ToString());
                 if (result.ExecVersion != null)
-                    Summary.Add("Tester software version:", result.ExecVersion.ToString());
+                    Summary.AppendLine($"{"Tester software version:",-30}" + result.ExecVersion.ToString());
                 if (result.TestCode != null)
-                    Summary.Add("Test code:", result.TestCode.ToString());
+                    Summary.AppendLine($"{"Test code:",-30}" + result.TestCode.ToString());
                 if (result.TestTemperature != null)
-                    Summary.Add("Test temperature:", result.TestTemperature.ToString());
+                    Summary.AppendLine($"{"Test temperature:",-30}" + result.TestTemperature.ToString());
                 if (result.UserText != null)
-                    Summary.Add("User text:", result.UserText.ToString());
+                    Summary.AppendLine($"{"User text:",-30}" + result.UserText.ToString());
                 if (result.AuxiliaryFile != null)
-                    Summary.Add("Auxiliary file:", result.AuxiliaryFile.ToString());
+                    Summary.AppendLine($"{"Auxiliary file:",-30}" + result.AuxiliaryFile.ToString());
                 if (result.PackageType != null)
-                    Summary.Add("Package type:", result.PackageType.ToString());
+                    Summary.AppendLine($"{"Package type:",-30}" + result.PackageType.ToString());
                 if (result.FamilyId != null)
-                    Summary.Add("Product family ID:", result.FamilyId.ToString());
+                    Summary.AppendLine($"{"Product family ID:",-30}" + result.FamilyId.ToString());
                 if (result.DateCode != null)
-                    Summary.Add("Date code:", result.DateCode.ToString());
+                    Summary.AppendLine($"{"Date code:",-30}" + result.DateCode.ToString());
                 if (result.FacilityId != null)
-                    Summary.Add("Test facility ID:", result.FacilityId.ToString());
+                    Summary.AppendLine($"{"Test facility ID:",-30}" + result.FacilityId.ToString());
                 if (result.FloorId != null)
-                    Summary.Add("Test floor ID:", result.FloorId.ToString());
+                    Summary.AppendLine($"{"Test floor ID:",-30}" + result.FloorId.ToString());
                 if (result.ProcessId != null)
-                    Summary.Add("Fabrication process ID:", result.ProcessId.ToString());
+                    Summary.AppendLine($"{"Fabrication process ID:",-30}" + result.ProcessId.ToString());
                 if (result.OperationFrequency != null)
-                    Summary.Add("Operation frequency:", result.OperationFrequency.ToString());
+                    Summary.AppendLine($"{"Operation frequency:",-30}" + result.OperationFrequency.ToString());
                 if (result.SpecificationName != null)
-                    Summary.Add("Test specification name:", result.SpecificationName.ToString());
+                    Summary.AppendLine($"{"Test specification name:",-30}" + result.SpecificationName.ToString());
                 if (result.SpecificationVersion != null)
-                    Summary.Add("Test specification version:", result.SpecificationVersion.ToString());
+                    Summary.AppendLine($"{"Test specification version:",-30}" + result.SpecificationVersion.ToString());
                 if (result.FlowId != null)
-                    Summary.Add("Test flow ID:", result.FlowId.ToString());
+                    Summary.AppendLine($"{"Test flow ID:",-30}" + result.FlowId.ToString());
                 if (result.SetupId != null)
-                    Summary.Add("Test setup ID:", result.SetupId.ToString());
+                    Summary.AppendLine($"{"Test setup ID:",-30}" + result.SetupId.ToString());
                 if (result.DesignRevision != null)
-                    Summary.Add("Device design revision:", result.DesignRevision.ToString());
+                    Summary.AppendLine($"{"Device design revision:",-30}" + result.DesignRevision.ToString());
                 if (result.EngineeringId != null)
-                    Summary.Add("Engineering lot ID:", result.EngineeringId.ToString());
+                    Summary.AppendLine($"{"Engineering lot ID:",-30}" + result.EngineeringId.ToString());
                 if (result.RomCode != null)
-                    Summary.Add("ROM code ID:", result.RomCode.ToString());
+                    Summary.AppendLine($"{"ROM code ID:",-30}" + result.RomCode.ToString());
                 if (result.SerialNumber != null)
-                    Summary.Add("Tester serial number:", result.SerialNumber.ToString());
+                    Summary.AppendLine($"{"Tester serial number:",-30}" + result.SerialNumber.ToString());
                 if (result.SupervisorName != null)
-                    Summary.Add("Supervisor name:", result.SupervisorName.ToString());
+                    Summary.AppendLine($"{"Supervisor name:",-30}" + result.SupervisorName.ToString());
             }
             catch (Exception ex)
             { 
             }
+        }
+
+        void UpdateHBinInfo()
+        {
+            foreach (var head in HeadNums)
+            {
+                Summary.AppendLine("------------------------------------------------------------------------------------------------------------------------------");
+                Summary.AppendLine($"Head{head} Hard Bin Statistics:");
+                HardBins = new Dictionary<ushort, string>();
+                uint totalCount = 0;
+                var results = StdfFile.GetRecords().OfExactType<Hbr>().Where(p => p.BinCount != 0);
+                foreach (var result in results)
+                {
+                    try
+                    {
+                        HardBins.Add(result.BinNumber, result.BinName);
+                    }
+                    catch { }
+                }
+                Summary.Append($"{"Bin Num",-10}{"Bin Name",-30}     Sites:All");
+                foreach (var site in SiteNums)
+                {
+                    Summary.Append($"         Site:{site}   ");
+                    totalCount += PartCountPerSitePerHead[head][site];
+                }
+                Summary.AppendLine();
+                foreach (var hardBin in HardBins)
+                {
+                    Summary.Append($"{hardBin.Key,-10}{hardBin.Value,-30}");
+                    var result = StdfFile.GetRecords().OfExactType<Hbr>().Where(p => p.HeadNumber == 255 && p.BinNumber == hardBin.Key).FirstOrDefault();
+                    Summary.Append($"{result.BinCount,10}|{result.BinCount * 100.0 / totalCount,5:f2}%");
+                    foreach (var site in SiteNums)
+                    {
+                        result = StdfFile.GetRecords().OfExactType<Hbr>().Where(p => p.HeadNumber != 255 && p.SiteNumber == site && p.BinNumber == hardBin.Key).FirstOrDefault();
+                        Summary.Append($"{result.BinCount,10}|{result.BinCount * 100.0 / PartCountPerSitePerHead[head][site],6:f2}%");
+                    }
+                    Summary.AppendLine();
+                }
+            }
+            
+        }
+        void UpdateSBinInfo()
+        {
+            foreach (var head in HeadNums)
+            {
+                Summary.AppendLine("------------------------------------------------------------------------------------------------------------------------------");
+                Summary.AppendLine($"Head{head} Soft Bin Statistics:");
+                SoftBins = new Dictionary<ushort, string>();
+                uint totalCount = 0;
+                var results = StdfFile.GetRecords().OfExactType<Sbr>().Where(p => p.BinCount != 0);
+                foreach (var result in results)
+                {
+                    try
+                    {
+                        SoftBins.Add(result.BinNumber, result.BinName);
+                    }
+                    catch { }
+                }
+                Summary.Append($"{"Bin Num",-10}{"Bin Name",-30}     Sites:All");
+                foreach (var site in SiteNums)
+                {
+                    Summary.Append($"         Site:{site}   ");
+                    totalCount += PartCountPerSitePerHead[head][site];
+                }
+                Summary.AppendLine();
+                foreach (var softBin in SoftBins)
+                {
+                    Summary.Append($"{softBin.Key,-10}{softBin.Value,-30}");
+                    var result = StdfFile.GetRecords().OfExactType<Sbr>().Where(p => p.HeadNumber == 255 && p.BinNumber == softBin.Key).FirstOrDefault();
+                    Summary.Append($"{result.BinCount,10}|{result.BinCount * 100.0 / totalCount,5:f2}%");
+                    foreach (var site in SiteNums)
+                    {
+                        result = StdfFile.GetRecords().OfExactType<Sbr>().Where(p => p.HeadNumber != 255 && p.SiteNumber == site && p.BinNumber == softBin.Key).FirstOrDefault();
+                        Summary.Append($"{result.BinCount,10}|{result.BinCount * 100.0 / PartCountPerSitePerHead[head][site],6:f2}%");
+                    }
+                    Summary.AppendLine();
+                }
+            }
+
         }
         void UpdateHeadAndSiteNums()
         {
@@ -177,10 +261,10 @@ namespace StdfParser
         {
             try
             {
-                PartCountPerSitePerHead = new Dictionary<byte?, Dictionary<byte?, uint>>();
+                PartCountPerSitePerHead = new Dictionary<byte, Dictionary<byte, uint>>();
                 foreach (var head in HeadNums)
                 {
-                    Dictionary<byte?, uint> partCountPerSite = new Dictionary<byte?, uint>();
+                    Dictionary<byte, uint> partCountPerSite = new Dictionary<byte, uint>();
                     foreach (var site in SiteNums)
                     {
                         uint partCount=0;

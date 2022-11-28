@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using LinqToStdf;
 using LinqToStdf.Records.V4;
 using ScottPlot;
+using System.IO;
 
 namespace StdfParser
 {
@@ -38,6 +39,8 @@ namespace StdfParser
             if (stdfFilePath != ""&&stdfFilePath.Contains("std"))
             {
                 //Clear display
+                toolStripStatusFileName.Text = "Parsing...";
+                this.Cursor = Cursors.WaitCursor;
                 stdfData = new StdfData(stdfFilePath);
                 dataGridViewTestItems.Rows.Clear();
                 DisVisiableRadioButton();
@@ -50,8 +53,10 @@ namespace StdfParser
                 UpdateSummary();
                 radioButtonUpdateChartEnabled = false;
                 UpdateRadioButton();
+                radioButtonUpdateChartEnabled = true;
                 textBoxFilter.Text = " ";//creat a value changed event
                 textBoxFilter.Text = "";
+                this.Cursor = Cursors.Default;
             }
         }
 
@@ -61,7 +66,6 @@ namespace StdfParser
             {
                 dataGridViewTestItems.Rows.Add(item.Key,item.Value);
             }
-            toolStripProgressBarFileOpen.Value = 0;
         }
 
         private void UpdateRadioButton()
@@ -226,7 +230,6 @@ namespace StdfParser
             {
                 selectedtestNumber = (uint)dataGridViewTestItems.SelectedCells[0].Value;
                 UpdateChart();
-                radioButtonUpdateChartEnabled = true;
             }
             catch
             {

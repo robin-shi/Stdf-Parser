@@ -13,7 +13,7 @@ namespace StdfParser
     public class StdfData
     {
         public StdfFile StdfFile { get; set; }
-        public byte?[] HeadNums { get; set; }
+        public byte[] HeadNums { get; set; }
         public byte[] SiteNums { get;set;}
         public Dictionary<uint, string> TestItems { get; set; }
         public Dictionary<string, string> Summary { get; set; }
@@ -43,7 +43,7 @@ namespace StdfParser
 
         public StdfData(string stdfFilePath)
         {
-            StdfFile = new StdfFile(stdfFilePath);
+            StdfFile = new StdfFile(stdfFilePath);           
             UpdateHeadAndSiteNums();
             UpdateTestItems();
             UpdatePartCount();
@@ -56,119 +56,117 @@ namespace StdfParser
             Summary.Add("Total count：",$"{TotalCount}");
             Summary.Add("Passed count：", $"{PassedCount}");
             Summary.Add("Yield：", $"{TotalYield*100:f2}%");
-            var results = StdfFile.GetRecords().OfExactType<Mir>();
-            foreach (var result in results)
+            var result = StdfFile.GetMir();
+            try
             {
-                try
-                {
-                    if (result.SetupTime!=null)
-                        Summary.Add("Setup time:", result.SetupTime.ToString());
-                    if (result.StartTime != null)
-                        Summary.Add("Start time:", result.StartTime.ToString());
+                if (result.SetupTime!=null)
+                    Summary.Add("Setup time:", result.SetupTime.ToString());
+                if (result.StartTime != null)
+                    Summary.Add("Start time:", result.StartTime.ToString());
            
-                        Summary.Add("Tester station number:", result.StationNumber.ToString());//int always not null
-                    if (result.ModeCode != null)
-                        Summary.Add("Test mode code:", result.ModeCode.ToString());
-                    if (result.RetestCode != null)
-                        Summary.Add("Lot retest code:", result.RetestCode.ToString());
-                    if (result.ProtectionCode != null)
-                        Summary.Add("Data protection code:", result.ProtectionCode.ToString());
-                    if (result.BurnInTime != null)
-                        Summary.Add("Burn-in time:", result.BurnInTime.ToString());
-                    if (result.CommandModeCode != null)
-                        Summary.Add("Command mode code:", result.CommandModeCode.ToString());
-                    if (result.LotId != null)
-                        Summary.Add("Lot ID:", result.LotId.ToString());
-                    if (result.PartType != null)
-                        Summary.Add("Part type:", result.PartType.ToString());
-                    if (result.NodeName != null)
-                        Summary.Add("Node name:", result.NodeName.ToString());
-                    if (result.TesterType != null)
-                        Summary.Add("Tester type:", result.TesterType.ToString());
-                    if (result.JobName != null)
-                        Summary.Add("Program name:", result.JobName.ToString());
-                    if (result.JobRevision != null)
-                        Summary.Add("Program revision:", result.JobRevision.ToString());
-                    if (result.SublotId != null)
-                        Summary.Add("Sublot ID:", result.SublotId.ToString());
-                    if (result.OperatorName != null)
-                        Summary.Add("Operator name:", result.OperatorName.ToString());
-                    if (result.ExecType != null)
-                        Summary.Add("Tester software type:", result.ExecType.ToString());
-                    if (result.ExecVersion != null)
-                        Summary.Add("Tester software version:", result.ExecVersion.ToString());
-                    if (result.TestCode != null)
-                        Summary.Add("Test code:", result.TestCode.ToString());
-                    if (result.TestTemperature != null)
-                        Summary.Add("Test temperature:", result.TestTemperature.ToString());
-                    if (result.UserText != null)
-                        Summary.Add("User text:", result.UserText.ToString());
-                    if (result.AuxiliaryFile != null)
-                        Summary.Add("Auxiliary file:", result.AuxiliaryFile.ToString());
-                    if (result.PackageType != null)
-                        Summary.Add("Package type:", result.PackageType.ToString());
-                    if (result.FamilyId != null)
-                        Summary.Add("Product family ID:", result.FamilyId.ToString());
-                    if (result.DateCode != null)
-                        Summary.Add("Date code:", result.DateCode.ToString());
-                    if (result.FacilityId != null)
-                        Summary.Add("Test facility ID:", result.FacilityId.ToString());
-                    if (result.FloorId != null)
-                        Summary.Add("Test floor ID:", result.FloorId.ToString());
-                    if (result.ProcessId != null)
-                        Summary.Add("Fabrication process ID:", result.ProcessId.ToString());
-                    if (result.OperationFrequency != null)
-                        Summary.Add("Operation frequency:", result.OperationFrequency.ToString());
-                    if (result.SpecificationName != null)
-                        Summary.Add("Test specification name:", result.SpecificationName.ToString());
-                    if (result.SpecificationVersion != null)
-                        Summary.Add("Test specification version:", result.SpecificationVersion.ToString());
-                    if (result.FlowId != null)
-                        Summary.Add("Test flow ID:", result.FlowId.ToString());
-                    if (result.SetupId != null)
-                        Summary.Add("Test setup ID:", result.SetupId.ToString());
-                    if (result.DesignRevision != null)
-                        Summary.Add("Device design revision:", result.DesignRevision.ToString());
-                    if (result.EngineeringId != null)
-                        Summary.Add("Engineering lot ID:", result.EngineeringId.ToString());
-                    if (result.RomCode != null)
-                        Summary.Add("ROM code ID:", result.RomCode.ToString());
-                    if (result.SerialNumber != null)
-                        Summary.Add("Tester serial number:", result.SerialNumber.ToString());
-                    if (result.SupervisorName != null)
-                        Summary.Add("Supervisor name:", result.SupervisorName.ToString());
-                }
-                catch (Exception ex)
-                { 
-                }
-                break;
+                    Summary.Add("Tester station number:", result.StationNumber.ToString());//int always not null
+                if (result.ModeCode != null)
+                    Summary.Add("Test mode code:", result.ModeCode.ToString());
+                if (result.RetestCode != null)
+                    Summary.Add("Lot retest code:", result.RetestCode.ToString());
+                if (result.ProtectionCode != null)
+                    Summary.Add("Data protection code:", result.ProtectionCode.ToString());
+                if (result.BurnInTime != null)
+                    Summary.Add("Burn-in time:", result.BurnInTime.ToString());
+                if (result.CommandModeCode != null)
+                    Summary.Add("Command mode code:", result.CommandModeCode.ToString());
+                if (result.LotId != null)
+                    Summary.Add("Lot ID:", result.LotId.ToString());
+                if (result.PartType != null)
+                    Summary.Add("Part type:", result.PartType.ToString());
+                if (result.NodeName != null)
+                    Summary.Add("Node name:", result.NodeName.ToString());
+                if (result.TesterType != null)
+                    Summary.Add("Tester type:", result.TesterType.ToString());
+                if (result.JobName != null)
+                    Summary.Add("Program name:", result.JobName.ToString());
+                if (result.JobRevision != null)
+                    Summary.Add("Program revision:", result.JobRevision.ToString());
+                if (result.SublotId != null)
+                    Summary.Add("Sublot ID:", result.SublotId.ToString());
+                if (result.OperatorName != null)
+                    Summary.Add("Operator name:", result.OperatorName.ToString());
+                if (result.ExecType != null)
+                    Summary.Add("Tester software type:", result.ExecType.ToString());
+                if (result.ExecVersion != null)
+                    Summary.Add("Tester software version:", result.ExecVersion.ToString());
+                if (result.TestCode != null)
+                    Summary.Add("Test code:", result.TestCode.ToString());
+                if (result.TestTemperature != null)
+                    Summary.Add("Test temperature:", result.TestTemperature.ToString());
+                if (result.UserText != null)
+                    Summary.Add("User text:", result.UserText.ToString());
+                if (result.AuxiliaryFile != null)
+                    Summary.Add("Auxiliary file:", result.AuxiliaryFile.ToString());
+                if (result.PackageType != null)
+                    Summary.Add("Package type:", result.PackageType.ToString());
+                if (result.FamilyId != null)
+                    Summary.Add("Product family ID:", result.FamilyId.ToString());
+                if (result.DateCode != null)
+                    Summary.Add("Date code:", result.DateCode.ToString());
+                if (result.FacilityId != null)
+                    Summary.Add("Test facility ID:", result.FacilityId.ToString());
+                if (result.FloorId != null)
+                    Summary.Add("Test floor ID:", result.FloorId.ToString());
+                if (result.ProcessId != null)
+                    Summary.Add("Fabrication process ID:", result.ProcessId.ToString());
+                if (result.OperationFrequency != null)
+                    Summary.Add("Operation frequency:", result.OperationFrequency.ToString());
+                if (result.SpecificationName != null)
+                    Summary.Add("Test specification name:", result.SpecificationName.ToString());
+                if (result.SpecificationVersion != null)
+                    Summary.Add("Test specification version:", result.SpecificationVersion.ToString());
+                if (result.FlowId != null)
+                    Summary.Add("Test flow ID:", result.FlowId.ToString());
+                if (result.SetupId != null)
+                    Summary.Add("Test setup ID:", result.SetupId.ToString());
+                if (result.DesignRevision != null)
+                    Summary.Add("Device design revision:", result.DesignRevision.ToString());
+                if (result.EngineeringId != null)
+                    Summary.Add("Engineering lot ID:", result.EngineeringId.ToString());
+                if (result.RomCode != null)
+                    Summary.Add("ROM code ID:", result.RomCode.ToString());
+                if (result.SerialNumber != null)
+                    Summary.Add("Tester serial number:", result.SerialNumber.ToString());
+                if (result.SupervisorName != null)
+                    Summary.Add("Supervisor name:", result.SupervisorName.ToString());
+            }
+            catch (Exception ex)
+            { 
             }
         }
         void UpdateHeadAndSiteNums()
         {
-            List<byte?> headNums = new List<byte?>();
-            var results =StdfFile.GetRecords().OfExactType<Sdr>();
-            foreach (var result in results)
+            try
             {
-                if (!headNums.Contains(result.HeadNumber))
+                List<byte> headNums = new List<byte>();
+                var results = StdfFile.GetRecords().OfExactType<Sdr>();
+                foreach (var result in results)
                 {
-                    headNums.Add(result.HeadNumber);
+                    if (!headNums.Contains((byte)result.HeadNumber))
+                    {
+                        headNums.Add((byte)result.HeadNumber);
+                    }
+                    SiteNums = result.SiteNumbers;
                 }
-                SiteNums = result.SiteNumbers;
+                HeadNums = headNums.ToArray();
             }
-            HeadNums = headNums.ToArray();
+            catch { } 
         }
 
         void UpdateTestItems()
         {
             var results = StdfFile.GetRecords().OfExactType<Tsr>();
             TestItems = new Dictionary<uint, string>();
-            //toolStripProgressBarFileOpen.Maximum = results.Count();
             foreach (var result in results)
             {
                 try
                 {
-                    //toolStripProgressBarFileOpen.Value++;
                     TestItems.Add(result.TestNumber, result.TestName);
                 }
                 catch { }
@@ -177,31 +175,28 @@ namespace StdfParser
 
         void UpdatePartCount()
         {
-            PartCountPerSitePerHead = new Dictionary<byte?, Dictionary<byte?, uint>>();
-            foreach (var head in HeadNums)
+            try
             {
-                Dictionary<byte?, uint> partCountPerSite = new Dictionary<byte?, uint>();
-                foreach (var site in SiteNums)
+                PartCountPerSitePerHead = new Dictionary<byte?, Dictionary<byte?, uint>>();
+                foreach (var head in HeadNums)
                 {
-                    uint partCount=0;
-                    var results = StdfFile.GetRecords().OfExactType<Pcr>().Where(p=>p.HeadNumber==head&&p.SiteNumber==site);
-                    foreach (var result in results)
+                    Dictionary<byte?, uint> partCountPerSite = new Dictionary<byte?, uint>();
+                    foreach (var site in SiteNums)
                     {
-                        try
-                        {
+                        uint partCount=0;
+                        var result = StdfFile.GetRecords().OfExactType<Pcr>().Where(p=>p.HeadNumber==head&&p.SiteNumber==site).FirstOrDefault();
+                    
                             partCount = result.PartCount;
                             TotalCount += result.PartCount;
                             PassedCount+= (uint)result.GoodCount;
-                        }
-                        catch { }
-                        break;
+                    
+                        partCountPerSite.Add(site, partCount);
                     }
-                    partCountPerSite.Add(site, partCount);
+                    PartCountPerSitePerHead.Add(head, partCountPerSite);
                 }
-                PartCountPerSitePerHead.Add(head, partCountPerSite);
                 TotalYield = (double)PassedCount / TotalCount;
-            }
-            
+                }
+            catch { }
         }
         public void UpdateResults(byte head,byte site,uint testNum)
         {
@@ -235,8 +230,6 @@ namespace StdfParser
             Max = stats.Max;
             StDev = stats.StDev;
             Cpk = Math.Min(HighLimt-Mean,Mean-LowLimt)/(3*StDev);
-
-
         }
 
     }

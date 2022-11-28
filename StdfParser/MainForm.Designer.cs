@@ -42,7 +42,6 @@ namespace StdfParser
             this.TestNums = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBarFileOpen = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusFileName = new System.Windows.Forms.ToolStripStatusLabel();
             this.textBoxFilter = new System.Windows.Forms.TextBox();
             this.labelFilte = new System.Windows.Forms.Label();
@@ -50,7 +49,9 @@ namespace StdfParser
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupBoxHead = new System.Windows.Forms.GroupBox();
+            this.radioButtonHead3 = new System.Windows.Forms.RadioButton();
             this.radioButtonHead1 = new System.Windows.Forms.RadioButton();
+            this.radioButtonHead2 = new System.Windows.Forms.RadioButton();
             this.radioButtonHead0 = new System.Windows.Forms.RadioButton();
             this.groupBoxSite = new System.Windows.Forms.GroupBox();
             this.radioButtonSite3 = new System.Windows.Forms.RadioButton();
@@ -61,26 +62,24 @@ namespace StdfParser
             this.tabControlChart = new System.Windows.Forms.TabControl();
             this.tabPageSummary = new System.Windows.Forms.TabPage();
             this.dataGridViewInfo = new System.Windows.Forms.DataGridView();
+            this.FieldNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Contents = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageScatter = new System.Windows.Forms.TabPage();
             this.tabPageHsitogram = new System.Windows.Forms.TabPage();
             this.formsPlotHsitogram = new ScottPlot.FormsPlot();
             this.dataGridViewStats = new System.Windows.Forms.DataGridView();
-            this.radioButtonHead2 = new System.Windows.Forms.RadioButton();
-            this.radioButtonHead3 = new System.Windows.Forms.RadioButton();
-            this.FieldNames = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Contents = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Max = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Min = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StdDev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mean = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cpk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HighLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LowLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Site = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Head = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Site = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LowLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HighLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cpk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mean = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StdDev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Min = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Max = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestItems)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -199,7 +198,7 @@ namespace StdfParser
             this.dataGridViewTestItems.RowTemplate.Height = 23;
             this.dataGridViewTestItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewTestItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTestItems.Size = new System.Drawing.Size(308, 501);
+            this.dataGridViewTestItems.Size = new System.Drawing.Size(308, 508);
             this.dataGridViewTestItems.TabIndex = 1;
             this.dataGridViewTestItems.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewTestItems_CellMouseClick);
             // 
@@ -221,26 +220,18 @@ namespace StdfParser
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBarFileOpen,
             this.toolStripStatusFileName});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 679);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 686);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1223, 29);
+            this.statusStrip1.Size = new System.Drawing.Size(1223, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripProgressBarFileOpen
-            // 
-            this.toolStripProgressBarFileOpen.Name = "toolStripProgressBarFileOpen";
-            this.toolStripProgressBarFileOpen.Size = new System.Drawing.Size(117, 23);
-            this.toolStripProgressBarFileOpen.Step = 100;
-            this.toolStripProgressBarFileOpen.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // toolStripStatusFileName
             // 
             this.toolStripStatusFileName.Name = "toolStripStatusFileName";
-            this.toolStripStatusFileName.Size = new System.Drawing.Size(0, 24);
+            this.toolStripStatusFileName.Size = new System.Drawing.Size(0, 17);
             // 
             // textBoxFilter
             // 
@@ -271,7 +262,7 @@ namespace StdfParser
             this.formsPlotScatter.Location = new System.Drawing.Point(2, 2);
             this.formsPlotScatter.Margin = new System.Windows.Forms.Padding(2);
             this.formsPlotScatter.Name = "formsPlotScatter";
-            this.formsPlotScatter.Size = new System.Drawing.Size(896, 500);
+            this.formsPlotScatter.Size = new System.Drawing.Size(896, 504);
             this.formsPlotScatter.TabIndex = 5;
             // 
             // splitContainer1
@@ -293,7 +284,7 @@ namespace StdfParser
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer1.Size = new System.Drawing.Size(1223, 652);
+            this.splitContainer1.Size = new System.Drawing.Size(1223, 659);
             this.splitContainer1.SplitterDistance = 310;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 6;
@@ -318,7 +309,7 @@ namespace StdfParser
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.dataGridViewTestItems);
-            this.splitContainer2.Size = new System.Drawing.Size(308, 650);
+            this.splitContainer2.Size = new System.Drawing.Size(308, 657);
             this.splitContainer2.SplitterDistance = 146;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 5;
@@ -336,6 +327,19 @@ namespace StdfParser
             this.groupBoxHead.TabStop = false;
             this.groupBoxHead.Text = "Head Selection";
             // 
+            // radioButtonHead3
+            // 
+            this.radioButtonHead3.AutoSize = true;
+            this.radioButtonHead3.Location = new System.Drawing.Point(209, 21);
+            this.radioButtonHead3.Margin = new System.Windows.Forms.Padding(2);
+            this.radioButtonHead3.Name = "radioButtonHead3";
+            this.radioButtonHead3.Size = new System.Drawing.Size(64, 21);
+            this.radioButtonHead3.TabIndex = 0;
+            this.radioButtonHead3.TabStop = true;
+            this.radioButtonHead3.Text = "Head3";
+            this.radioButtonHead3.UseVisualStyleBackColor = true;
+            this.radioButtonHead3.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
             // radioButtonHead1
             // 
             this.radioButtonHead1.AutoSize = true;
@@ -348,6 +352,19 @@ namespace StdfParser
             this.radioButtonHead1.Text = "Head1";
             this.radioButtonHead1.UseVisualStyleBackColor = true;
             this.radioButtonHead1.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // radioButtonHead2
+            // 
+            this.radioButtonHead2.AutoSize = true;
+            this.radioButtonHead2.Location = new System.Drawing.Point(141, 21);
+            this.radioButtonHead2.Margin = new System.Windows.Forms.Padding(2);
+            this.radioButtonHead2.Name = "radioButtonHead2";
+            this.radioButtonHead2.Size = new System.Drawing.Size(64, 21);
+            this.radioButtonHead2.TabIndex = 0;
+            this.radioButtonHead2.TabStop = true;
+            this.radioButtonHead2.Text = "Head2";
+            this.radioButtonHead2.UseVisualStyleBackColor = true;
+            this.radioButtonHead2.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // radioButtonHead0
             // 
@@ -443,8 +460,8 @@ namespace StdfParser
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridViewStats);
-            this.splitContainer3.Size = new System.Drawing.Size(908, 650);
-            this.splitContainer3.SplitterDistance = 534;
+            this.splitContainer3.Size = new System.Drawing.Size(908, 657);
+            this.splitContainer3.SplitterDistance = 542;
             this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 7;
             // 
@@ -458,7 +475,7 @@ namespace StdfParser
             this.tabControlChart.Margin = new System.Windows.Forms.Padding(2);
             this.tabControlChart.Name = "tabControlChart";
             this.tabControlChart.SelectedIndex = 0;
-            this.tabControlChart.Size = new System.Drawing.Size(908, 534);
+            this.tabControlChart.Size = new System.Drawing.Size(908, 542);
             this.tabControlChart.TabIndex = 6;
             // 
             // tabPageSummary
@@ -466,7 +483,7 @@ namespace StdfParser
             this.tabPageSummary.Controls.Add(this.dataGridViewInfo);
             this.tabPageSummary.Location = new System.Drawing.Point(4, 26);
             this.tabPageSummary.Name = "tabPageSummary";
-            this.tabPageSummary.Size = new System.Drawing.Size(900, 504);
+            this.tabPageSummary.Size = new System.Drawing.Size(900, 512);
             this.tabPageSummary.TabIndex = 2;
             this.tabPageSummary.Text = "Summary";
             this.tabPageSummary.UseVisualStyleBackColor = true;
@@ -492,17 +509,33 @@ namespace StdfParser
             this.dataGridViewInfo.RowHeadersVisible = false;
             this.dataGridViewInfo.RowTemplate.Height = 23;
             this.dataGridViewInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewInfo.Size = new System.Drawing.Size(900, 504);
+            this.dataGridViewInfo.Size = new System.Drawing.Size(900, 512);
             this.dataGridViewInfo.TabIndex = 0;
+            // 
+            // FieldNames
+            // 
+            this.FieldNames.HeaderText = "Field Names";
+            this.FieldNames.Name = "FieldNames";
+            this.FieldNames.ReadOnly = true;
+            this.FieldNames.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FieldNames.Width = 86;
+            // 
+            // Contents
+            // 
+            this.Contents.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Contents.HeaderText = "Contents";
+            this.Contents.Name = "Contents";
+            this.Contents.ReadOnly = true;
+            this.Contents.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // tabPageScatter
             // 
             this.tabPageScatter.Controls.Add(this.formsPlotScatter);
-            this.tabPageScatter.Location = new System.Drawing.Point(4, 26);
+            this.tabPageScatter.Location = new System.Drawing.Point(4, 22);
             this.tabPageScatter.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageScatter.Name = "tabPageScatter";
             this.tabPageScatter.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageScatter.Size = new System.Drawing.Size(900, 504);
+            this.tabPageScatter.Size = new System.Drawing.Size(900, 508);
             this.tabPageScatter.TabIndex = 0;
             this.tabPageScatter.Text = "Scatter";
             this.tabPageScatter.UseVisualStyleBackColor = true;
@@ -510,11 +543,11 @@ namespace StdfParser
             // tabPageHsitogram
             // 
             this.tabPageHsitogram.Controls.Add(this.formsPlotHsitogram);
-            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 26);
+            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 22);
             this.tabPageHsitogram.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageHsitogram.Name = "tabPageHsitogram";
             this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageHsitogram.Size = new System.Drawing.Size(900, 504);
+            this.tabPageHsitogram.Size = new System.Drawing.Size(900, 508);
             this.tabPageHsitogram.TabIndex = 1;
             this.tabPageHsitogram.Text = "Histogram";
             this.tabPageHsitogram.UseVisualStyleBackColor = true;
@@ -526,7 +559,7 @@ namespace StdfParser
             this.formsPlotHsitogram.Location = new System.Drawing.Point(2, 2);
             this.formsPlotHsitogram.Margin = new System.Windows.Forms.Padding(2);
             this.formsPlotHsitogram.Name = "formsPlotHsitogram";
-            this.formsPlotHsitogram.Size = new System.Drawing.Size(896, 500);
+            this.formsPlotHsitogram.Size = new System.Drawing.Size(896, 504);
             this.formsPlotHsitogram.TabIndex = 0;
             // 
             // dataGridViewStats
@@ -556,111 +589,15 @@ namespace StdfParser
             this.dataGridViewStats.Name = "dataGridViewStats";
             this.dataGridViewStats.RowHeadersVisible = false;
             this.dataGridViewStats.RowTemplate.Height = 23;
-            this.dataGridViewStats.Size = new System.Drawing.Size(908, 113);
+            this.dataGridViewStats.Size = new System.Drawing.Size(908, 112);
             this.dataGridViewStats.TabIndex = 1;
             this.dataGridViewStats.Tag = "";
             // 
-            // radioButtonHead2
+            // Head
             // 
-            this.radioButtonHead2.AutoSize = true;
-            this.radioButtonHead2.Location = new System.Drawing.Point(141, 21);
-            this.radioButtonHead2.Margin = new System.Windows.Forms.Padding(2);
-            this.radioButtonHead2.Name = "radioButtonHead2";
-            this.radioButtonHead2.Size = new System.Drawing.Size(64, 21);
-            this.radioButtonHead2.TabIndex = 0;
-            this.radioButtonHead2.TabStop = true;
-            this.radioButtonHead2.Text = "Head2";
-            this.radioButtonHead2.UseVisualStyleBackColor = true;
-            this.radioButtonHead2.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // radioButtonHead3
-            // 
-            this.radioButtonHead3.AutoSize = true;
-            this.radioButtonHead3.Location = new System.Drawing.Point(209, 21);
-            this.radioButtonHead3.Margin = new System.Windows.Forms.Padding(2);
-            this.radioButtonHead3.Name = "radioButtonHead3";
-            this.radioButtonHead3.Size = new System.Drawing.Size(64, 21);
-            this.radioButtonHead3.TabIndex = 0;
-            this.radioButtonHead3.TabStop = true;
-            this.radioButtonHead3.Text = "Head3";
-            this.radioButtonHead3.UseVisualStyleBackColor = true;
-            this.radioButtonHead3.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
-            // 
-            // FieldNames
-            // 
-            this.FieldNames.HeaderText = "Field Names";
-            this.FieldNames.Name = "FieldNames";
-            this.FieldNames.ReadOnly = true;
-            this.FieldNames.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FieldNames.Width = 86;
-            // 
-            // Contents
-            // 
-            this.Contents.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Contents.HeaderText = "Contents";
-            this.Contents.Name = "Contents";
-            this.Contents.ReadOnly = true;
-            this.Contents.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Max
-            // 
-            this.Max.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Max.HeaderText = "Max";
-            this.Max.Name = "Max";
-            // 
-            // Min
-            // 
-            this.Min.HeaderText = "Min";
-            this.Min.Name = "Min";
-            this.Min.Width = 55;
-            // 
-            // StdDev
-            // 
-            this.StdDev.HeaderText = "StdDev";
-            this.StdDev.Name = "StdDev";
-            this.StdDev.Width = 74;
-            // 
-            // Mean
-            // 
-            this.Mean.HeaderText = "Mean";
-            this.Mean.Name = "Mean";
-            this.Mean.Width = 66;
-            // 
-            // Cpk
-            // 
-            this.Cpk.HeaderText = "Cpk";
-            this.Cpk.Name = "Cpk";
-            this.Cpk.Width = 56;
-            // 
-            // HighLimit
-            // 
-            this.HighLimit.HeaderText = "High Limit";
-            this.HighLimit.Name = "HighLimit";
-            this.HighLimit.Width = 91;
-            // 
-            // LowLimit
-            // 
-            this.LowLimit.HeaderText = "Low Limit";
-            this.LowLimit.Name = "LowLimit";
-            this.LowLimit.Width = 87;
-            // 
-            // Unit
-            // 
-            this.Unit.HeaderText = "Unit";
-            this.Unit.Name = "Unit";
-            this.Unit.Width = 56;
-            // 
-            // TestName
-            // 
-            this.TestName.HeaderText = "Test Name";
-            this.TestName.Name = "TestName";
-            this.TestName.Width = 96;
-            // 
-            // TestNum
-            // 
-            this.TestNum.HeaderText = "Test Num";
-            this.TestNum.Name = "TestNum";
-            this.TestNum.Width = 89;
+            this.Head.HeaderText = "Head";
+            this.Head.Name = "Head";
+            this.Head.Width = 64;
             // 
             // Site
             // 
@@ -668,11 +605,65 @@ namespace StdfParser
             this.Site.Name = "Site";
             this.Site.Width = 54;
             // 
-            // Head
+            // TestNum
             // 
-            this.Head.HeaderText = "Head";
-            this.Head.Name = "Head";
-            this.Head.Width = 64;
+            this.TestNum.HeaderText = "Test Num";
+            this.TestNum.Name = "TestNum";
+            this.TestNum.Width = 89;
+            // 
+            // TestName
+            // 
+            this.TestName.HeaderText = "Test Name";
+            this.TestName.Name = "TestName";
+            this.TestName.Width = 96;
+            // 
+            // Unit
+            // 
+            this.Unit.HeaderText = "Unit";
+            this.Unit.Name = "Unit";
+            this.Unit.Width = 56;
+            // 
+            // LowLimit
+            // 
+            this.LowLimit.HeaderText = "Low Limit";
+            this.LowLimit.Name = "LowLimit";
+            this.LowLimit.Width = 87;
+            // 
+            // HighLimit
+            // 
+            this.HighLimit.HeaderText = "High Limit";
+            this.HighLimit.Name = "HighLimit";
+            this.HighLimit.Width = 91;
+            // 
+            // Cpk
+            // 
+            this.Cpk.HeaderText = "Cpk";
+            this.Cpk.Name = "Cpk";
+            this.Cpk.Width = 56;
+            // 
+            // Mean
+            // 
+            this.Mean.HeaderText = "Mean";
+            this.Mean.Name = "Mean";
+            this.Mean.Width = 66;
+            // 
+            // StdDev
+            // 
+            this.StdDev.HeaderText = "StdDev";
+            this.StdDev.Name = "StdDev";
+            this.StdDev.Width = 74;
+            // 
+            // Min
+            // 
+            this.Min.HeaderText = "Min";
+            this.Min.Name = "Min";
+            this.Min.Width = 55;
+            // 
+            // Max
+            // 
+            this.Max.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Max.HeaderText = "Max";
+            this.Max.Name = "Max";
             // 
             // MainForm
             // 
@@ -733,7 +724,6 @@ namespace StdfParser
         private System.Windows.Forms.DataGridView dataGridViewTestItems;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusFileName;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBarFileOpen;
         private System.Windows.Forms.TextBox textBoxFilter;
         private System.Windows.Forms.Label labelFilte;
         private ScottPlot.FormsPlot formsPlotScatter;

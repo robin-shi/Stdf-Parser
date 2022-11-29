@@ -18,7 +18,7 @@ namespace StdfParser
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Version: {0}", AssemblyVersion);
             this.labelAuthor.Text = "Author: Robin Shi";
-            this.labelEmail.Text = "Email: 1157393996@qq.com";
+            this.labelEmail.Text = "Email: shiyabing001@gmail.com";
             this.textBoxDescription.Text = AssemblyDescription;
         }
 

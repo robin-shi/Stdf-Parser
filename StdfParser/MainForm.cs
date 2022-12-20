@@ -54,6 +54,7 @@ namespace StdfParser
                 radioButtonUpdateChartEnabled = false;
                 UpdateRadioButton();
                 radioButtonUpdateChartEnabled = true;
+                scatterShowLimitLinesToolStripMenuItem.Enabled = true;
                 textBoxFilter.Text = " ";//creat a value changed event
                 textBoxFilter.Text = "";
                 this.Cursor = Cursors.Default;
@@ -145,9 +146,16 @@ namespace StdfParser
         {
             formsPlotScatter.Plot.Clear();
             formsPlotScatter.Plot.AddScatterPoints(stdfData.DataX, stdfData.DataY);
+
             formsPlotScatter.Plot.XAxis.Label("DUT Index(#)");
             formsPlotScatter.Plot.YAxis.Label($"Test Value({stdfData.Unit})");
             formsPlotScatter.Plot.Title($"Head{stdfData.Head} Site{stdfData.Site} {stdfData.TestNum} {stdfData.TestName}");
+            if (scatterShowLimitLinesToolStripMenuItem.Checked)
+            {
+                formsPlotScatter.Plot.Legend(location: Alignment.UpperRight);
+                formsPlotScatter.Plot.AddHorizontalLine(stdfData.HighLimt, Color.OrangeRed, 2, LineStyle.Solid, "High Limit");
+                formsPlotScatter.Plot.AddHorizontalLine(stdfData.LowLimt, Color.SpringGreen, 2, LineStyle.Solid, "Low Limit");
+            }
             formsPlotScatter.Refresh();
         }
 
@@ -316,6 +324,12 @@ namespace StdfParser
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new AboutBox()).ShowDialog();
+        }
+
+        private void scatterShowLimitLinesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            scatterShowLimitLinesToolStripMenuItem.Checked = !scatterShowLimitLinesToolStripMenuItem.Checked;
+            UpdateChart();
         }
     }
 }

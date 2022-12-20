@@ -62,7 +62,7 @@ namespace StdfParser
             //      $"{"XXXXXXX:",30}"
             try
             {
-                Summary.AppendLine("------------------------------------------------------------------------------------------------------------------------------");
+                Summary.AppendLine("--------------------------------------------------------------------------------------------------------------");
                 Summary.AppendLine("MIR information:");
                 if (result.SetupTime!=null)
                     Summary.AppendLine($"{"Setup time:",-30}"+result.SetupTime.ToString());
@@ -150,7 +150,7 @@ namespace StdfParser
         {
             foreach (var head in HeadNums)
             {
-                Summary.AppendLine("------------------------------------------------------------------------------------------------------------------------------");
+                Summary.AppendLine("--------------------------------------------------------------------------------------------------------------");
                 Summary.AppendLine($"Head{head} Hard Bin Statistics:");
                 HardBins = new Dictionary<ushort, string>();
                 uint totalCount = 0;
@@ -189,7 +189,7 @@ namespace StdfParser
         {
             foreach (var head in HeadNums)
             {
-                Summary.AppendLine("------------------------------------------------------------------------------------------------------------------------------");
+                Summary.AppendLine("--------------------------------------------------------------------------------------------------------------");
                 Summary.AppendLine($"Head{head} Soft Bin Statistics:");
                 SoftBins = new Dictionary<ushort, string>();
                 uint totalCount = 0;

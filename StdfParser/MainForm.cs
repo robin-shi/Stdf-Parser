@@ -191,7 +191,7 @@ namespace StdfParser
                     color: Color.Red,
                     label: "probability") ;
                 probPlot.YAxisIndex = 1;
-                formsPlotHsitogram.Plot.YAxis2.Ticks(true);
+                //formsPlotHsitogram.Plot.YAxis2.Ticks(true);
 
                 formsPlotHsitogram.Plot.AddVerticalLine(stdfData.Mean, Color.Blue, 2, LineStyle.DashDot, "mean");
                 formsPlotHsitogram.Plot.AddVerticalLine(stdfData.Mean - stdfData.StDev * 3, Color.Gray, 2, LineStyle.Dot, "3σ");

@@ -228,20 +228,6 @@ namespace StdfParser
             this.Dispose();
         }
 
-        private void dataGridViewTestItems_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            try
-            {
-                selectedtestNumber = (uint)dataGridViewTestItems.SelectedCells[0].Value;
-                UpdateChart();
-            }
-            catch
-            {
-
-            }
-
-        }
-
         private void UpdateChart()
         {
             stdfData.UpdateResults(selectedHead,selectedSite,selectedtestNumber);
@@ -330,6 +316,19 @@ namespace StdfParser
         {
             scatterShowLimitLinesToolStripMenuItem.Checked = !scatterShowLimitLinesToolStripMenuItem.Checked;
             UpdateChart();
+        }
+
+        private void dataGridViewTestItems_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                selectedtestNumber = (uint)dataGridViewTestItems.SelectedCells[0].Value;
+                UpdateChart();
+            }
+            catch
+            {
+
+            }
         }
     }
 }

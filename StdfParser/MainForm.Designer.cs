@@ -68,6 +68,7 @@ namespace StdfParser
             this.tabPageScatter = new System.Windows.Forms.TabPage();
             this.tabPageHsitogram = new System.Windows.Forms.TabPage();
             this.formsPlotHsitogram = new ScottPlot.FormsPlot();
+            this.imageListIcon = new System.Windows.Forms.ImageList(this.components);
             this.dataGridViewStats = new System.Windows.Forms.DataGridView();
             this.Head = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Site = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,7 +82,6 @@ namespace StdfParser
             this.StdDev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Min = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Max = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imageListIcon = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestItems)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -218,7 +218,7 @@ namespace StdfParser
             this.dataGridViewTestItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewTestItems.Size = new System.Drawing.Size(308, 508);
             this.dataGridViewTestItems.TabIndex = 1;
-            this.dataGridViewTestItems.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewTestItems_CellMouseClick);
+            this.dataGridViewTestItems.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTestItems_CellEnter);
             // 
             // TestNums
             // 
@@ -280,7 +280,7 @@ namespace StdfParser
             this.formsPlotScatter.Location = new System.Drawing.Point(2, 2);
             this.formsPlotScatter.Margin = new System.Windows.Forms.Padding(2);
             this.formsPlotScatter.Name = "formsPlotScatter";
-            this.formsPlotScatter.Size = new System.Drawing.Size(896, 516);
+            this.formsPlotScatter.Size = new System.Drawing.Size(896, 519);
             this.formsPlotScatter.TabIndex = 5;
             // 
             // splitContainer1
@@ -479,7 +479,7 @@ namespace StdfParser
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridViewStats);
             this.splitContainer3.Size = new System.Drawing.Size(908, 657);
-            this.splitContainer3.SplitterDistance = 550;
+            this.splitContainer3.SplitterDistance = 551;
             this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 7;
             // 
@@ -494,7 +494,7 @@ namespace StdfParser
             this.tabControlChart.Margin = new System.Windows.Forms.Padding(2);
             this.tabControlChart.Name = "tabControlChart";
             this.tabControlChart.SelectedIndex = 0;
-            this.tabControlChart.Size = new System.Drawing.Size(908, 550);
+            this.tabControlChart.Size = new System.Drawing.Size(908, 551);
             this.tabControlChart.TabIndex = 6;
             // 
             // tabPageSummary
@@ -503,7 +503,7 @@ namespace StdfParser
             this.tabPageSummary.ImageIndex = 0;
             this.tabPageSummary.Location = new System.Drawing.Point(4, 26);
             this.tabPageSummary.Name = "tabPageSummary";
-            this.tabPageSummary.Size = new System.Drawing.Size(900, 520);
+            this.tabPageSummary.Size = new System.Drawing.Size(900, 521);
             this.tabPageSummary.TabIndex = 2;
             this.tabPageSummary.Text = "Summary";
             this.tabPageSummary.UseVisualStyleBackColor = true;
@@ -520,18 +520,18 @@ namespace StdfParser
             this.textBoxSummary.Name = "textBoxSummary";
             this.textBoxSummary.ReadOnly = true;
             this.textBoxSummary.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxSummary.Size = new System.Drawing.Size(900, 520);
+            this.textBoxSummary.Size = new System.Drawing.Size(900, 521);
             this.textBoxSummary.TabIndex = 1;
             // 
             // tabPageScatter
             // 
             this.tabPageScatter.Controls.Add(this.formsPlotScatter);
             this.tabPageScatter.ImageIndex = 1;
-            this.tabPageScatter.Location = new System.Drawing.Point(4, 26);
+            this.tabPageScatter.Location = new System.Drawing.Point(4, 23);
             this.tabPageScatter.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageScatter.Name = "tabPageScatter";
             this.tabPageScatter.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageScatter.Size = new System.Drawing.Size(900, 520);
+            this.tabPageScatter.Size = new System.Drawing.Size(900, 523);
             this.tabPageScatter.TabIndex = 0;
             this.tabPageScatter.Text = "Scatter";
             this.tabPageScatter.UseVisualStyleBackColor = true;
@@ -540,11 +540,11 @@ namespace StdfParser
             // 
             this.tabPageHsitogram.Controls.Add(this.formsPlotHsitogram);
             this.tabPageHsitogram.ImageIndex = 2;
-            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 26);
+            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 23);
             this.tabPageHsitogram.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageHsitogram.Name = "tabPageHsitogram";
             this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageHsitogram.Size = new System.Drawing.Size(900, 520);
+            this.tabPageHsitogram.Size = new System.Drawing.Size(900, 523);
             this.tabPageHsitogram.TabIndex = 1;
             this.tabPageHsitogram.Text = "Histogram";
             this.tabPageHsitogram.UseVisualStyleBackColor = true;
@@ -556,8 +556,16 @@ namespace StdfParser
             this.formsPlotHsitogram.Location = new System.Drawing.Point(2, 2);
             this.formsPlotHsitogram.Margin = new System.Windows.Forms.Padding(2);
             this.formsPlotHsitogram.Name = "formsPlotHsitogram";
-            this.formsPlotHsitogram.Size = new System.Drawing.Size(896, 516);
+            this.formsPlotHsitogram.Size = new System.Drawing.Size(896, 519);
             this.formsPlotHsitogram.TabIndex = 0;
+            // 
+            // imageListIcon
+            // 
+            this.imageListIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListIcon.ImageStream")));
+            this.imageListIcon.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListIcon.Images.SetKeyName(0, "Summary.png");
+            this.imageListIcon.Images.SetKeyName(1, "Scatter.png");
+            this.imageListIcon.Images.SetKeyName(2, "Histogram.png");
             // 
             // dataGridViewStats
             // 
@@ -586,7 +594,7 @@ namespace StdfParser
             this.dataGridViewStats.Name = "dataGridViewStats";
             this.dataGridViewStats.RowHeadersVisible = false;
             this.dataGridViewStats.RowTemplate.Height = 23;
-            this.dataGridViewStats.Size = new System.Drawing.Size(908, 104);
+            this.dataGridViewStats.Size = new System.Drawing.Size(908, 103);
             this.dataGridViewStats.TabIndex = 1;
             this.dataGridViewStats.Tag = "";
             // 
@@ -661,14 +669,6 @@ namespace StdfParser
             this.Max.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Max.HeaderText = "Max";
             this.Max.Name = "Max";
-            // 
-            // imageListIcon
-            // 
-            this.imageListIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListIcon.ImageStream")));
-            this.imageListIcon.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListIcon.Images.SetKeyName(0, "Summary.png");
-            this.imageListIcon.Images.SetKeyName(1, "Scatter.png");
-            this.imageListIcon.Images.SetKeyName(2, "Histogram.png");
             // 
             // MainForm
             // 

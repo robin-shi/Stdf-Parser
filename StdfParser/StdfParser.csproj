@@ -151,6 +151,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\Histogram.png" />
+    <Content Include="Icons\Parser.ico" />
+    <Content Include="Icons\Scatter.png" />
+    <Content Include="Icons\Summary.png" />
     <Content Include="Parser.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

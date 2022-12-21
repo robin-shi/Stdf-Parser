@@ -29,6 +29,7 @@ namespace StdfParser
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +81,7 @@ namespace StdfParser
             this.StdDev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Min = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Max = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imageListIcon = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestItems)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -278,7 +280,7 @@ namespace StdfParser
             this.formsPlotScatter.Location = new System.Drawing.Point(2, 2);
             this.formsPlotScatter.Margin = new System.Windows.Forms.Padding(2);
             this.formsPlotScatter.Name = "formsPlotScatter";
-            this.formsPlotScatter.Size = new System.Drawing.Size(896, 517);
+            this.formsPlotScatter.Size = new System.Drawing.Size(896, 516);
             this.formsPlotScatter.TabIndex = 5;
             // 
             // splitContainer1
@@ -477,7 +479,7 @@ namespace StdfParser
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridViewStats);
             this.splitContainer3.Size = new System.Drawing.Size(908, 657);
-            this.splitContainer3.SplitterDistance = 548;
+            this.splitContainer3.SplitterDistance = 550;
             this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 7;
             // 
@@ -487,19 +489,21 @@ namespace StdfParser
             this.tabControlChart.Controls.Add(this.tabPageScatter);
             this.tabControlChart.Controls.Add(this.tabPageHsitogram);
             this.tabControlChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlChart.ImageList = this.imageListIcon;
             this.tabControlChart.Location = new System.Drawing.Point(0, 0);
             this.tabControlChart.Margin = new System.Windows.Forms.Padding(2);
             this.tabControlChart.Name = "tabControlChart";
             this.tabControlChart.SelectedIndex = 0;
-            this.tabControlChart.Size = new System.Drawing.Size(908, 548);
+            this.tabControlChart.Size = new System.Drawing.Size(908, 550);
             this.tabControlChart.TabIndex = 6;
             // 
             // tabPageSummary
             // 
             this.tabPageSummary.Controls.Add(this.textBoxSummary);
+            this.tabPageSummary.ImageIndex = 0;
             this.tabPageSummary.Location = new System.Drawing.Point(4, 26);
             this.tabPageSummary.Name = "tabPageSummary";
-            this.tabPageSummary.Size = new System.Drawing.Size(900, 518);
+            this.tabPageSummary.Size = new System.Drawing.Size(900, 520);
             this.tabPageSummary.TabIndex = 2;
             this.tabPageSummary.Text = "Summary";
             this.tabPageSummary.UseVisualStyleBackColor = true;
@@ -516,17 +520,18 @@ namespace StdfParser
             this.textBoxSummary.Name = "textBoxSummary";
             this.textBoxSummary.ReadOnly = true;
             this.textBoxSummary.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxSummary.Size = new System.Drawing.Size(900, 518);
+            this.textBoxSummary.Size = new System.Drawing.Size(900, 520);
             this.textBoxSummary.TabIndex = 1;
             // 
             // tabPageScatter
             // 
             this.tabPageScatter.Controls.Add(this.formsPlotScatter);
-            this.tabPageScatter.Location = new System.Drawing.Point(4, 22);
+            this.tabPageScatter.ImageIndex = 1;
+            this.tabPageScatter.Location = new System.Drawing.Point(4, 26);
             this.tabPageScatter.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageScatter.Name = "tabPageScatter";
             this.tabPageScatter.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageScatter.Size = new System.Drawing.Size(900, 521);
+            this.tabPageScatter.Size = new System.Drawing.Size(900, 520);
             this.tabPageScatter.TabIndex = 0;
             this.tabPageScatter.Text = "Scatter";
             this.tabPageScatter.UseVisualStyleBackColor = true;
@@ -534,11 +539,12 @@ namespace StdfParser
             // tabPageHsitogram
             // 
             this.tabPageHsitogram.Controls.Add(this.formsPlotHsitogram);
-            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 22);
+            this.tabPageHsitogram.ImageIndex = 2;
+            this.tabPageHsitogram.Location = new System.Drawing.Point(4, 26);
             this.tabPageHsitogram.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageHsitogram.Name = "tabPageHsitogram";
             this.tabPageHsitogram.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageHsitogram.Size = new System.Drawing.Size(900, 521);
+            this.tabPageHsitogram.Size = new System.Drawing.Size(900, 520);
             this.tabPageHsitogram.TabIndex = 1;
             this.tabPageHsitogram.Text = "Histogram";
             this.tabPageHsitogram.UseVisualStyleBackColor = true;
@@ -550,7 +556,7 @@ namespace StdfParser
             this.formsPlotHsitogram.Location = new System.Drawing.Point(2, 2);
             this.formsPlotHsitogram.Margin = new System.Windows.Forms.Padding(2);
             this.formsPlotHsitogram.Name = "formsPlotHsitogram";
-            this.formsPlotHsitogram.Size = new System.Drawing.Size(896, 517);
+            this.formsPlotHsitogram.Size = new System.Drawing.Size(896, 516);
             this.formsPlotHsitogram.TabIndex = 0;
             // 
             // dataGridViewStats
@@ -580,7 +586,7 @@ namespace StdfParser
             this.dataGridViewStats.Name = "dataGridViewStats";
             this.dataGridViewStats.RowHeadersVisible = false;
             this.dataGridViewStats.RowTemplate.Height = 23;
-            this.dataGridViewStats.Size = new System.Drawing.Size(908, 106);
+            this.dataGridViewStats.Size = new System.Drawing.Size(908, 104);
             this.dataGridViewStats.TabIndex = 1;
             this.dataGridViewStats.Tag = "";
             // 
@@ -655,6 +661,14 @@ namespace StdfParser
             this.Max.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Max.HeaderText = "Max";
             this.Max.Name = "Max";
+            // 
+            // imageListIcon
+            // 
+            this.imageListIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListIcon.ImageStream")));
+            this.imageListIcon.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListIcon.Images.SetKeyName(0, "Summary.png");
+            this.imageListIcon.Images.SetKeyName(1, "Scatter.png");
+            this.imageListIcon.Images.SetKeyName(2, "Histogram.png");
             // 
             // MainForm
             // 
@@ -758,6 +772,7 @@ namespace StdfParser
         private System.Windows.Forms.TextBox textBoxSummary;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem scatterShowLimitLinesToolStripMenuItem;
+        private System.Windows.Forms.ImageList imageListIcon;
     }
 }
 

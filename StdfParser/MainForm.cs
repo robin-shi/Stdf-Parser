@@ -330,5 +330,25 @@ namespace StdfParser
 
             }
         }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog testFile = new SaveFileDialog(){Filter = "CSV|*.csv",
+            InitialDirectory = @"..\",FileName="Data"};
+            if(testFile.ShowDialog()==DialogResult.OK)
+            {
+                StreamWriter sw = new StreamWriter(testFile.FileName);
+                StdfData Data = stdfData;//后面再改成深拷贝
+                StringBuilder testDatas = new StringBuilder();
+                testDatas.AppendLine($"TestNum,TestName,MeanValue,Unit");
+                foreach (var testNum in Data.TestItems.Keys)
+                {
+                    Data.UpdateResults(selectedHead, selectedSite, testNum);
+                    testDatas.AppendLine($"{Data.TestNum},{Data.TestName},{Data.Mean},{Data.Unit}");
+                }
+                sw.Write(testDatas);
+                sw.Close();
+            }
+        }
     }
 }

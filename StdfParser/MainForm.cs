@@ -19,9 +19,10 @@ namespace StdfParser
         public MainForm()
         {
             InitializeComponent();
-            DisVisiableRadioButton();
+            DisableRadioButton();
+            ExportDataToolStripMenuItem.Enabled = false;
         }
-
+        string stdfPath { get; set; }
         StdfData stdfData { get; set; }
         byte selectedHead { get; set; }
         byte selectedSite { get; set; }
@@ -38,12 +39,13 @@ namespace StdfParser
         {
             if (stdfFilePath != ""&&stdfFilePath.Contains("std"))
             {
+                stdfPath = stdfFilePath;
                 //Clear display
                 toolStripStatusFileName.Text = "Parsing...";
                 this.Cursor = Cursors.WaitCursor;
                 stdfData = new StdfData(stdfFilePath);
                 dataGridViewTestItems.Rows.Clear();
-                DisVisiableRadioButton();
+                DisableRadioButton();
                 formsPlotScatter.Plot.Clear();
                 formsPlotHsitogram.Plot.Clear();
                 dataGridViewStats.Rows.Clear();
@@ -58,6 +60,7 @@ namespace StdfParser
                 textBoxFilter.Text = " ";//creat a value changed event
                 textBoxFilter.Text = "";
                 this.Cursor = Cursors.Default;
+                ExportDataToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -128,7 +131,7 @@ namespace StdfParser
                 }
             } 
         }
-        private void DisVisiableRadioButton()
+        private void DisableRadioButton()
         {
             radioButtonHead0.Visible = false;
             radioButtonHead1.Visible = false;
@@ -331,20 +334,29 @@ namespace StdfParser
             }
         }
 
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        private void ExportDatatoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog testFile = new SaveFileDialog(){Filter = "CSV|*.csv",
-            InitialDirectory = @"..\",FileName="Data"};
+            SaveFileDialog testFile = new SaveFileDialog() { Filter = "CSV|*.csv",
+                InitialDirectory = @"..\",FileName=Path.GetFileNameWithoutExtension(stdfPath)};
             if(testFile.ShowDialog()==DialogResult.OK)
             {
                 StreamWriter sw = new StreamWriter(testFile.FileName);
-                StdfData Data = stdfData;//后面再改成深拷贝
                 StringBuilder testDatas = new StringBuilder();
-                testDatas.AppendLine($"TestNum,TestName,MeanValue,Unit");
-                foreach (var testNum in Data.TestItems.Keys)
+                testDatas.Append($"Head,Site,TestNum,TestName,Unit,Low Limit,High Limit,Cpk,Mean,StdDev,Min,Max");
+                foreach (var dut in stdfData.DataX)
                 {
-                    Data.UpdateResults(selectedHead, selectedSite, testNum);
-                    testDatas.AppendLine($"{Data.TestNum},{Data.TestName},{Data.Mean},{Data.Unit}");
+                   testDatas.Append($",DUT{dut}");
+                }
+                testDatas.AppendLine("");
+                foreach (var testNum in stdfData.TestItems.Keys)
+                {
+                    stdfData.UpdateResults(selectedHead, selectedSite, testNum);
+                    testDatas.Append($"{stdfData.Head},{stdfData.Site},{stdfData.TestNum},{stdfData.TestName},{stdfData.Unit},{stdfData.LowLimt},{stdfData.HighLimt},{stdfData.Cpk},{stdfData.Mean},{stdfData.StDev},{stdfData.Min},{stdfData.Max}");
+                    foreach (var testValue in stdfData.DataY)
+                    {
+                        testDatas.Append($",{testValue}");
+                    }
+                    testDatas.AppendLine("");
                 }
                 sw.Write(testDatas);
                 sw.Close();

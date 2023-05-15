@@ -303,7 +303,7 @@ namespace StdfParser
                 DataX[i] = i;
                 i++;
             }
-            Unit = PreFixSearch[Scaling]+Unit;
+            Unit =(PreFixSearch[Scaling]+Unit).Trim();
             var stats = new ScottPlot.Statistics.BasicStats(DataY);
             TestNum = testNum;
             Head = head;
